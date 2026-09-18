@@ -323,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function resumeParallax() {
+    if (window.innerWidth <= 768) return; // Zero overhead em dispositivos móveis
     if (!isParallaxRunning && isHeroVisible && !document.hidden) {
       isParallaxRunning = true;
       requestAnimationFrame(renderParallax);
@@ -758,6 +759,7 @@ function initVSLPhonePlayer() {
   // - Pausa suave no hover e suporte a toque
   // ==========================================================================
   function initCreativesInfiniteStream() {
+    if (window.innerWidth <= 768) return; // No mobile a coluna fica oculta; poupa 100% de CPU/clones
     const streamViewport = document.getElementById('creativesStreamViewport');
     const streamTrack = document.getElementById('creativesStreamTrack');
     if (!streamViewport || !streamTrack) return;
