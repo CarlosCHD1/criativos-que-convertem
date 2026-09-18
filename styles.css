@@ -56,7 +56,9 @@ html {
   background-color: var(--bg-pitch);
   color: var(--text-cream);
   font-family: var(--font-body);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
 }
 
 body {
@@ -65,6 +67,10 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
+  touch-action: pan-y;
 }
 
 /* Ambient Background Atmosphere (Otimizado sem filter: blur para 60fps suave na GPU) */
@@ -74,6 +80,7 @@ body {
   pointer-events: none;
   z-index: 0;
   will-change: auto;
+  max-width: 100vw;
 }
 
 .ambient-glow-1 {
@@ -3715,6 +3722,36 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 @media (max-width: 768px) {
+  /* Prevenir qualquer transbordamento ou deslize horizontal */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    width: 100% !important;
+    touch-action: pan-y;
+  }
+
+  .container {
+    padding: 0 16px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Efeitos de luz de fundo ajustados à largura da tela mobile */
+  .ambient-glow {
+    overflow: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  .ambient-glow-1,
+  .ambient-glow-2,
+  .ambient-glow-3 {
+    width: 320px !important;
+    height: 320px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+  }
+
   /* Remover Menu / Navbar no Mobile (sem distrações e foco total na oferta/vídeo) */
   .navbar {
     display: none !important;
@@ -3726,72 +3763,106 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     display: none !important;
   }
 
-  /* Seção Hero Inicia no Topo com Espaçamento Limpo */
+  /* Seção Hero Inicia no Topo com Espaçamento Limpo e Justo */
   .hero-section {
-    padding: 18px 0 32px;
+    padding: 16px 0 28px;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden !important;
   }
 
   .hero-container {
-    gap: 10px;
+    gap: 8px;
+    padding: 0 14px;
   }
 
   .hero-header-block {
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 4px;
+    text-align: center;
   }
 
   .hero-badge {
-    margin-bottom: 8px;
-    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 auto 10px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    max-width: 100%;
   }
 
   .badge-dot {
     width: 6px;
     height: 6px;
+    flex-shrink: 0;
   }
 
   .badge-text {
-    font-size: 0.70rem;
-    letter-spacing: 0.12em;
+    font-size: clamp(0.58rem, 2.7vw, 0.72rem);
+    letter-spacing: 0.08em;
   }
 
-  /* Título no Celular: Proporcional, imponente e compacto (2-3 linhas limpas) */
+  /* Título no Celular: 2 linhas simétricas, sem palavras órfãs ("EM" integrado) */
   .hero-headline {
-    font-size: clamp(2.4rem, 9.8vw, 3.3rem);
-    line-height: 0.90;
+    font-size: clamp(2.1rem, 9.2vw, 3.1rem);
+    line-height: 0.94;
     letter-spacing: 0.01em;
-    margin-bottom: 8px;
+    margin: 0 auto 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .hero-headline .headline-white {
+    white-space: nowrap;
+    display: block;
+  }
+
+  .hero-headline .headline-orange {
+    white-space: nowrap;
+    display: block;
   }
 
   .hero-description {
-    font-size: 0.86rem;
-    line-height: 1.40;
-    margin: 0 auto 10px;
-    max-width: 460px;
-    color: #b8b7c5;
+    font-size: clamp(0.82rem, 3.5vw, 0.88rem);
+    line-height: 1.44;
+    margin: 0 auto 14px;
+    max-width: 440px;
+    padding: 0 8px;
+    color: #c0bfce;
+    text-align: center;
   }
 
-  /* Mobile Hero Visual: Telefone posicionado para visualização direta na primeira dobra */
+  /* Mobile Hero Visual: Telefone centralizado, imponente e justo na tela */
   .hero-visual {
     position: relative;
     width: 100%;
-    max-width: 380px;
+    max-width: 100%;
     min-height: auto;
-    margin: 4px auto 20px;
+    margin: 0 auto 18px;
     transform: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
   }
 
   .phone-mockup-wrapper:not(.is-enlarged) {
     position: relative;
     z-index: 20;
-    transform: rotate(0deg);
+    transform: none !important;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 
   /* Celular no Mobile com Proporção Otimizada */
   .phone-case,
   .phone-real-mockup {
-    width: min(280px, 78vw);
+    width: min(290px, 82vw);
     aspect-ratio: 576 / 1024;
     height: auto;
     padding: 0;
@@ -3804,6 +3875,57 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     aspect-ratio: 576 / 1024 !important;
     height: auto !important;
   }
+
+  /* Studio HUD badges ajustadas para ficarem contidas dentro do limite do celular */
+  .creative-studio-decorations {
+    inset: -4px;
+    pointer-events: none;
+  }
+
+  .badge-hook {
+    top: -12px;
+    left: 6px;
+    font-size: 0.48rem;
+    padding: 3px 8px;
+  }
+
+  .badge-rec {
+    top: -12px;
+    right: 6px;
+    font-size: 0.48rem;
+    padding: 3px 8px;
+  }
+
+  .badge-bpm {
+    bottom: 74px;
+    left: 4px;
+    font-size: 0.48rem;
+    padding: 3px 8px;
+  }
+
+  .badge-audio {
+    bottom: 74px;
+    right: 4px;
+    font-size: 0.48rem;
+    padding: 3px 8px;
+  }
+
+  .crosshair-1,
+  .crosshair-2,
+  .sparkle-1,
+  .sparkle-2 {
+    display: none !important;
+  }
+
+  .viewfinder-bracket {
+    width: 14px;
+    height: 14px;
+  }
+
+  .bracket-tl { top: 6px; left: 6px; }
+  .bracket-tr { top: 6px; right: 6px; }
+  .bracket-bl { bottom: 6px; left: 6px; }
+  .bracket-br { bottom: 6px; right: 6px; }
 
   /* Botão e Prompt de Clique para Assistir Destacados no Centro da Tela */
   .vsl-unmute-prompt {
@@ -3851,158 +3973,119 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     font-size: 0.68rem;
   }
 
-  /* 6 Cards em formato 3:4 no Mobile:
-     Ficam em plano secundário (z-index 2), com escala reduzida e opacidade suave (0.65),
-     emoldurando o celular com criativos reais sem disputar foco ou atrapalhar a visualização do vídeo VSL */
-  .floating-card {
-    position: absolute;
-    z-index: 2 !important;
-    opacity: 0.65;
-    pointer-events: none;
-    transform: scale(0.62);
-    transform-origin: center center;
-    filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.85));
-  }
-
-  /* 3 Cards à Esquerda no Mobile */
-  .card-pos-left-1 {
-    top: 15px;
-    left: -28px;
-    width: 95px;
-  }
-
-  .card-pos-left-2 {
-    top: 175px;
-    left: -38px;
-    width: 98px;
-  }
-
-  .card-pos-left-3 {
-    bottom: 20px;
-    left: -28px;
-    width: 95px;
-  }
-
-  /* 3 Cards à Direita no Mobile */
-  .card-pos-right-1 {
-    top: 15px;
-    right: -28px;
-    width: 95px;
-  }
-
-  .card-pos-right-2 {
-    top: 175px;
-    right: -38px;
-    width: 98px;
-  }
-
-  .card-pos-right-3 {
-    bottom: 20px;
-    right: -28px;
-    width: 95px;
-  }
-
-  .creative-card-34 {
-    width: 100%;
-  }
-
-  /* Coluna de criativos em scroll infinito no Mobile */
+  /* Ocultar elementos flutuantes laterais no Mobile para zerar transbordamento */
+  .floating-card,
   .creatives-stream-wrapper {
-    right: -20px;
-    width: 105px;
-    height: 530px;
-    z-index: 5;
-  }
-
-  .stream-card {
-    width: 96px;
-    transform: scale(0.85);
-  }
-
-  .stream-card.is-selected {
-    transform: scale(0.98) !important;
-  }
-
-  .stream-card-selected-badge {
-    font-size: 0.52rem;
-    padding: 2px 6px;
+    display: none !important;
   }
 
   .editor-dock {
-    display: none; /* No mobile ocultamos o dock técnico para deixar o hero limpo e focado no VSL */
+    display: none !important;
   }
 
+  /* Distribuição Harmoniosa de Todas as Seções Mobile */
   .features-container {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .mira-steps-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .examples-grid, .testimonials-grid, .modules-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .offer-features-list {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .footer-container {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .footer-links-group {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .trust-bar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
   }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 10px 0 24px;
+    padding: 12px 0 22px;
   }
 
   .hero-container {
     gap: 6px;
+    padding: 0 10px;
   }
 
   .hero-badge {
-    margin-bottom: 6px;
-    padding: 3px 8px;
+    margin-bottom: 8px;
+    padding: 3px 10px;
   }
 
   .badge-text {
-    font-size: 0.65rem;
-    letter-spacing: 0.10em;
+    font-size: clamp(0.55rem, 2.5vw, 0.64rem);
   }
 
   .hero-headline {
-    font-size: clamp(2.1rem, 9.2vw, 2.75rem);
-    line-height: 0.90;
-    margin-bottom: 6px;
+    font-size: clamp(1.95rem, 8.4vw, 2.50rem);
+    line-height: 0.94;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .hero-headline .headline-white,
+  .hero-headline .headline-orange {
+    white-space: nowrap;
+    display: block;
   }
 
   .hero-description {
     font-size: 0.81rem;
-    line-height: 1.36;
-    margin: 0 auto 8px;
+    line-height: 1.40;
+    margin: 0 auto 10px;
     padding: 0 4px;
+    max-width: 340px;
   }
 
   .hero-visual {
-    max-width: 100%;
-    min-height: auto;
-    margin: 2px auto 16px;
+    margin: 0 auto 14px;
   }
 
   .phone-case,
   .phone-real-mockup {
-    width: min(262px, 80vw);
+    width: min(276px, 84vw);
+  }
+
+  .badge-hook,
+  .badge-rec {
+    top: -10px;
+    font-size: 0.44rem;
+    padding: 2px 6px;
+  }
+
+  .badge-bpm,
+  .badge-audio {
+    bottom: 64px;
+    font-size: 0.44rem;
+    padding: 2px 6px;
   }
 
   .unmute-speaker-ripple {
@@ -4031,21 +4114,6 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     height: 36px;
     right: -14px;
     bottom: -16px;
-  }
-
-  .creatives-stream-wrapper {
-    right: -8px;
-    width: 76px;
-    height: 390px;
-  }
-
-  .stream-card {
-    width: 70px;
-    transform: scale(0.78);
-  }
-
-  .stream-card.is-selected {
-    transform: scale(0.88) !important;
   }
 }
 
