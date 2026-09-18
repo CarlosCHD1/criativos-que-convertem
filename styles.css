@@ -3739,25 +3739,67 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     display: none;
   }
 
-  /* Título no Celular (Headline Ampliada e Imponente) */
+  /* Compact Navbar no Mobile */
+  .navbar {
+    padding: 10px 0;
+  }
+
+  .brand-logo-icon {
+    height: 34px;
+  }
+
+  /* Seção Hero Compacta para Garantir Vídeo Imediatamente Visível na Primeira Tela */
+  .hero-section {
+    padding: 14px 0 32px;
+  }
+
+  .hero-container {
+    gap: 10px;
+  }
+
+  .hero-header-block {
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .hero-badge {
+    margin-bottom: 8px;
+    padding: 4px 10px;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .badge-text {
+    font-size: 0.70rem;
+    letter-spacing: 0.12em;
+  }
+
+  /* Título no Celular: Proporcional, imponente e compacto (2-3 linhas limpas) */
   .hero-headline {
-    font-size: clamp(4.4rem, 14.5vw, 5.8rem);
-    line-height: 0.88;
+    font-size: clamp(2.4rem, 9.8vw, 3.3rem);
+    line-height: 0.90;
     letter-spacing: 0.01em;
+    margin-bottom: 8px;
   }
 
   .hero-description {
-    font-size: 1.05rem;
-    margin-bottom: 0;
+    font-size: 0.86rem;
+    line-height: 1.40;
+    margin: 0 auto 10px;
+    max-width: 460px;
+    color: #b8b7c5;
   }
 
-  /* Mobile Hero Visual: Telefone centralizado, imponente e ampliado */
+  /* Mobile Hero Visual: Telefone posicionado para visualização direta na primeira dobra */
   .hero-visual {
     position: relative;
     width: 100%;
-    max-width: 440px;
-    min-height: 620px;
-    margin: 30px auto 35px;
+    max-width: 380px;
+    min-height: auto;
+    margin: 4px auto 20px;
     transform: none;
   }
 
@@ -3768,10 +3810,10 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     margin: 0 auto;
   }
 
-  /* Celular no Mobile com Tamanho Ampliado */
+  /* Celular no Mobile com Proporção Otimizada */
   .phone-case,
   .phone-real-mockup {
-    width: min(350px, 86vw);
+    width: min(280px, 78vw);
     aspect-ratio: 576 / 1024;
     height: auto;
     padding: 0;
@@ -3783,6 +3825,40 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     width: min(360px, 92vw) !important;
     aspect-ratio: 576 / 1024 !important;
     height: auto !important;
+  }
+
+  /* Botão e Prompt de Clique para Assistir Destacados no Centro da Tela */
+  .vsl-unmute-prompt {
+    padding: 14px 10px;
+  }
+
+  .unmute-speaker-ripple {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 8px;
+  }
+
+  .ripple-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .unmute-badge {
+    font-size: 0.68rem;
+    margin-bottom: 5px;
+    letter-spacing: 0.12em;
+  }
+
+  .unmute-cta {
+    font-size: 0.80rem;
+    padding: 8px 18px;
+  }
+
+  .unmute-floating-hand {
+    width: 40px;
+    height: 40px;
+    right: -18px;
+    bottom: -20px;
   }
 
   .phone-enlarge-close-btn {
@@ -3909,34 +3985,89 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 @media (max-width: 480px) {
-  .hero-headline {
-    font-size: clamp(3.9rem, 15vw, 4.9rem);
-    line-height: 0.88;
+  .hero-section {
+    padding: 10px 0 24px;
   }
 
-  .phone-case,
-  .phone-real-mockup {
-    width: min(332px, 88vw);
+  .hero-container {
+    gap: 6px;
+  }
+
+  .hero-badge {
+    margin-bottom: 6px;
+    padding: 3px 8px;
+  }
+
+  .badge-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.10em;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.1rem, 9.2vw, 2.75rem);
+    line-height: 0.90;
+    margin-bottom: 6px;
+  }
+
+  .hero-description {
+    font-size: 0.81rem;
+    line-height: 1.36;
+    margin: 0 auto 8px;
+    padding: 0 4px;
   }
 
   .hero-visual {
     max-width: 100%;
-    min-height: 570px;
+    min-height: auto;
+    margin: 2px auto 16px;
+  }
+
+  .phone-case,
+  .phone-real-mockup {
+    width: min(262px, 80vw);
+  }
+
+  .unmute-speaker-ripple {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 6px;
+  }
+
+  .ripple-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .unmute-badge {
+    font-size: 0.62rem;
+    margin-bottom: 4px;
+  }
+
+  .unmute-cta {
+    font-size: 0.76rem;
+    padding: 7px 15px;
+  }
+
+  .unmute-floating-hand {
+    width: 36px;
+    height: 36px;
+    right: -14px;
+    bottom: -16px;
   }
 
   .creatives-stream-wrapper {
-    right: -14px;
-    width: 90px;
-    height: 480px;
+    right: -8px;
+    width: 76px;
+    height: 390px;
   }
 
   .stream-card {
-    width: 82px;
-    transform: scale(0.82);
+    width: 70px;
+    transform: scale(0.78);
   }
 
   .stream-card.is-selected {
-    transform: scale(0.95) !important;
+    transform: scale(0.88) !important;
   }
 }
 
