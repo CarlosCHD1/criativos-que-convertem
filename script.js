@@ -267,21 +267,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only update elements when hero is within or near viewport
     if (currentScrollY < heroHeight + 300) {
       
-      // 1. Motion Background Parallax: Moves with scroll and reacts to mouse
+      // 1. Motion Background Parallax: Moves with scroll and reacts to mouse (Desktop only)
       if (heroBgGif) {
-        const bgShiftY = currentScrollY * 0.42; // Scroll downward movement
-        const bgMouseX = currentMouseX * -25;    // Mouse opposite horizontal sway
-        const bgMouseY = currentMouseY * -16;    // Mouse vertical sway
-        const bgScale = 1.06 + Math.min(currentScrollY * 0.00035, 0.10); // Subtle dynamic camera push
-        heroBgGif.style.transform = `translate3d(${bgMouseX.toFixed(2)}px, ${(bgShiftY + bgMouseY).toFixed(2)}px, 0) scale(${bgScale.toFixed(4)})`;
+        if (window.innerWidth > 768) {
+          const bgShiftY = currentScrollY * 0.42; // Scroll downward movement
+          const bgMouseX = currentMouseX * -25;    // Mouse opposite horizontal sway
+          const bgMouseY = currentMouseY * -16;    // Mouse vertical sway
+          const bgScale = 1.06 + Math.min(currentScrollY * 0.00035, 0.10); // Subtle dynamic camera push
+          heroBgGif.style.transform = `translate3d(${bgMouseX.toFixed(2)}px, ${(bgShiftY + bgMouseY).toFixed(2)}px, 0) scale(${bgScale.toFixed(4)})`;
+        } else {
+          heroBgGif.style.transform = '';
+        }
       }
 
-      // 1b. Dotted Texture Parallax: Subtle secondary depth layer
+      // 1b. Dotted Texture Parallax: Subtle secondary depth layer (Desktop only)
       if (heroDotsPattern) {
-        const dotsShiftY = currentScrollY * 0.20;
-        const dotsMouseX = currentMouseX * -10;
-        const dotsMouseY = currentMouseY * -7;
-        heroDotsPattern.style.transform = `translate3d(${dotsMouseX.toFixed(2)}px, ${(dotsShiftY + dotsMouseY).toFixed(2)}px, 0)`;
+        if (window.innerWidth > 768) {
+          const dotsShiftY = currentScrollY * 0.20;
+          const dotsMouseX = currentMouseX * -10;
+          const dotsMouseY = currentMouseY * -7;
+          heroDotsPattern.style.transform = `translate3d(${dotsMouseX.toFixed(2)}px, ${(dotsShiftY + dotsMouseY).toFixed(2)}px, 0)`;
+        } else {
+          heroDotsPattern.style.transform = '';
+        }
       }
 
       // 2. Coluna de Criativos à Direita (Stream Contínuo) — Parallax suave de profundidade

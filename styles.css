@@ -58,7 +58,9 @@ html {
   font-family: var(--font-body);
   overflow-x: hidden !important;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
+  overscroll-behavior-x: none !important;
+  overscroll-behavior: none;
 }
 
 body {
@@ -69,8 +71,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden !important;
   width: 100%;
-  max-width: 100vw;
-  touch-action: pan-y;
+  max-width: 100%;
+  touch-action: pan-y !important;
+  overscroll-behavior-x: none !important;
+  overscroll-behavior: none;
 }
 
 /* Ambient Background Atmosphere (Otimizado sem filter: blur para 60fps suave na GPU) */
@@ -394,6 +398,8 @@ button {
   padding: 60px 0 80px;
   position: relative;
   overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
 }
 
 /* Motion Background — Parallax Layer */
@@ -655,19 +661,21 @@ button {
 .phone-backdrop {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 100;
   background: rgba(5, 5, 8, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   opacity: 0;
   pointer-events: none;
+  display: none;
   transition: opacity 0.35s ease;
   cursor: pointer;
 }
 
 .phone-backdrop.active {
+  display: block;
   opacity: 1;
   pointer-events: auto;
 }
@@ -3725,9 +3733,11 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   /* Prevenir qualquer transbordamento ou deslize horizontal */
   html, body {
     overflow-x: hidden !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
     width: 100% !important;
-    touch-action: pan-y;
+    overscroll-behavior-x: none !important;
+    overscroll-behavior: none !important;
+    touch-action: pan-y !important;
   }
 
   .container {
@@ -3739,14 +3749,14 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   /* Efeitos de luz de fundo ajustados à largura da tela mobile */
   .ambient-glow {
     overflow: hidden !important;
-    max-width: 100vw !important;
+    max-width: 100% !important;
   }
 
   .ambient-glow-1,
   .ambient-glow-2,
   .ambient-glow-3 {
-    width: 320px !important;
-    height: 320px !important;
+    width: 300px !important;
+    height: 300px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     right: auto !important;
@@ -3767,8 +3777,24 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   .hero-section {
     padding: 16px 0 28px;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100% !important;
     overflow: hidden !important;
+    clip-path: inset(0 0 0 0) !important;
+    -webkit-clip-path: inset(0 0 0 0) !important;
+  }
+
+  /* Backgrounds e padrões ajustados estritamente à largura do hero no mobile */
+  .hero-bg-gif,
+  .hero-dots-pattern {
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .phone-backdrop:not(.active) {
+    display: none !important;
   }
 
   .hero-container {
