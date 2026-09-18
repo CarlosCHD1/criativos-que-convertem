@@ -3715,42 +3715,20 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 @media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #0d0c11;
-    flex-direction: column;
-    padding: 20px;
-    border-bottom: 1px solid var(--orange-border);
-  }
-
-  .nav-menu.mobile-open {
-    display: flex;
-  }
-
-  .mobile-toggle {
-    display: flex;
-  }
-
-  .nav-cta {
-    display: none;
-  }
-
-  /* Compact Navbar no Mobile */
+  /* Remover Menu / Navbar no Mobile (sem distrações e foco total na oferta/vídeo) */
   .navbar {
-    padding: 10px 0;
+    display: none !important;
   }
 
-  .brand-logo-icon {
-    height: 34px;
+  .nav-menu,
+  .mobile-toggle,
+  .nav-cta {
+    display: none !important;
   }
 
-  /* Seção Hero Compacta para Garantir Vídeo Imediatamente Visível na Primeira Tela */
+  /* Seção Hero Inicia no Topo com Espaçamento Limpo */
   .hero-section {
-    padding: 14px 0 32px;
+    padding: 18px 0 32px;
   }
 
   .hero-container {
