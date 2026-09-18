@@ -5,15 +5,18 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- 1. Sticky Navbar on Scroll ---
+  // --- 1. Sticky Navbar on Scroll (Passive & Cached State) ---
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  let isNavScrolled = false;
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      const shouldScroll = window.scrollY > 40;
+      if (shouldScroll !== isNavScrolled) {
+        isNavScrolled = shouldScroll;
+        navbar.classList.toggle('scrolled', isNavScrolled);
+      }
+    }, { passive: true });
+  }
 
   // --- 2. Mobile Menu Toggle ---
   const mobileToggle = document.getElementById('mobileToggle');
@@ -32,29 +35,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. Navigation Active Link Tracking on Scroll ---
-  const sections = document.querySelectorAll('section[id], header[id]');
+  // --- 3. Navigation Active Link Tracking (IntersectionObserver - Zero Forced Reflows) ---
   const navLinks = document.querySelectorAll('.nav-link');
+  if (navLinks.length > 0 && 'IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -55% 0px', threshold: 0.05 });
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPosition = window.scrollY + 200;
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
+    document.querySelectorAll('section[id], header[id]').forEach(sec => sectionObserver.observe(sec));
+  }
 
   // --- 4. Video Modal Handlers ---
   const videoModal = document.getElementById('videoModal');
@@ -223,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 8. Unified Smooth Scroll & Mouse Parallax Engine ---
+  // --- 8. Unified Smooth Scroll & Mouse Parallax Engine (Smart RAF with Auto-Pause) ---
   const heroSection = document.querySelector('.hero-section');
   const heroVisual = document.getElementById('heroVisual');
   const heroBgGif = document.getElementById('heroBgGif');
@@ -237,6 +233,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentMouseY = 0;
   let currentScrollY = window.scrollY || 0;
   let isMouseInsideHero = false;
+  let isHeroVisible = true;
+  let isParallaxRunning = false;
 
   // Track mouse coordinates inside hero
   if (heroSection) {
@@ -245,17 +243,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = heroSection.getBoundingClientRect();
       targetMouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2; // -1 to +1
       targetMouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-    });
+    }, { passive: true });
 
     heroSection.addEventListener('mouseleave', () => {
       isMouseInsideHero = false;
       targetMouseX = 0;
       targetMouseY = 0;
-    });
+    }, { passive: true });
   }
 
   // Animation Frame Loop for 60fps / 120fps Silky Smooth Parallax
   function renderParallax() {
+    if (!isParallaxRunning) return;
+
     const rawScrollY = window.scrollY || 0;
     const heroHeight = heroSection ? heroSection.offsetHeight : 800;
 
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Only update elements when hero is within or near viewport
     if (currentScrollY < heroHeight + 300) {
       
-      // 1. GIF Background Parallax: Moves with scroll and reacts to mouse
+      // 1. Motion Background Parallax: Moves with scroll and reacts to mouse
       if (heroBgGif) {
         const bgShiftY = currentScrollY * 0.42; // Scroll downward movement
         const bgMouseX = currentMouseX * -25;    // Mouse opposite horizontal sway
@@ -307,11 +307,42 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    requestAnimationFrame(renderParallax);
+    if (isHeroVisible && !document.hidden) {
+      requestAnimationFrame(renderParallax);
+    } else {
+      isParallaxRunning = false;
+    }
   }
 
-  // Start the continuous parallax loop
-  requestAnimationFrame(renderParallax);
+  function resumeParallax() {
+    if (!isParallaxRunning && isHeroVisible && !document.hidden) {
+      isParallaxRunning = true;
+      requestAnimationFrame(renderParallax);
+    }
+  }
+
+  // Observer to pause RAF loop when Hero is offscreen
+  if (heroSection && 'IntersectionObserver' in window) {
+    const heroVisibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+        if (isHeroVisible) {
+          resumeParallax();
+        }
+      });
+    }, { threshold: 0.02 });
+    heroVisibilityObserver.observe(heroSection);
+  }
+
+  // Pause on inactive tab, resume on active tab
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && isHeroVisible) {
+      resumeParallax();
+    }
+  });
+
+  // Start the smart parallax loop
+  resumeParallax();
 
   // --- 9. VSL VIDEO PLAYER INSIDE PHONE MASK (ANTI-SKIP & ANTI-ACCELERATION) ---
   initVSLPhonePlayer();

@@ -24,7 +24,7 @@
   --text-dark: #63626e;
 
   --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'IBM Plex Sans JP', sans-serif;
+  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-hand: 'Caveat', cursive;
 
   --radius-sm: 8px;
@@ -389,7 +389,7 @@ button {
   overflow: hidden;
 }
 
-/* GIF Background — Parallax Layer */
+/* Motion Background — Parallax Layer */
 .hero-bg-gif {
   position: absolute;
   inset: -120px -60px;
@@ -398,7 +398,8 @@ button {
   will-change: transform;
 }
 
-.hero-bg-gif img {
+.hero-bg-gif img,
+.hero-bg-gif video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -406,6 +407,7 @@ button {
   display: block;
   opacity: 0.82; /* Bem mais visível nas laterais e no fundo */
   filter: saturate(1.15) contrast(1.12) brightness(0.96);
+  pointer-events: none;
 }
 
 /* Textura Pontilhada Discreta (Dotted Texture Layer) */
@@ -3937,3 +3939,17 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     transform: scale(0.95) !important;
   }
 }
+
+/* ==========================================================================
+   PERFORMANCE & RENDERING OPTIMIZATIONS
+   ========================================================================== */
+.method-section,
+.curriculum-section,
+.examples-section,
+.section-testimonials,
+.pricing-section,
+.faq-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+

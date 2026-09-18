@@ -6,10 +6,10 @@
   <title>Curso MIRA — Criativos que Convertem</title>
   <meta name="description" content="Aprenda a criar criativos que chamam atenção, geram engajamento e vendem de verdade — no pago e no orgânico.">
 
-  <!-- Google Fonts: Bebas Neue, IBM Plex Sans JP, Caveat (handwritten) -->
+  <!-- Google Fonts: Bebas Neue, IBM Plex Sans, Caveat (handwritten) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=IBM+Plex+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,7 +25,7 @@
   <header class="navbar">
     <div class="container nav-container">
       <a href="#inicio" class="logo">
-        <img src="assets/logo-cqc-icon.webp" alt="CQC" class="brand-logo-img brand-logo-icon" height="42">
+        <img src="assets/logo-cqc-icon.webp" alt="CQC" class="brand-logo-img brand-logo-icon" width="72" height="42" decoding="async">
       </a>
 
       <nav class="nav-menu" id="navMenu">
@@ -60,9 +60,13 @@
     =================================================== -->
     <section class="hero-section" id="inicio">
 
-      <!-- GIF Background Parallax Layer -->
+      <!-- Motion Background Parallax Layer (GPU-accelerated, ~85KB) -->
       <div class="hero-bg-gif" id="heroBgGif" aria-hidden="true">
-        <img src="assets/bg-hero.gif" alt="" loading="eager" draggable="false">
+        <video class="hero-bg-video" autoplay loop muted playsinline poster="assets/bg-hero.webp">
+          <source src="assets/bg-hero.webm" type="video/webm">
+          <source src="assets/bg-hero.mp4" type="video/mp4">
+          <img src="assets/bg-hero.webp" alt="" loading="eager" draggable="false">
+        </video>
       </div>
       <div class="hero-bg-overlay" aria-hidden="true"></div>
       <!-- Dotted Texture Pattern Layer -->
@@ -325,7 +329,7 @@
               </div>
 
               <!-- Real iPhone 3D Cutout Frame Overlay (Bezel, Titanium rim, Neon glow, Dynamic island) -->
-              <img src="assets/iphone-frame-cutout.webp" class="phone-frame-overlay" alt="iPhone Neon" draggable="false">
+              <img src="assets/iphone-frame-cutout.webp" class="phone-frame-overlay" alt="iPhone Neon" draggable="false" width="576" height="1024" decoding="async">
             </div>
           </div>
 
@@ -342,7 +346,7 @@
                 <!-- Criativo 04: Visual Hooks -->
                 <div class="stream-card" data-title="Visual Hooks">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Visual Hook" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Visual Hook" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill">👁️ VISUAL HOOK</span>
                     <div class="stream-card-selected-badge">
@@ -355,7 +359,7 @@
                 <!-- Criativo 05: Ímã de Atenção -->
                 <div class="stream-card" data-title="Ímã de Atenção">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de Atenção" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de Atenção" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill pill-orange">🧲 ÍMÃ DE ATENÇÃO</span>
                     <div class="stream-card-selected-badge">
@@ -368,7 +372,7 @@
                 <!-- Criativo 06: Estratégia Ads -->
                 <div class="stream-card" data-title="Estratégia Ads">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia Ads" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia Ads" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill">🎯 ESTRATÉGIA ADS</span>
                     <div class="stream-card-selected-badge">
@@ -381,7 +385,7 @@
                 <!-- Criativo 07: CTR Sem Achismo -->
                 <div class="stream-card" data-title="CTR Sem Achismo">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-07-clique-achismo.webp" alt="CTR Sem Achismo" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-07-clique-achismo.webp" alt="CTR Sem Achismo" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill pill-orange">📈 CTR ELEVADO</span>
                     <div class="stream-card-selected-badge">
@@ -394,7 +398,7 @@
                 <!-- Criativo 08: Domínio da Atenção -->
                 <div class="stream-card" data-title="Domínio da Atenção">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="Domínio da Atenção" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="Domínio da Atenção" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill">🔥 RETENÇÃO MÁXIMA</span>
                     <div class="stream-card-selected-badge">
@@ -407,7 +411,7 @@
                 <!-- Criativo 01: 3 Segundos Decidem Tudo -->
                 <div class="stream-card" data-title="3 Segundos">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-01-3segundos.webp" alt="3 Segundos" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-01-3segundos.webp" alt="3 Segundos" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill">⏱️ HOOK 3S</span>
                     <div class="stream-card-selected-badge">
@@ -420,7 +424,7 @@
                 <!-- Criativo 02: Quebra de Padrão -->
                 <div class="stream-card" data-title="Quebra de Padrão">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-02-gancho.webp" alt="Quebra de Padrão" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-02-gancho.webp" alt="Quebra de Padrão" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill pill-orange">⚡ QUEBRA DE PADRÃO</span>
                     <div class="stream-card-selected-badge">
@@ -433,7 +437,7 @@
                 <!-- Criativo 03: Direção Visual -->
                 <div class="stream-card" data-title="Direção Visual">
                   <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-03-vender.webp" alt="Direção Visual" class="stream-card-img" loading="lazy">
+                    <img src="assets/creatives/creative-03-vender.webp" alt="Direção Visual" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
                     <div class="stream-card-glare"></div>
                     <span class="stream-card-pill">🎬 DIREÇÃO VISUAL</span>
                     <div class="stream-card-selected-badge">
@@ -736,7 +740,7 @@
           <!-- Card 1 -->
           <div class="creative-card" data-category="ecommerce">
             <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo E-commerce" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo E-commerce" loading="lazy" decoding="async" width="500" height="333">
               <span class="creative-type">E-COMMERCE</span>
               <span class="creative-metric-badge">ROAS 7.2x</span>
             </div>
@@ -753,7 +757,7 @@
           <!-- Card 2 -->
           <div class="creative-card" data-category="infoproduto">
             <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Infoproduto" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Infoproduto" loading="lazy" decoding="async" width="500" height="333">
               <span class="creative-type">INFOPRODUTO</span>
               <span class="creative-metric-badge">CTR 5.4%</span>
             </div>
@@ -770,7 +774,7 @@
           <!-- Card 3 -->
           <div class="creative-card" data-category="servicos">
             <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Serviços" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Serviços" loading="lazy" decoding="async" width="500" height="333">
               <span class="creative-type">SERVIÇOS</span>
               <span class="creative-metric-badge">Lead R$ 3,20</span>
             </div>
@@ -802,7 +806,7 @@
           <!-- Testimonial 1 -->
           <div class="testimonial-card">
             <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Mariana S." class="testi-avatar" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Mariana S." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
               <div>
                 <h6 class="testi-name">Mariana Siqueira</h6>
                 <span class="testi-role">Social Media & Gestora de Tráfego</span>
@@ -818,7 +822,7 @@
           <!-- Testimonial 2 -->
           <div class="testimonial-card">
             <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Lucas M." class="testi-avatar" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Lucas M." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
               <div>
                 <h6 class="testi-name">Lucas Mendes</h6>
                 <span class="testi-role">Produtor Digital & Copywriter</span>
@@ -834,7 +838,7 @@
           <!-- Testimonial 3 -->
           <div class="testimonial-card">
             <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Camila R." class="testi-avatar" loading="lazy" decoding="async">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Camila R." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
               <div>
                 <h6 class="testi-name">Camila Rocha</h6>
                 <span class="testi-role">Dona de E-commerce de Cosméticos</span>
@@ -1094,7 +1098,7 @@
     <div class="container footer-container">
       <div class="footer-brand">
         <a href="#inicio" class="logo">
-          <img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" class="brand-logo-img" height="38">
+          <img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" class="brand-logo-img" width="141" height="38" loading="lazy" decoding="async">
         </a>
         <p class="footer-desc">
           O ecossistema completo para você pesquisar, interpretar e produzir criativos de alta conversão.
@@ -1146,7 +1150,7 @@
         </div>
         <div class="interactive-video-player">
           <div class="player-visual">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80" alt="Aula Preview">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80" alt="Aula Preview" loading="lazy" decoding="async" width="600" height="400">
             <div class="play-overlay-btn" id="playPreviewTrigger">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             </div>
