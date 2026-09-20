@@ -262,7 +262,7 @@
                     muted 
                     loop 
                     playsinline 
-                    preload="none">
+                    preload="metadata">
                   </video>
                   <div id="vslPlayerPlaceholder" style="display: none;">
                     <iframe 
@@ -274,8 +274,46 @@
                   </div>
                 </div>
 
-                <!-- Shield Overlay (Bloqueia cliques acidentais e abre no foco) -->
+                <!-- Shield Overlay (Intercepta toques e gerencia reprodução/áudio/pausa de forma inteligente) -->
                 <div class="vsl-shield-overlay" id="vslShieldOverlay"></div>
+
+                <!-- Spinner de Carregamento / Buffering (Evita impressão de travamento) -->
+                <div class="vsl-buffering-spinner" id="vslBufferingSpinner" aria-hidden="true">
+                  <div class="spinner-ring"></div>
+                  <span class="spinner-text">Carregando vídeo...</span>
+                </div>
+
+                <!-- Feedback Visual Animado ao Toque (Play / Pause splash tátil) -->
+                <div class="vsl-action-feedback" id="vslActionFeedback" aria-hidden="true">
+                  <div class="feedback-icon feedback-icon-play" id="feedbackPlayIcon">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
+                      <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                    </svg>
+                  </div>
+                  <div class="feedback-icon feedback-icon-pause" id="feedbackPauseIcon">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
+                      <rect x="5" y="4" width="4.5" height="16" rx="1.5"></rect>
+                      <rect x="14.5" y="4" width="4.5" height="16" rx="1.5"></rect>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Overlay Elegante quando Pausado (Indicação lógica e clara de pausa) -->
+                <div class="vsl-paused-overlay" id="vslPausedOverlay" aria-hidden="true">
+                  <div class="paused-card">
+                    <div class="paused-play-btn">
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                      </svg>
+                    </div>
+                    <span class="paused-text">TOQUE PARA CONTINUAR</span>
+                  </div>
+                </div>
+
+                <!-- Toast de Notificação Sutil (ex: Áudio Ativado) -->
+                <div class="vsl-toast" id="vslToast" aria-live="polite">
+                  <span id="vslToastText">🔊 ÁUDIO ATIVADO</span>
+                </div>
 
                 <!-- Unmute / Start Audio Banner Prompt (VSL Style) -->
                 <div class="vsl-unmute-prompt" id="vslUnmutePrompt">

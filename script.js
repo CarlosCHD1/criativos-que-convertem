@@ -382,6 +382,65 @@ function initVSLPhonePlayer() {
   const heroVisual = document.getElementById('heroVisual');
 
   const vslNativeVideo = document.getElementById('vslNativeVideo');
+  const vslBufferingSpinner = document.getElementById('vslBufferingSpinner');
+  const vslActionFeedback = document.getElementById('vslActionFeedback');
+  const feedbackPlayIcon = document.getElementById('feedbackPlayIcon');
+  const feedbackPauseIcon = document.getElementById('feedbackPauseIcon');
+  const vslPausedOverlay = document.getElementById('vslPausedOverlay');
+  const vslToast = document.getElementById('vslToast');
+  const vslToastText = document.getElementById('vslToastText');
+
+  // Helper de detecção mobile / tela touch compacta
+  function isMobileDevice() {
+    return window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 900);
+  }
+
+  // Toast de notificação moderno para ações de áudio e status
+  let vslToastTimer = null;
+  function showVslToast(msg) {
+    if (!vslToast) return;
+    if (vslToastText) vslToastText.textContent = msg;
+    vslToast.classList.add('show');
+    clearTimeout(vslToastTimer);
+    vslToastTimer = setTimeout(() => {
+      vslToast.classList.remove('show');
+    }, 1800);
+  }
+
+  // Feedback tátil com splash de ícone (Play / Pause) no centro do vídeo
+  let feedbackTimer = null;
+  function triggerActionSplash(type) {
+    if (!vslActionFeedback) return;
+    if (type === 'play') {
+      if (feedbackPlayIcon) feedbackPlayIcon.style.display = 'flex';
+      if (feedbackPauseIcon) feedbackPauseIcon.style.display = 'none';
+    } else {
+      if (feedbackPlayIcon) feedbackPlayIcon.style.display = 'none';
+      if (feedbackPauseIcon) feedbackPauseIcon.style.display = 'flex';
+    }
+    vslActionFeedback.classList.remove('animating');
+    void vslActionFeedback.offsetWidth; // Força reflow para reiniciar animação CSS
+    vslActionFeedback.classList.add('animating');
+    clearTimeout(feedbackTimer);
+    feedbackTimer = setTimeout(() => {
+      vslActionFeedback.classList.remove('animating');
+    }, 450);
+  }
+
+  // Alterna Play e Pause de forma segura e com feedback instantâneo
+  function togglePlayPause() {
+    if (!vslNativeVideo) return;
+    if (vslNativeVideo.paused) {
+      vslNativeVideo.play().then(() => {
+        triggerActionSplash('play');
+        if (vslPausedOverlay) vslPausedOverlay.classList.remove('is-paused');
+      }).catch(() => {});
+    } else {
+      vslNativeVideo.pause();
+      triggerActionSplash('pause');
+      if (vslPausedOverlay) vslPausedOverlay.classList.add('is-paused');
+    }
+  }
 
   // Gatilho de remoção definitiva: após o clique, a mãozinha e o aviso somem para sempre
   function dismissUnmutePromptForever() {
@@ -433,7 +492,7 @@ function initVSLPhonePlayer() {
   }
 
   // Smart Facade: Reprodução e Carregamento Sob Demanda
-  // O poster estático ultraleve (35KB) exibe imediatamente sem baixar os 13MB do MP4
+  // O poster estático ultraleve (35KB) exibe imediatamente sem travar
   let isVideoLoaded = false;
 
   function ensureVideoLoadedAndPlay(unmute = false) {
@@ -462,19 +521,41 @@ function initVSLPhonePlayer() {
   if (vslNativeVideo) {
     // Sincronização em tempo real da barra de progresso do VSL
     vslNativeVideo.addEventListener('timeupdate', () => {
+      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
       if (vslProgressFill && vslNativeVideo.duration) {
         const pct = (vslNativeVideo.currentTime / vslNativeVideo.duration) * 100;
         vslProgressFill.style.width = pct + '%';
       }
     });
 
+    // Buffering listeners para feedback claro e eliminação de sensação de travamento
+    vslNativeVideo.addEventListener('waiting', () => {
+      if (vslBufferingSpinner) vslBufferingSpinner.classList.add('is-buffering');
+    });
+
+    vslNativeVideo.addEventListener('playing', () => {
+      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
+      if (vslPausedOverlay) vslPausedOverlay.classList.remove('is-paused');
+    });
+
+    vslNativeVideo.addEventListener('pause', () => {
+      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
+      if (sessionStorage.getItem('mira_vsl_watched') === 'true' || hasStartedWithAudio) {
+        if (vslPausedOverlay) vslPausedOverlay.classList.add('is-paused');
+      }
+    });
+
+    vslNativeVideo.addEventListener('canplay', () => {
+      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
+    });
+
     // Reinício contínuo em loop
     vslNativeVideo.addEventListener('ended', () => {
       vslNativeVideo.currentTime = 0;
-      vslNativeVideo.play();
+      vslNativeVideo.play().catch(() => {});
     });
 
-    // Gatilho suave de interação para iniciar pré-carregamento apenas quando o usuário interagir
+    // Gatilho suave de interação para iniciar pré-carregamento imediato
     const lazyUnlock = () => {
       ensureVideoLoadedAndPlay(false);
       document.removeEventListener('click', lazyUnlock);
@@ -501,23 +582,30 @@ function initVSLPhonePlayer() {
       vslUnmutePrompt.classList.add('hidden', 'dismissed');
     }
 
-    // Se ainda não assistiu com áudio OU se fromStart for solicitado: reinicia do segundo 0!
-    const shouldRestart = !hasStartedWithAudio || fromStart;
+    // Se solicitado fromStart ou primeira ativação: reinicia apenas se já avançou substancialmente
+    const shouldRestart = (fromStart || !hasStartedWithAudio) && vslNativeVideo && vslNativeVideo.currentTime > 0.8;
 
     if (!isSoundActive || forceUnmute || shouldRestart) {
       isSoundActive = true;
 
-      // 1. Desmuta vídeo nativo e reinicia do início na 1ª ativação com áudio
+      // 1. Desmuta vídeo nativo e reinicia do início apenas se necessário
       if (vslNativeVideo) {
         ensureVideoLoadedAndPlay(true);
         if (shouldRestart) {
-          vslNativeVideo.currentTime = 0;
-          hasStartedWithAudio = true;
+          try { vslNativeVideo.currentTime = 0; } catch (e) {}
           if (vslProgressFill) vslProgressFill.style.width = '0%';
         }
+        hasStartedWithAudio = true;
         vslNativeVideo.muted = false;
         vslNativeVideo.volume = 1.0;
-        vslNativeVideo.play();
+        const playPromise = vslNativeVideo.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Em caso de restrição do navegador móvel, tenta tocar muted
+            vslNativeVideo.muted = true;
+            vslNativeVideo.play().catch(() => {});
+          });
+        }
       }
 
       // 2. Fallback para iframe
@@ -544,6 +632,8 @@ function initVSLPhonePlayer() {
         soundIconMuted.style.display = 'none';
         soundIconActive.style.display = 'block';
       }
+
+      showVslToast('🔊 ÁUDIO ATIVADO');
     }
   }
 
@@ -558,9 +648,9 @@ function initVSLPhonePlayer() {
       vslUnmutePrompt.classList.add('hidden', 'dismissed');
     }
 
-    // Se ainda não assistiu com áudio, ativa o som e reinicia do 0:00 para não perder o contexto
+    // Se ainda não assistiu com áudio, ativa o som
     if (!hasStartedWithAudio) {
-      activateAudio(true, true);
+      activateAudio(true, false);
       return;
     }
 
@@ -576,6 +666,7 @@ function initVSLPhonePlayer() {
         soundIconMuted.style.display = isMuted ? 'block' : 'none';
         soundIconActive.style.display = isMuted ? 'none' : 'block';
       }
+      showVslToast(isMuted ? '🔇 ÁUDIO MUTADO' : '🔊 ÁUDIO ATIVADO');
       return;
     }
 
@@ -591,6 +682,7 @@ function initVSLPhonePlayer() {
         soundIconMuted.style.display = 'none';
         soundIconActive.style.display = 'block';
       }
+      showVslToast('🔊 ÁUDIO ATIVADO');
     } else {
       sendVslCommand('mute');
       if (vslPlayer && typeof vslPlayer.mute === 'function') {
@@ -600,24 +692,28 @@ function initVSLPhonePlayer() {
         soundIconMuted.style.display = 'block';
         soundIconActive.style.display = 'none';
       }
+      showVslToast('🔇 ÁUDIO MUTADO');
     }
   }
 
   // ========================================================================
-  // SISTEMA DE AMPLIAR E REDUZIR CELULAR (SEM PAUSAR OU PARAR O VÍDEO)
-  // Celular centraliza na tela. Clique fora para voltar.
+  // SISTEMA DE AMPLIAR E REDUZIR CELULAR (DESKTOP ONLY - SEM TRAVAR O VÍDEO)
+  // No mobile, o vídeo permanece integrado ao layout sem bloquear a rolagem da página.
   // ========================================================================
   const heroSectionEl = document.querySelector('.hero-section');
   const phoneBackdrop = document.getElementById('phoneBackdrop');
 
   function enlargePhone() {
+    // Blindagem mobile: telas compactas NUNCA devem ter o scroll travado por modal fixed
+    if (isMobileDevice()) return;
     if (!phoneWrapper || phoneWrapper.classList.contains('is-enlarged')) return;
 
-    // Se é a primeira vez assistindo com áudio, reinicia do 0:00 para não perder o contexto!
-    const shouldRestartFromBeginning = !hasStartedWithAudio;
-    activateAudio(true, shouldRestartFromBeginning);
+    // Se é a primeira vez assistindo com áudio, ativa o som
+    if (!hasStartedWithAudio) {
+      activateAudio(true, false);
+    }
 
-    // Ativa estado ampliado (fixed centered)
+    // Ativa estado ampliado (fixed centered apenas no desktop)
     phoneWrapper.classList.add('is-enlarged');
     phoneWrapper.setAttribute('aria-expanded', 'true');
     if (heroVisual) heroVisual.classList.add('phone-is-enlarged');
@@ -630,7 +726,7 @@ function initVSLPhonePlayer() {
 
     // Assegura que o vídeo continue rodando sem interrupção
     if (vslNativeVideo && vslNativeVideo.paused) {
-      vslNativeVideo.play();
+      vslNativeVideo.play().catch(() => {});
     }
     sendVslCommand('playVideo');
     if (vslPlayer && typeof vslPlayer.playVideo === 'function') {
@@ -652,9 +748,9 @@ function initVSLPhonePlayer() {
     // Limpa transform inline para CSS normal
     phoneWrapper.style.transform = '';
 
-    // IMPORTANTE: O vídeo CONTINUA rodando sem pausar ou parar!
+    // O vídeo CONTINUA rodando normalmente sem pausar
     if (vslNativeVideo && vslNativeVideo.paused) {
-      vslNativeVideo.play();
+      vslNativeVideo.play().catch(() => {});
     }
     sendVslCommand('playVideo');
     if (vslPlayer && typeof vslPlayer.playVideo === 'function') {
@@ -662,7 +758,7 @@ function initVSLPhonePlayer() {
     }
   }
 
-  // 1. Clicar no celular: amplia (centraliza na tela)
+  // 1. Clicar no celular (área externa ao vídeo)
   if (phoneWrapper) {
     phoneWrapper.addEventListener('click', (e) => {
       // Se clicou no botão de som, alterna apenas o áudio
@@ -679,14 +775,14 @@ function initVSLPhonePlayer() {
 
       dismissUnmutePromptForever();
 
-      // Se ainda não estiver ampliado, amplia
-      if (!phoneWrapper.classList.contains('is-enlarged')) {
+      // No desktop: se ainda não estiver ampliado, amplia
+      if (!isMobileDevice() && !phoneWrapper.classList.contains('is-enlarged')) {
         enlargePhone();
       }
     });
   }
 
-  // 2. Clicar no backdrop (fora do celular): volta ao tamanho normal
+  // 2. Clicar no backdrop (fora do celular): volta ao tamanho normal (desktop)
   if (phoneBackdrop) {
     phoneBackdrop.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -694,7 +790,7 @@ function initVSLPhonePlayer() {
     });
   }
 
-  // 3. Clicar fora do celular em qualquer lugar
+  // 3. Clicar fora do celular em qualquer lugar (desktop)
   document.addEventListener('click', (e) => {
     if (!phoneWrapper || !phoneWrapper.classList.contains('is-enlarged')) return;
     if (!phoneWrapper.contains(e.target) && e.target !== phoneBackdrop) {
@@ -717,7 +813,7 @@ function initVSLPhonePlayer() {
     });
   }
 
-  // Botão de som
+  // Botão de som (topo do celular)
   if (vslSoundBtn) {
     vslSoundBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -726,28 +822,55 @@ function initVSLPhonePlayer() {
     });
   }
 
-  // Banner "CLIQUE AQUI PARA ASSISTIR"
+  // Banner "CLIQUE AQUI PARA ASSISTIR" (Mãozinha indicativa)
   if (vslUnmutePrompt) {
     vslUnmutePrompt.addEventListener('click', (e) => {
       e.stopPropagation();
       dismissUnmutePromptForever();
-      activateAudio(true, true);
-      enlargePhone();
+      activateAudio(true, false);
+      triggerActionSplash('play');
+      if (!isMobileDevice()) {
+        enlargePhone();
+      }
     });
   }
 
-  // Overlay da tela do celular
+  // Overlay de toque da tela do celular (Interação direta com o vídeo)
   if (vslShieldOverlay) {
     vslShieldOverlay.addEventListener('click', (e) => {
       e.stopPropagation();
-      dismissUnmutePromptForever();
-      if (!phoneWrapper.classList.contains('is-enlarged')) {
-        enlargePhone();
+
+      // Se ainda não ativou o áudio, inicia com som na primeira interação
+      if (!hasStartedWithAudio) {
+        dismissUnmutePromptForever();
+        activateAudio(true, false);
+        triggerActionSplash('play');
+        if (!isMobileDevice()) {
+          enlargePhone();
+        }
+        return;
+      }
+
+      // Se já está ativo:
+      if (isMobileDevice()) {
+        // No mobile: alterna reproduzir / pausar imediatamente com feedback tátil
+        togglePlayPause();
       } else {
-        if (!hasStartedWithAudio) {
-          activateAudio(true, true);
+        // No desktop: se não estiver ampliado, amplia; se já estiver ampliado, pausa/play
+        if (!phoneWrapper.classList.contains('is-enlarged')) {
+          enlargePhone();
+        } else {
+          togglePlayPause();
         }
       }
+    });
+  }
+
+  // Overlay de vídeo pausado: toque direto retoma a reprodução
+  if (vslPausedOverlay) {
+    vslPausedOverlay.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePlayPause();
     });
   }
 
