@@ -302,8 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // 3. Central Phone Mockup 3D Tilt (Only when NOT enlarged)
-      if (phoneWrapper && !phoneWrapper.classList.contains('is-enlarged')) {
+      // 3. Central Phone Mockup 3D Tilt (Desktop only)
+      if (phoneWrapper) {
         if (window.innerWidth > 992) {
           const tiltY = currentMouseX * 7 - 3;
           const tiltX = -currentMouseY * 7 + 4;
@@ -369,551 +369,107 @@ let hasStartedWithAudio = false;
 let vslWatchInterval = null;
 
 function initVSLPhonePlayer() {
+  const vslNativeVideo = document.getElementById('vslNativeVideo');
   const vslUnmutePrompt = document.getElementById('vslUnmutePrompt');
-  const unmuteFloatingHand = document.getElementById('unmuteFloatingHand');
-  const vslShieldOverlay = document.getElementById('vslShieldOverlay');
   const vslSoundBtn = document.getElementById('vslSoundBtn');
   const soundIconMuted = vslSoundBtn ? vslSoundBtn.querySelector('.sound-icon-muted') : null;
   const soundIconActive = vslSoundBtn ? vslSoundBtn.querySelector('.sound-icon-active') : null;
   const vslProgressFill = document.getElementById('vslProgressFill');
-  const phoneScreen = document.getElementById('phoneScreen');
-  const phoneWrapper = document.getElementById('phoneMockupWrapper') || document.querySelector('.phone-mockup-wrapper');
-  const phoneCloseBtn = document.getElementById('phoneEnlargeCloseBtn');
   const heroVisual = document.getElementById('heroVisual');
 
-  const vslNativeVideo = document.getElementById('vslNativeVideo');
-  const vslBufferingSpinner = document.getElementById('vslBufferingSpinner');
-  const vslActionFeedback = document.getElementById('vslActionFeedback');
-  const feedbackPlayIcon = document.getElementById('feedbackPlayIcon');
-  const feedbackPauseIcon = document.getElementById('feedbackPauseIcon');
-  const vslPausedOverlay = document.getElementById('vslPausedOverlay');
-  const vslToast = document.getElementById('vslToast');
-  const vslToastText = document.getElementById('vslToastText');
+  if (!vslNativeVideo) return;
 
-  // Helper de detecção mobile / tela touch compacta
-  function isMobileDevice() {
-    return window.innerWidth <= 768 || ('ontouchstart' in window && window.innerWidth <= 900);
-  }
-
-  // Toast de notificação moderno para ações de áudio e status
-  let vslToastTimer = null;
-  function showVslToast(msg) {
-    if (!vslToast) return;
-    if (vslToastText) vslToastText.textContent = msg;
-    vslToast.classList.add('show');
-    clearTimeout(vslToastTimer);
-    vslToastTimer = setTimeout(() => {
-      vslToast.classList.remove('show');
-    }, 1800);
-  }
-
-  // Feedback tátil com splash de ícone (Play / Pause) no centro do vídeo
-  let feedbackTimer = null;
-  function triggerActionSplash(type) {
-    if (!vslActionFeedback) return;
-    if (type === 'play') {
-      if (feedbackPlayIcon) feedbackPlayIcon.style.display = 'flex';
-      if (feedbackPauseIcon) feedbackPauseIcon.style.display = 'none';
-    } else {
-      if (feedbackPlayIcon) feedbackPlayIcon.style.display = 'none';
-      if (feedbackPauseIcon) feedbackPauseIcon.style.display = 'flex';
-    }
-    vslActionFeedback.classList.remove('animating');
-    void vslActionFeedback.offsetWidth; // Força reflow para reiniciar animação CSS
-    vslActionFeedback.classList.add('animating');
-    clearTimeout(feedbackTimer);
-    feedbackTimer = setTimeout(() => {
-      vslActionFeedback.classList.remove('animating');
-    }, 450);
-  }
-
-  // Alterna Play e Pause de forma segura e com feedback instantâneo
-  function togglePlayPause() {
-    if (!vslNativeVideo) return;
-    if (vslNativeVideo.paused) {
-      vslNativeVideo.play().then(() => {
-        triggerActionSplash('play');
-        if (vslPausedOverlay) vslPausedOverlay.classList.remove('is-paused');
-      }).catch(() => {});
-    } else {
-      vslNativeVideo.pause();
-      triggerActionSplash('pause');
-      if (vslPausedOverlay) vslPausedOverlay.classList.add('is-paused');
+  // Atualiza os ícones do botão de som
+  function updateSoundIcons(isMuted) {
+    if (soundIconMuted && soundIconActive) {
+      soundIconMuted.style.display = isMuted ? 'block' : 'none';
+      soundIconActive.style.display = isMuted ? 'none' : 'block';
     }
   }
 
-  // Gatilho de remoção definitiva: após o clique, a mãozinha e o aviso somem para sempre
-  function dismissUnmutePromptForever() {
-    try {
-      sessionStorage.setItem('mira_vsl_watched', 'true');
-    } catch (e) {}
-
+  // Oculta o banner de desmutar para sempre
+  function dismissPrompt() {
     if (vslUnmutePrompt) {
       vslUnmutePrompt.classList.add('dismissed', 'hidden');
     }
-    const hand = document.getElementById('unmuteFloatingHand');
-    if (hand) {
-      hand.style.display = 'none';
-      try { hand.remove(); } catch (e) {}
+    if (heroVisual) {
+      heroVisual.classList.add('vsl-cinema-mode');
     }
+    try {
+      sessionStorage.setItem('mira_vsl_watched', 'true');
+    } catch (e) {}
   }
 
-  // Se o visitante já tiver clicado para assistir nesta sessão, nunca mais exibe a mãozinha
-  try {
-    if (sessionStorage.getItem('mira_vsl_watched') === 'true') {
-      dismissUnmutePromptForever();
-    }
-  } catch (e) {}
-
-  // Prevent context menu (right click) on phone screen
-  if (phoneScreen) {
-    phoneScreen.addEventListener('contextmenu', (e) => e.preventDefault());
-  }
-
-  // Prevent keyboard shortcuts from skipping video if focused
-  window.addEventListener('keydown', (e) => {
-    if (['Space', 'ArrowRight', 'ArrowLeft', 'KeyJ', 'KeyL', 'KeyK', 'Digit0', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5'].includes(e.code)) {
-      if (document.activeElement && document.activeElement.closest('#phoneScreen')) {
-        e.preventDefault();
-      }
-    }
-  });
-
-  // Helper to send command to iframe directly via postMessage (fallback)
-  function sendVslCommand(func, args = []) {
-    const iframe = document.getElementById('vslDirectIframe') || document.querySelector('.vsl-video-container iframe');
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage(JSON.stringify({
-        event: 'command',
-        func: func,
-        args: args
-      }), '*');
-    }
-  }
-
-  // Smart Facade: Reprodução e Carregamento Sob Demanda
-  // O poster estático ultraleve (35KB) exibe imediatamente sem travar
-  let isVideoLoaded = false;
-
-  function ensureVideoLoadedAndPlay(unmute = false) {
-    if (!vslNativeVideo) return;
-
-    if (!isVideoLoaded) {
-      vslNativeVideo.preload = 'auto';
-      isVideoLoaded = true;
-    }
-
-    if (unmute) {
-      vslNativeVideo.muted = false;
-      vslNativeVideo.volume = 1.0;
-    }
-
-    const p = vslNativeVideo.play();
-    if (p !== undefined) {
-      p.catch(() => {
-        // Fallback silencioso caso bloqueado pelo navegador
+  // Inicia o vídeo com som ao clicar no banner
+  function startVideoWithSound() {
+    dismissPrompt();
+    vslNativeVideo.muted = false;
+    vslNativeVideo.volume = 1.0;
+    const playPromise = vslNativeVideo.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Se o navegador barrar o unmuting autoplay, reproduz silenciado
         vslNativeVideo.muted = true;
         vslNativeVideo.play().catch(() => {});
       });
     }
+    updateSoundIcons(vslNativeVideo.muted);
   }
 
-  if (vslNativeVideo) {
-    // Sincronização em tempo real da barra de progresso do VSL
-    vslNativeVideo.addEventListener('timeupdate', () => {
-      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
-      if (vslProgressFill && vslNativeVideo.duration) {
-        const pct = (vslNativeVideo.currentTime / vslNativeVideo.duration) * 100;
-        vslProgressFill.style.width = pct + '%';
-      }
-    });
+  // Se já assistiu nesta sessão, oculta o prompt imediatamente
+  try {
+    if (sessionStorage.getItem('mira_vsl_watched') === 'true') {
+      dismissPrompt();
+    }
+  } catch (e) {}
 
-    // Buffering listeners para feedback claro e eliminação de sensação de travamento
-    vslNativeVideo.addEventListener('waiting', () => {
-      if (vslBufferingSpinner) vslBufferingSpinner.classList.add('is-buffering');
-    });
-
-    vslNativeVideo.addEventListener('playing', () => {
-      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
-      if (vslPausedOverlay) vslPausedOverlay.classList.remove('is-paused');
-    });
-
-    vslNativeVideo.addEventListener('pause', () => {
-      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
-      if (sessionStorage.getItem('mira_vsl_watched') === 'true' || hasStartedWithAudio) {
-        if (vslPausedOverlay) vslPausedOverlay.classList.add('is-paused');
-      }
-    });
-
-    vslNativeVideo.addEventListener('canplay', () => {
-      if (vslBufferingSpinner) vslBufferingSpinner.classList.remove('is-buffering');
-    });
-
-    // Reinício contínuo em loop
-    vslNativeVideo.addEventListener('ended', () => {
-      vslNativeVideo.currentTime = 0;
+  // Autoplay silenciado de fundo (padrão VSL)
+  vslNativeVideo.play().catch(() => {
+    // Tenta novamente na primeira interação do usuário de forma passiva
+    const unlockPlay = () => {
       vslNativeVideo.play().catch(() => {});
-    });
-
-    // Gatilho suave de interação para iniciar pré-carregamento imediato
-    const lazyUnlock = () => {
-      ensureVideoLoadedAndPlay(false);
-      document.removeEventListener('click', lazyUnlock);
-      document.removeEventListener('touchstart', lazyUnlock);
-      document.removeEventListener('scroll', lazyUnlock);
+      document.removeEventListener('click', unlockPlay);
+      document.removeEventListener('touchstart', unlockPlay);
     };
-    document.addEventListener('click', lazyUnlock, { once: true, passive: true });
-    document.addEventListener('touchstart', lazyUnlock, { once: true, passive: true });
-    document.addEventListener('scroll', lazyUnlock, { once: true, passive: true });
-  } else {
-    // Fallback para iframe se o vídeo nativo não existir
-    sendVslCommand('playVideo');
-  }
-
-  // Função para ativar som (Unmute) com reinício inteligente para não perder o contexto
-  function activateAudio(forceUnmute = false, fromStart = false) {
-    dismissUnmutePromptForever();
-
-    if (heroVisual) {
-      heroVisual.classList.add('vsl-cinema-mode');
-    }
-
-    if (vslUnmutePrompt) {
-      vslUnmutePrompt.classList.add('hidden', 'dismissed');
-    }
-
-    // Se solicitado fromStart ou primeira ativação: reinicia apenas se já avançou substancialmente
-    const shouldRestart = (fromStart || !hasStartedWithAudio) && vslNativeVideo && vslNativeVideo.currentTime > 0.8;
-
-    if (!isSoundActive || forceUnmute || shouldRestart) {
-      isSoundActive = true;
-
-      // 1. Desmuta vídeo nativo e reinicia do início apenas se necessário
-      if (vslNativeVideo) {
-        ensureVideoLoadedAndPlay(true);
-        if (shouldRestart) {
-          try { vslNativeVideo.currentTime = 0; } catch (e) {}
-          if (vslProgressFill) vslProgressFill.style.width = '0%';
-        }
-        hasStartedWithAudio = true;
-        vslNativeVideo.muted = false;
-        vslNativeVideo.volume = 1.0;
-        const playPromise = vslNativeVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Em caso de restrição do navegador móvel, tenta tocar muted
-            vslNativeVideo.muted = true;
-            vslNativeVideo.play().catch(() => {});
-          });
-        }
-      }
-
-      // 2. Fallback para iframe
-      if (shouldRestart) {
-        sendVslCommand('seekTo', [0, true]);
-      }
-      sendVslCommand('unMute');
-      sendVslCommand('setVolume', [100]);
-      sendVslCommand('playVideo');
-
-      if (vslPlayer) {
-        try {
-          if (shouldRestart && typeof vslPlayer.seekTo === 'function') {
-            vslPlayer.seekTo(0, true);
-          }
-          if (typeof vslPlayer.unMute === 'function') vslPlayer.unMute();
-          if (typeof vslPlayer.setVolume === 'function') vslPlayer.setVolume(100);
-          if (typeof vslPlayer.playVideo === 'function') vslPlayer.playVideo();
-          if (typeof vslPlayer.setPlaybackRate === 'function') vslPlayer.setPlaybackRate(1);
-        } catch (err) {}
-      }
-
-      if (soundIconMuted && soundIconActive) {
-        soundIconMuted.style.display = 'none';
-        soundIconActive.style.display = 'block';
-      }
-
-      showVslToast('🔊 ÁUDIO ATIVADO');
-    }
-  }
-
-  // Função para alternar som (apenas pelo botão de alto-falante)
-  function toggleSound() {
-    dismissUnmutePromptForever();
-
-    if (heroVisual) {
-      heroVisual.classList.add('vsl-cinema-mode');
-    }
-    if (vslUnmutePrompt) {
-      vslUnmutePrompt.classList.add('hidden', 'dismissed');
-    }
-
-    // Se ainda não assistiu com áudio, ativa o som
-    if (!hasStartedWithAudio) {
-      activateAudio(true, false);
-      return;
-    }
-
-    if (!isSoundActive) {
-      activateAudio(true, false);
-      return;
-    }
-
-    if (vslNativeVideo) {
-      vslNativeVideo.muted = !vslNativeVideo.muted;
-      const isMuted = vslNativeVideo.muted;
-      if (soundIconMuted && soundIconActive) {
-        soundIconMuted.style.display = isMuted ? 'block' : 'none';
-        soundIconActive.style.display = isMuted ? 'none' : 'block';
-      }
-      showVslToast(isMuted ? '🔇 ÁUDIO MUTADO' : '🔊 ÁUDIO ATIVADO');
-      return;
-    }
-
-    // Check if muted currently (fallback iframe)
-    const isMuted = soundIconMuted && soundIconMuted.style.display !== 'none';
-    if (isMuted) {
-      sendVslCommand('unMute');
-      sendVslCommand('setVolume', [100]);
-      if (vslPlayer && typeof vslPlayer.unMute === 'function') {
-        try { vslPlayer.unMute(); vslPlayer.setVolume(100); } catch (e) {}
-      }
-      if (soundIconMuted && soundIconActive) {
-        soundIconMuted.style.display = 'none';
-        soundIconActive.style.display = 'block';
-      }
-      showVslToast('🔊 ÁUDIO ATIVADO');
-    } else {
-      sendVslCommand('mute');
-      if (vslPlayer && typeof vslPlayer.mute === 'function') {
-        try { vslPlayer.mute(); } catch (e) {}
-      }
-      if (soundIconMuted && soundIconActive) {
-        soundIconMuted.style.display = 'block';
-        soundIconActive.style.display = 'none';
-      }
-      showVslToast('🔇 ÁUDIO MUTADO');
-    }
-  }
-
-  // ========================================================================
-  // SISTEMA DE AMPLIAR E REDUZIR CELULAR (DESKTOP ONLY - SEM TRAVAR O VÍDEO)
-  // No mobile, o vídeo permanece integrado ao layout sem bloquear a rolagem da página.
-  // ========================================================================
-  const heroSectionEl = document.querySelector('.hero-section');
-  const phoneBackdrop = document.getElementById('phoneBackdrop');
-
-  function enlargePhone() {
-    // Blindagem mobile: telas compactas NUNCA devem ter o scroll travado por modal fixed
-    if (isMobileDevice()) return;
-    if (!phoneWrapper || phoneWrapper.classList.contains('is-enlarged')) return;
-
-    // Se é a primeira vez assistindo com áudio, ativa o som
-    if (!hasStartedWithAudio) {
-      activateAudio(true, false);
-    }
-
-    // Ativa estado ampliado (fixed centered apenas no desktop)
-    phoneWrapper.classList.add('is-enlarged');
-    phoneWrapper.setAttribute('aria-expanded', 'true');
-    if (heroVisual) heroVisual.classList.add('phone-is-enlarged');
-    if (heroSectionEl) heroSectionEl.classList.add('phone-is-enlarged');
-    if (phoneBackdrop) phoneBackdrop.classList.add('active');
-    document.body.classList.add('phone-enlarged-active');
-
-    // Limpa transform inline de parallax
-    phoneWrapper.style.transform = '';
-
-    // Assegura que o vídeo continue rodando sem interrupção
-    if (vslNativeVideo && vslNativeVideo.paused) {
-      vslNativeVideo.play().catch(() => {});
-    }
-    sendVslCommand('playVideo');
-    if (vslPlayer && typeof vslPlayer.playVideo === 'function') {
-      try { vslPlayer.playVideo(); } catch (e) {}
-    }
-  }
-
-  function shrinkPhone() {
-    if (!phoneWrapper || !phoneWrapper.classList.contains('is-enlarged')) return;
-
-    // Remove estado ampliado
-    phoneWrapper.classList.remove('is-enlarged');
-    phoneWrapper.setAttribute('aria-expanded', 'false');
-    if (heroVisual) heroVisual.classList.remove('phone-is-enlarged');
-    if (heroSectionEl) heroSectionEl.classList.remove('phone-is-enlarged');
-    if (phoneBackdrop) phoneBackdrop.classList.remove('active');
-    document.body.classList.remove('phone-enlarged-active');
-
-    // Limpa transform inline para CSS normal
-    phoneWrapper.style.transform = '';
-
-    // O vídeo CONTINUA rodando normalmente sem pausar
-    if (vslNativeVideo && vslNativeVideo.paused) {
-      vslNativeVideo.play().catch(() => {});
-    }
-    sendVslCommand('playVideo');
-    if (vslPlayer && typeof vslPlayer.playVideo === 'function') {
-      try { vslPlayer.playVideo(); } catch (e) {}
-    }
-  }
-
-  // 1. Clicar no celular (área externa ao vídeo)
-  if (phoneWrapper) {
-    phoneWrapper.addEventListener('click', (e) => {
-      // Se clicou no botão de som, alterna apenas o áudio
-      if (e.target.closest('#vslSoundBtn')) {
-        dismissUnmutePromptForever();
-        return;
-      }
-      // Se clicou no botão de fechar / minimizar
-      if (e.target.closest('#phoneEnlargeCloseBtn')) {
-        e.stopPropagation();
-        shrinkPhone();
-        return;
-      }
-
-      dismissUnmutePromptForever();
-
-      // No desktop: se ainda não estiver ampliado, amplia
-      if (!isMobileDevice() && !phoneWrapper.classList.contains('is-enlarged')) {
-        enlargePhone();
-      }
-    });
-  }
-
-  // 2. Clicar no backdrop (fora do celular): volta ao tamanho normal (desktop)
-  if (phoneBackdrop) {
-    phoneBackdrop.addEventListener('click', (e) => {
-      e.stopPropagation();
-      shrinkPhone();
-    });
-  }
-
-  // 3. Clicar fora do celular em qualquer lugar (desktop)
-  document.addEventListener('click', (e) => {
-    if (!phoneWrapper || !phoneWrapper.classList.contains('is-enlarged')) return;
-    if (!phoneWrapper.contains(e.target) && e.target !== phoneBackdrop) {
-      shrinkPhone();
-    }
+    document.addEventListener('click', unlockPlay, { once: true, passive: true });
+    document.addEventListener('touchstart', unlockPlay, { once: true, passive: true });
   });
 
-  // 4. Tecla ESC volta ao tamanho normal
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && phoneWrapper && phoneWrapper.classList.contains('is-enlarged')) {
-      shrinkPhone();
-    }
-  });
-
-  // Botão de fechar explícito
-  if (phoneCloseBtn) {
-    phoneCloseBtn.addEventListener('click', (e) => {
+  // Clique no banner "SEU VÍDEO JÁ COMEÇOU - CLIQUE AQUI PARA ASSISTIR"
+  if (vslUnmutePrompt) {
+    vslUnmutePrompt.addEventListener('click', (e) => {
       e.stopPropagation();
-      shrinkPhone();
+      startVideoWithSound();
     });
   }
 
-  // Detecção inteligente de toque: diferencia ARRASTAR (rolagem da página) de CLICAR (play/pause)
-  let touchStartX = 0;
-  let touchStartY = 0;
-  let isTouchDragging = false;
-
-  const handleTouchStart = (e) => {
-    if (e.touches && e.touches.length === 1) {
-      touchStartX = e.touches[0].clientX;
-      touchStartY = e.touches[0].clientY;
-      isTouchDragging = false;
-    }
-  };
-
-  const handleTouchMove = (e) => {
-    if (e.touches && e.touches.length === 1) {
-      const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
-      const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
-      if (deltaY > 6 || deltaX > 6) {
-        isTouchDragging = true; // Gesto intencional de rolagem da tela
-      }
-    }
-  };
-
-  // Botão de som (topo do celular)
+  // Botão de som no topo da moldura do celular
   if (vslSoundBtn) {
     vslSoundBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      dismissUnmutePromptForever();
-      toggleSound();
+      dismissPrompt();
+      vslNativeVideo.muted = !vslNativeVideo.muted;
+      if (!vslNativeVideo.muted && vslNativeVideo.paused) {
+        vslNativeVideo.play().catch(() => {});
+      }
+      updateSoundIcons(vslNativeVideo.muted);
     });
   }
 
-  // Banner "CLIQUE AQUI PARA ASSISTIR" (Mãozinha indicativa)
-  if (vslUnmutePrompt) {
-    vslUnmutePrompt.addEventListener('touchstart', handleTouchStart, { passive: true });
-    vslUnmutePrompt.addEventListener('touchmove', handleTouchMove, { passive: true });
-    vslUnmutePrompt.addEventListener('click', (e) => {
-      if (isTouchDragging) {
-        isTouchDragging = false;
-        return; // Usuário estava apenas rolando a página com o dedo
-      }
-      e.stopPropagation();
-      dismissUnmutePromptForever();
-      activateAudio(true, false);
-      triggerActionSplash('play');
-      if (!isMobileDevice()) {
-        enlargePhone();
-      }
-    });
-  }
+  // Sincronização em tempo real da barra de progresso do VSL
+  vslNativeVideo.addEventListener('timeupdate', () => {
+    if (vslProgressFill && vslNativeVideo.duration) {
+      const pct = (vslNativeVideo.currentTime / vslNativeVideo.duration) * 100;
+      vslProgressFill.style.width = pct + '%';
+    }
+  });
 
-  // Overlay de toque da tela do celular (Interação direta com o vídeo)
-  if (vslShieldOverlay) {
-    vslShieldOverlay.addEventListener('touchstart', handleTouchStart, { passive: true });
-    vslShieldOverlay.addEventListener('touchmove', handleTouchMove, { passive: true });
-    vslShieldOverlay.addEventListener('click', (e) => {
-      if (isTouchDragging) {
-        isTouchDragging = false;
-        return; // Usuário estava apenas rolando a página com o dedo
-      }
-      e.stopPropagation();
-
-      // Se ainda não ativou o áudio, inicia com som na primeira interação
-      if (!hasStartedWithAudio) {
-        dismissUnmutePromptForever();
-        activateAudio(true, false);
-        triggerActionSplash('play');
-        if (!isMobileDevice()) {
-          enlargePhone();
-        }
-        return;
-      }
-
-      // Se já está ativo:
-      if (isMobileDevice()) {
-        // No mobile: alterna reproduzir / pausar imediatamente com feedback tátil
-        togglePlayPause();
-      } else {
-        // No desktop: se não estiver ampliado, amplia; se já estiver ampliado, pausa/play
-        if (!phoneWrapper.classList.contains('is-enlarged')) {
-          enlargePhone();
-        } else {
-          togglePlayPause();
-        }
-      }
-    });
-  }
-
-  // Overlay de vídeo pausado: toque direto retoma a reprodução
-  if (vslPausedOverlay) {
-    vslPausedOverlay.addEventListener('touchstart', handleTouchStart, { passive: true });
-    vslPausedOverlay.addEventListener('touchmove', handleTouchMove, { passive: true });
-    vslPausedOverlay.addEventListener('click', (e) => {
-      if (isTouchDragging) {
-        isTouchDragging = false;
-        return; // Usuário estava apenas rolando a página com o dedo
-      }
-      e.stopPropagation();
-      togglePlayPause();
-    });
-  }
+  // Loop contínuo e suave
+  vslNativeVideo.addEventListener('ended', () => {
+    vslNativeVideo.currentTime = 0;
+    vslNativeVideo.play().catch(() => {});
+  });
+}
 
   // ==========================================================================
   // 11. COLUNA DE CRIATIVOS EM SCROLL INFINITO (DIREITA DO CELULAR)
@@ -1075,7 +631,6 @@ function initVSLPhonePlayer() {
   }
 
   initCreativesInfiniteStream();
-}
 
 // Global hook for YouTube Iframe API (when running on HTTP/HTTPS)
 window.onYouTubeIframeAPIReady = function() {

@@ -646,200 +646,8 @@ button {
 }
 
 /* ==========================================================================
-   PHONE EXPANSION & FOCUS SYSTEM
-   Celular centraliza na tela ao clicar. Clique fora para voltar.
-   Vídeo nunca pausa.
+   SMARTPHONE MOCKUP (Layout Direto e Fluido)
    ========================================================================== */
-
-/* Backdrop (dark overlay behind enlarged phone) */
-.phone-backdrop {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background: rgba(5, 5, 8, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  opacity: 0;
-  pointer-events: none;
-  display: none;
-  transition: opacity 0.35s ease;
-  cursor: pointer;
-}
-
-.phone-backdrop.active {
-  display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Hover Expand Hint (Normal Mode) */
-.phone-expand-hint {
-  position: absolute;
-  top: -38px;
-  left: 50%;
-  transform: translateX(-50%) translateY(6px);
-  background: rgba(18, 17, 24, 0.95);
-  border: 1px solid rgba(255, 85, 0, 0.6);
-  box-shadow: 0 4px 20px rgba(255, 69, 0, 0.35);
-  padding: 6px 14px;
-  border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 30;
-  white-space: nowrap;
-}
-
-.phone-expand-hint svg {
-  color: #ff5500;
-}
-
-.phone-mockup-wrapper:not(.is-enlarged):hover .phone-expand-hint {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.phone-mockup-wrapper.is-enlarged .phone-expand-hint {
-  display: none !important;
-}
-
-/* Floating Close / Minimize Button (Enlarged Mode) */
-.phone-enlarge-close-btn {
-  position: absolute;
-  top: -16px;
-  right: -16px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #14131a;
-  border: 2px solid rgba(255, 85, 0, 0.85);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.6), 0 0 28px rgba(255, 69, 0, 0.5);
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.65);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.phone-mockup-wrapper.is-enlarged .phone-enlarge-close-btn {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
-}
-
-.phone-enlarge-close-btn:hover {
-  background: #ff4500;
-  border-color: #ff7700;
-  color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(255, 69, 0, 0.85);
-}
-
-/* Bottom Hint (Enlarged Mode) */
-.phone-enlarged-footer-hint {
-  position: absolute;
-  bottom: -36px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: #a6a4b8;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1000;
-  background: rgba(14, 13, 18, 0.85);
-  padding: 5px 14px;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 85, 0, 0.35);
-}
-
-.phone-mockup-wrapper.is-enlarged .phone-enlarged-footer-hint {
-  display: flex;
-}
-
-/* ENLARGED STATE: Phone goes to fixed center of viewport */
-/* ENLARGED STATE: Phone goes to fixed center of viewport */
-.phone-mockup-wrapper.is-enlarged,
-.hero-visual.vsl-cinema-mode .phone-mockup-wrapper.is-enlarged {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) rotate(0deg) !important;
-  z-index: 200 !important;
-  margin: 0 !important;
-  cursor: default !important;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.phone-mockup-wrapper.is-enlarged .phone-case {
-  width: min(425px, 92vw) !important;
-  aspect-ratio: 576 / 1024 !important;
-  height: auto !important;
-  max-width: 90vw !important;
-  max-height: 88vh !important;
-  box-shadow: none !important;
-  filter: drop-shadow(0 30px 100px rgba(0, 0, 0, 0.98)) drop-shadow(0 0 95px rgba(255, 85, 0, 0.75)) !important;
-  cursor: default !important;
-}
-
-.phone-mockup-wrapper.is-enlarged .vsl-shield-overlay {
-  cursor: default !important;
-}
-
-/* Stacking context reset when enlarged so phone & backdrop cover the entire viewport */
-body.phone-enlarged-active {
-  overflow: hidden !important;
-}
-
-body.phone-enlarged-active .hero-section {
-  overflow: visible !important;
-}
-
-body.phone-enlarged-active .hero-container {
-  position: static !important;
-  z-index: 99990 !important;
-}
-
-body.phone-enlarged-active .hero-visual {
-  perspective: none !important;
-  position: static !important;
-  z-index: 99990 !important;
-}
-
-/* Dimming surrounding hero elements when phone is enlarged */
-.hero-section.phone-is-enlarged .hero-content {
-  opacity: 0.15;
-  filter: blur(2px);
-  transition: opacity 0.45s ease, filter 0.45s ease;
-}
-
-.hero-visual.phone-is-enlarged .creative-card-34 {
-  opacity: 0.08 !important;
-  filter: blur(3px) grayscale(60%) !important;
-  transform: scale(0.88) !important;
-  pointer-events: none !important;
-  transition: opacity 0.45s ease, filter 0.45s ease, transform 0.45s ease !important;
-}
 
 /* Real iPhone 3D Mockup Container */
 .phone-case,
@@ -883,10 +691,6 @@ body.phone-enlarged-active .hero-visual {
   user-select: none;
   -webkit-user-select: none;
   z-index: 1;
-}
-
-.phone-mockup-wrapper.is-enlarged .phone-screen {
-  border-radius: clamp(34px, 12%, 52px);
 }
 
 /* iPhone Frame Image Overlay (Bezel, Titanium rim, Neon glow, Dynamic Island) */
@@ -968,10 +772,6 @@ body.phone-enlarged-active .hero-visual {
   pointer-events: none;
   z-index: 12;
   transition: opacity 0.4s ease;
-}
-
-.phone-mockup-wrapper.is-enlarged .creative-studio-decorations {
-  opacity: 0.12;
 }
 
 /* Micro badges around phone */
@@ -1124,14 +924,7 @@ body.phone-enlarged-active .hero-visual {
   100% { transform: translateY(-6px); }
 }
 
-/* Shield Overlay (Bloqueia cliques, seleção, avanço e menu de contexto) */
-.vsl-shield-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 12;
-  background: transparent;
-  cursor: pointer;
-}
+
 
 /* Top VSL Status Bar (Aligned alongside dynamic island) */
 .vsl-top-bar {
@@ -1391,200 +1184,7 @@ body.phone-enlarged-active .hero-visual {
   transition: width 0.3s linear;
 }
 
-/* ==========================================================================
-   VSL FEEDBACK, BUFFERING E CONTROLES MODERNOS MOBILE & DESKTOP
-   ========================================================================== */
 
-/* 1. Spinner de Carregamento / Buffering */
-.vsl-buffering-spinner {
-  position: absolute;
-  inset: 0;
-  z-index: 17;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: rgba(6, 6, 10, 0.65);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-}
-
-.vsl-buffering-spinner.is-buffering {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.vsl-buffering-spinner .spinner-ring {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 3.5px solid rgba(255, 102, 0, 0.2);
-  border-top-color: var(--orange-primary);
-  border-right-color: #ff8800;
-  box-shadow: 0 0 20px rgba(255, 69, 0, 0.45);
-  animation: vslSpin 0.75s linear infinite;
-}
-
-.vsl-buffering-spinner .spinner-text {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #ff9944;
-  margin-top: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-@keyframes vslSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* 2. Feedback Animado ao Toque (Play / Pause splash tátil) */
-.vsl-action-feedback {
-  position: absolute;
-  inset: 0;
-  z-index: 19;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.vsl-action-feedback .feedback-icon {
-  display: none;
-  width: 66px;
-  height: 66px;
-  border-radius: 50%;
-  background: rgba(14, 13, 20, 0.86);
-  border: 2px solid rgba(255, 102, 0, 0.85);
-  color: #ffffff;
-  box-shadow: 0 0 35px rgba(255, 69, 0, 0.75), inset 0 0 15px rgba(255, 102, 0, 0.3);
-  backdrop-filter: blur(8px);
-  align-items: center;
-  justify-content: center;
-}
-
-.vsl-action-feedback .feedback-icon svg {
-  filter: drop-shadow(0 0 8px rgba(255, 102, 0, 0.8));
-}
-
-.vsl-action-feedback.animating .feedback-icon {
-  display: flex;
-  animation: feedbackSplash 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes feedbackSplash {
-  0% {
-    transform: scale(0.65);
-    opacity: 0;
-  }
-  40% {
-    transform: scale(1.18);
-    opacity: 1;
-  }
-  70% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1.12);
-    opacity: 0;
-  }
-}
-
-/* 3. Overlay Elegante quando Pausado */
-.vsl-paused-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 16;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(8, 8, 12, 0.5);
-  backdrop-filter: blur(2px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  cursor: pointer;
-}
-
-.vsl-paused-overlay.is-paused {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.vsl-paused-overlay .paused-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 22px;
-  border-radius: 24px;
-  background: rgba(14, 13, 20, 0.88);
-  border: 1.5px solid rgba(255, 102, 0, 0.55);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 85, 0, 0.35);
-  transform: scale(0.94);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.vsl-paused-overlay.is-paused .paused-card {
-  transform: scale(1);
-}
-
-.vsl-paused-overlay .paused-play-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff5500 0%, #e03200 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 24px rgba(255, 85, 0, 0.7);
-  padding-left: 3px;
-  animation: pulsePlayBtn 1.8s ease-in-out infinite;
-}
-
-@keyframes pulsePlayBtn {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 85, 0, 0.6); }
-  50% { transform: scale(1.08); box-shadow: 0 0 32px rgba(255, 102, 0, 0.85); }
-}
-
-.vsl-paused-overlay .paused-text {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-/* 4. Toast de Notificação Sutil */
-.vsl-toast {
-  position: absolute;
-  top: 48px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-12px);
-  z-index: 28;
-  background: rgba(14, 13, 20, 0.92);
-  border: 1px solid rgba(255, 102, 0, 0.6);
-  color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 85, 0, 0.35);
-  pointer-events: none;
-  opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.vsl-toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
 
 /* Bottom VSL Lock Tag */
 .vsl-bottom-lock {
@@ -4067,15 +3667,7 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     overflow: visible;
   }
 
-  /* Blindagem Mobile: a página NUNCA trava a rolagem e o player permanece no fluxo */
-  body.phone-enlarged-active {
-    overflow: auto !important;
-  }
-
-  .phone-mockup-wrapper,
-  .phone-mockup-wrapper:not(.is-enlarged),
-  .phone-mockup-wrapper.is-enlarged,
-  .hero-visual.vsl-cinema-mode .phone-mockup-wrapper.is-enlarged {
+  .phone-mockup-wrapper {
     position: relative !important;
     top: auto !important;
     left: auto !important;
@@ -4089,8 +3681,7 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 
   /* Celular no Mobile com Proporção Otimizada e Aceleração por Hardware */
   .phone-case,
-  .phone-real-mockup,
-  .phone-mockup-wrapper.is-enlarged .phone-case {
+  .phone-real-mockup {
     width: min(290px, 82vw) !important;
     aspect-ratio: 576 / 1024 !important;
     height: auto !important;
@@ -4186,22 +3777,10 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     bottom: -20px;
   }
 
-  .phone-enlarge-close-btn,
-  .phone-enlarged-footer-hint,
-  .phone-expand-hint,
-  #phoneBackdrop {
-    display: none !important;
-  }
-
   .vsl-sound-btn {
     width: 38px;
     height: 38px;
     touch-action: manipulation;
-  }
-
-  .vsl-shield-overlay {
-    touch-action: pan-y !important;
-    -webkit-tap-highlight-color: transparent;
   }
 
   /* Ocultar elementos flutuantes laterais no Mobile para zerar transbordamento */

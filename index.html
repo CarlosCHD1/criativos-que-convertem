@@ -153,36 +153,9 @@
         <!-- Hero Right Column: The 3D Composition with Phone, Annotations, Floating Cards, Charts & Video Console -->
         <div class="hero-visual" id="heroVisual">
           
-          <!-- Backdrop overlay for enlarged phone (shared stacking context with phone) -->
-          <div class="phone-backdrop" id="phoneBackdrop" aria-hidden="true"></div>
-
-          <!-- Central 3D Smartphone Mockup with VSL Mask (Clicável para ampliar) -->
-          <div class="phone-mockup-wrapper" id="phoneMockupWrapper" role="button" aria-label="Vídeo VSL - Clique para ampliar" tabindex="0">
+          <!-- Central 3D Smartphone Mockup with VSL Video -->
+          <div class="phone-mockup-wrapper" id="phoneMockupWrapper">
             
-            <!-- Hover Expand Hint (Normal Mode) -->
-            <div class="phone-expand-hint" id="phoneExpandHint">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <polyline points="9 21 3 21 3 15"></polyline>
-                <line x1="21" y1="3" x2="14" y2="10"></line>
-                <line x1="3" y1="21" x2="10" y2="14"></line>
-              </svg>
-              <span>Clique para ampliar</span>
-            </div>
-
-            <!-- Floating Close / Minimize Button (Enlarged Mode) -->
-            <button class="phone-enlarge-close-btn" id="phoneEnlargeCloseBtn" aria-label="Voltar ao tamanho normal" title="Voltar ao tamanho normal (ou clique fora)">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-
-            <!-- Bottom Floating Tip (Enlarged Mode) -->
-            <div class="phone-enlarged-footer-hint" id="phoneEnlargedFooterHint">
-              <span>Clique fora para voltar ao tamanho normal</span>
-            </div>
-
             <!-- Creative Studio Accents & Viewfinder Elements (Reforço visual de criação de anúncios) -->
             <div class="creative-studio-decorations" aria-hidden="true">
               <!-- Top Left: Hook Tag -->
@@ -262,57 +235,8 @@
                     muted 
                     loop 
                     playsinline 
-                    preload="metadata">
+                    preload="auto">
                   </video>
-                  <div id="vslPlayerPlaceholder" style="display: none;">
-                    <iframe 
-                      id="vslDirectIframe"
-                      data-src="https://www.youtube-nocookie.com/embed/FoB7IwSWhGg?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&modestbranding=1&rel=0&loop=1&playlist=FoB7IwSWhGg&playsinline=1&iv_load_policy=3&enablejsapi=1" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                      allowfullscreen="false">
-                    </iframe>
-                  </div>
-                </div>
-
-                <!-- Shield Overlay (Intercepta toques e gerencia reprodução/áudio/pausa de forma inteligente) -->
-                <div class="vsl-shield-overlay" id="vslShieldOverlay"></div>
-
-                <!-- Spinner de Carregamento / Buffering (Evita impressão de travamento) -->
-                <div class="vsl-buffering-spinner" id="vslBufferingSpinner" aria-hidden="true">
-                  <div class="spinner-ring"></div>
-                  <span class="spinner-text">Carregando vídeo...</span>
-                </div>
-
-                <!-- Feedback Visual Animado ao Toque (Play / Pause splash tátil) -->
-                <div class="vsl-action-feedback" id="vslActionFeedback" aria-hidden="true">
-                  <div class="feedback-icon feedback-icon-play" id="feedbackPlayIcon">
-                    <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
-                      <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                    </svg>
-                  </div>
-                  <div class="feedback-icon feedback-icon-pause" id="feedbackPauseIcon">
-                    <svg width="38" height="38" viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="5" y="4" width="4.5" height="16" rx="1.5"></rect>
-                      <rect x="14.5" y="4" width="4.5" height="16" rx="1.5"></rect>
-                    </svg>
-                  </div>
-                </div>
-
-                <!-- Overlay Elegante quando Pausado (Indicação lógica e clara de pausa) -->
-                <div class="vsl-paused-overlay" id="vslPausedOverlay" aria-hidden="true">
-                  <div class="paused-card">
-                    <div class="paused-play-btn">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff">
-                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
-                      </svg>
-                    </div>
-                    <span class="paused-text">TOQUE PARA CONTINUAR</span>
-                  </div>
-                </div>
-
-                <!-- Toast de Notificação Sutil (ex: Áudio Ativado) -->
-                <div class="vsl-toast" id="vslToast" aria-live="polite">
-                  <span id="vslToastText">🔊 ÁUDIO ATIVADO</span>
                 </div>
 
                 <!-- Unmute / Start Audio Banner Prompt (VSL Style) -->
