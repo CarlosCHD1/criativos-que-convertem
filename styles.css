@@ -51,16 +51,12 @@ button, input, select, textarea {
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: 16px;
   background-color: var(--bg-pitch);
   color: var(--text-cream);
   font-family: var(--font-body);
-  overflow-x: hidden !important;
   width: 100%;
   max-width: 100%;
-  overscroll-behavior-x: none !important;
-  overscroll-behavior: none;
 }
 
 body {
@@ -69,12 +65,10 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: clip;
   width: 100%;
   max-width: 100%;
-  touch-action: pan-y !important;
-  overscroll-behavior-x: none !important;
-  overscroll-behavior: none;
 }
 
 /* Ambient Background Atmosphere (Otimizado sem filter: blur para 60fps suave na GPU) */
@@ -3925,14 +3919,16 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 @media (max-width: 768px) {
-  /* Prevenir qualquer transbordamento ou deslize horizontal */
-  html, body {
-    overflow-x: hidden !important;
+  /* Scroll nativo fluido e sem fricção artificial */
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    overflow-x: clip !important;
     max-width: 100% !important;
     width: 100% !important;
-    overscroll-behavior-x: none !important;
-    overscroll-behavior: none !important;
-    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .container {
@@ -3968,14 +3964,14 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     display: none !important;
   }
 
-  /* Seção Hero Inicia no Topo com Espaçamento Limpo e Justo */
+  /* Seção Hero Inicia no Topo com Espaçamento Limpo e Sem Jank de GPU */
   .hero-section {
     padding: 16px 0 28px;
     width: 100%;
     max-width: 100% !important;
     overflow: hidden !important;
-    clip-path: inset(0 0 0 0) !important;
-    -webkit-clip-path: inset(0 0 0 0) !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
   }
 
   /* Backgrounds e padrões ajustados estritamente à largura do hero no mobile */
@@ -4091,7 +4087,7 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     cursor: default !important;
   }
 
-  /* Celular no Mobile com Proporção Otimizada */
+  /* Celular no Mobile com Proporção Otimizada e Aceleração por Hardware */
   .phone-case,
   .phone-real-mockup,
   .phone-mockup-wrapper.is-enlarged .phone-case {
@@ -4101,7 +4097,8 @@ body.phone-enlarged-active .creatives-stream-wrapper {
     padding: 0 !important;
     margin: 0 auto !important;
     box-shadow: none !important;
-    filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 35px rgba(255, 85, 0, 0.4)) !important;
+    filter: none !important;
+    transform: translateZ(0);
   }
 
   /* Studio HUD badges ajustadas para ficarem contidas dentro do limite do celular */
@@ -4203,7 +4200,7 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   }
 
   .vsl-shield-overlay {
-    touch-action: manipulation;
+    touch-action: pan-y !important;
     -webkit-tap-highlight-color: transparent;
   }
 

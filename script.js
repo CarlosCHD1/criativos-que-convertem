@@ -813,6 +813,29 @@ function initVSLPhonePlayer() {
     });
   }
 
+  // Detecção inteligente de toque: diferencia ARRASTAR (rolagem da página) de CLICAR (play/pause)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let isTouchDragging = false;
+
+  const handleTouchStart = (e) => {
+    if (e.touches && e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isTouchDragging = false;
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (e.touches && e.touches.length === 1) {
+      const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+      const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+      if (deltaY > 6 || deltaX > 6) {
+        isTouchDragging = true; // Gesto intencional de rolagem da tela
+      }
+    }
+  };
+
   // Botão de som (topo do celular)
   if (vslSoundBtn) {
     vslSoundBtn.addEventListener('click', (e) => {
@@ -824,7 +847,13 @@ function initVSLPhonePlayer() {
 
   // Banner "CLIQUE AQUI PARA ASSISTIR" (Mãozinha indicativa)
   if (vslUnmutePrompt) {
+    vslUnmutePrompt.addEventListener('touchstart', handleTouchStart, { passive: true });
+    vslUnmutePrompt.addEventListener('touchmove', handleTouchMove, { passive: true });
     vslUnmutePrompt.addEventListener('click', (e) => {
+      if (isTouchDragging) {
+        isTouchDragging = false;
+        return; // Usuário estava apenas rolando a página com o dedo
+      }
       e.stopPropagation();
       dismissUnmutePromptForever();
       activateAudio(true, false);
@@ -837,7 +866,13 @@ function initVSLPhonePlayer() {
 
   // Overlay de toque da tela do celular (Interação direta com o vídeo)
   if (vslShieldOverlay) {
+    vslShieldOverlay.addEventListener('touchstart', handleTouchStart, { passive: true });
+    vslShieldOverlay.addEventListener('touchmove', handleTouchMove, { passive: true });
     vslShieldOverlay.addEventListener('click', (e) => {
+      if (isTouchDragging) {
+        isTouchDragging = false;
+        return; // Usuário estava apenas rolando a página com o dedo
+      }
       e.stopPropagation();
 
       // Se ainda não ativou o áudio, inicia com som na primeira interação
@@ -868,7 +903,13 @@ function initVSLPhonePlayer() {
 
   // Overlay de vídeo pausado: toque direto retoma a reprodução
   if (vslPausedOverlay) {
+    vslPausedOverlay.addEventListener('touchstart', handleTouchStart, { passive: true });
+    vslPausedOverlay.addEventListener('touchmove', handleTouchMove, { passive: true });
     vslPausedOverlay.addEventListener('click', (e) => {
+      if (isTouchDragging) {
+        isTouchDragging = false;
+        return; // Usuário estava apenas rolando a página com o dedo
+      }
       e.stopPropagation();
       togglePlayPause();
     });
