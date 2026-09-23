@@ -157,6 +157,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('leadEmail').value;
     const phone = document.getElementById('leadPhone').value;
 
+    // Disparo Unificado Meta Pixel + CAPI (com Advanced Matching SHA-256)
+    if (window.MIRA_TRACKING && typeof window.MIRA_TRACKING.trackLead === 'function') {
+      window.MIRA_TRACKING.trackLead({
+        name: name,
+        email: email,
+        phone: phone
+      });
+    }
+
     const modalContent = document.querySelector('.checkout-modal-content');
     modalContent.innerHTML = `
       <div style="text-align: center; padding: 40px 20px;">
@@ -480,6 +489,7 @@ function initVSLPhonePlayer() {
   // ==========================================================================
   function initCreativesInfiniteStream() {
     if (window.innerWidth <= 768) return; // No mobile a coluna fica oculta; poupa 100% de CPU/clones
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // Respeita preferência de acessibilidade
     const streamViewport = document.getElementById('creativesStreamViewport');
     const streamTrack = document.getElementById('creativesStreamTrack');
     if (!streamViewport || !streamTrack) return;
@@ -698,10 +708,23 @@ function startAntiSkipEngine() {
         maxAllowedTime = curTime;
       }
 
-      // 3. Atualização da Barra de Progresso Apenas Visual (Read-only)
+      // 3. Atualização da Barra de Progresso Apenas Visual (Read-only) e Rastreamento de Retenção
       if (vslProgressFill) {
         const pct = Math.min(100, (curTime / duration) * 100);
         vslProgressFill.style.width = pct + '%';
+
+        // Disparo de Eventos de Clientes Quentes (VSL Engagement)
+        if (window.MIRA_TRACKING && typeof window.MIRA_TRACKING.trackVSLProgress === 'function') {
+          if (pct >= 90) {
+            window.MIRA_TRACKING.trackVSLProgress(90);
+          } else if (pct >= 75) {
+            window.MIRA_TRACKING.trackVSLProgress(75);
+          } else if (pct >= 50) {
+            window.MIRA_TRACKING.trackVSLProgress(50);
+          } else if (pct >= 25) {
+            window.MIRA_TRACKING.trackVSLProgress(25);
+          }
+        }
       }
     } catch (e) {
       // Ignore transient errors while loading

@@ -21,7 +21,7 @@
   --text-white: #ffffff;
   --text-cream: #f4ede4;
   --text-muted: #9594a0;
-  --text-dark: #63626e;
+  --text-dark: #9290a1;
 
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -36,7 +36,7 @@
   --shadow-neon-sm: 0 0 15px rgba(255, 69, 0, 0.3);
   --shadow-neon-md: 0 0 30px rgba(255, 69, 0, 0.4);
   --shadow-neon-lg: 0 0 60px rgba(255, 69, 0, 0.25);
-  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.65);
+  --shadow-card: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 12px 36px rgba(0, 0, 0, 0.65);
 }
 
 /* Reset & Basics */
@@ -1781,20 +1781,144 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 /* ==========================================================================
-   DOBRA 2: REALITY CHECK & CONVERSÃO MÁXIMA
-   Diagnóstico da Dor, Métricas de Retenção, Quadro VS e Pipeline M.I.R.A
+   DIVISOR AUTÊNTICO & COESO MIRA (Precision Optical Radar Divider)
+   ========================================================================== */
+.mira-divider {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  z-index: 15;
+  overflow: visible;
+  height: 0;
+}
+
+.mira-divider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.mira-divider-glow {
+  position: absolute;
+  width: min(720px, 90vw);
+  height: 48px;
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 69, 0, 0.28) 0%, rgba(255, 120, 40, 0.08) 50%, transparent 75%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+
+.mira-divider-line {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 10%,
+    rgba(255, 69, 0, 0.3) 35%,
+    rgba(255, 120, 40, 0.85) 50%,
+    rgba(255, 69, 0, 0.3) 65%,
+    rgba(255, 255, 255, 0.04) 90%,
+    transparent 100%
+  );
+}
+
+.mira-divider-node {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: rgba(9, 9, 13, 0.94);
+  border: 1px solid rgba(255, 85, 0, 0.38);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 18px rgba(255, 69, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  cursor: default;
+}
+
+.mira-divider:hover .mira-divider-node {
+  border-color: rgba(255, 110, 40, 0.7);
+  box-shadow: 0 0 26px rgba(255, 69, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.mira-divider-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff5500;
+  box-shadow: 0 0 8px #ff5500;
+  animation: pulseDividerDot 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseDividerDot {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+    box-shadow: 0 0 6px #ff4500;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 1;
+    box-shadow: 0 0 14px #ff7700;
+  }
+}
+
+.mira-divider-tag {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ff9955;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .mira-divider-node {
+    padding: 4px 10px;
+    gap: 6px;
+  }
+  .mira-divider-tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+  .mira-divider-glow {
+    width: 90vw;
+    height: 32px;
+  }
+}
+
+/* ==========================================================================
+   DOBRA 2: A NOVA REALIDADE DO TRÁFEGO & MOSAICO DE CRIATIVOS
+   Seção Independente, Bem Espaçada e Altamente Organizada
    ========================================================================== */
 .reality-check-section {
-  padding: 85px 0 70px;
+  padding: 100px 0 90px;
   position: relative;
-  background: linear-gradient(180deg, rgba(8, 8, 10, 0) 0%, rgba(16, 14, 20, 0.65) 20%, rgba(13, 12, 17, 0.8) 80%, rgba(8, 8, 10, 0) 100%);
-  border-top: 1px solid rgba(255, 69, 0, 0.12);
+  background: linear-gradient(180deg, #07070a 0%, #100f15 35%, #0e0d12 75%, #07070a 100%);
+  border-top: none;
 }
 
 /* Header do Diagnóstico */
 .reality-header {
   max-width: 860px;
-  margin: 0 auto 50px;
+  margin: 0 auto 65px;
 }
 
 .reality-badge {
@@ -1856,311 +1980,601 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   color: #ffffff;
 }
 
-/* 3 Métricas Críticas (Alert Cards) */
-.metrics-reality-grid {
+/* ==========================================================================
+   LAYOUT SPLIT: TEXTO + MOSAICO DE CRIATIVOS LADO A LADO
+   ========================================================================== */
+.reality-split-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 65px;
-}
-
-.metric-reality-card {
-  background: linear-gradient(180deg, rgba(22, 20, 27, 0.95) 0%, rgba(12, 11, 16, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  padding: 30px 26px;
+  grid-template-columns: 1fr 1.18fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 0;
   position: relative;
+}
+
+.reality-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.reality-left-col .reality-badge {
+  margin-bottom: 18px;
+}
+
+.reality-left-col .reality-title {
+  text-align: left;
+  font-size: clamp(2.1rem, 3.4vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+.reality-left-col .reality-subtitle {
+  text-align: left;
+  font-size: 1.04rem;
+  color: #a7a5b6;
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+  max-width: 100%;
+}
+
+.reality-highlights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.reality-highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+
+.reality-highlight-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 69, 0, 0.35);
+  transform: translateX(4px);
+}
+
+.highlight-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 69, 0, 0.16);
+  border: 1px solid rgba(255, 69, 0, 0.45);
+  color: #ff6622;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.reality-highlight-item strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.reality-highlight-item span {
+  color: #a09eb0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.reality-right-col {
+  position: relative;
+  width: 100%;
+}
+
+/* Grid Mosaico (Bento Style 3 Colunas com Card Featured em 2 Linhas) */
+.creatives-mosaic-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  grid-template-rows: 215px 215px;
+  gap: 14px;
+  position: relative;
+}
+
+.mosaic-card {
+  position: relative;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
+  background: #131218;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 14px 36px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease;
 }
 
-.metric-reality-card::before {
-  content: '';
+.mosaic-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 85, 0, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 20px 45px rgba(0, 0, 0, 0.85), 0 0 25px rgba(255, 69, 0, 0.2);
+}
+
+.mosaic-card-featured {
+  grid-column: 1;
+  grid-row: span 2;
+  border: 1.5px solid rgba(255, 85, 0, 0.4);
+}
+
+.mosaic-card-featured:hover {
+  border-color: var(--orange-primary);
+}
+
+.mosaic-card-media {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.metric-reality-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 85, 0, 0.45);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 69, 0, 0.15);
+.mosaic-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  display: block;
 }
 
-.metric-reality-card.highlight-card {
-  border-color: rgba(255, 69, 0, 0.38);
-  background: linear-gradient(180deg, rgba(32, 22, 26, 0.95) 0%, rgba(16, 12, 16, 0.98) 100%);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65), 0 0 30px rgba(255, 69, 0, 0.12);
+.mosaic-card:hover .mosaic-card-media img {
+  transform: scale(1.05);
+  filter: brightness(0.95);
 }
 
-.metric-reality-card.highlight-card::before {
-  background: linear-gradient(90deg, transparent, var(--orange-primary), transparent);
+.mosaic-card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 10, 0.08) 0%, rgba(8, 8, 10, 0.5) 45%, rgba(8, 8, 10, 0.96) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.metric-top {
+.mosaic-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 16px;
+}
+
+.mosaic-card-featured .mosaic-card-content {
+  padding: 24px 20px;
+}
+
+.mosaic-badges-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.mosaic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.mosaic-pill.pill-neon {
+  background: rgba(255, 69, 0, 0.25);
+  border-color: rgba(255, 69, 0, 0.6);
+  color: #ff7744;
+  box-shadow: 0 0 12px rgba(255, 69, 0, 0.3);
+}
+
+.mosaic-pill.pill-metric {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffdd55;
+}
+
+.mosaic-pill.pill-amber {
+  background: rgba(255, 170, 0, 0.2);
+  border-color: rgba(255, 170, 0, 0.5);
+  color: #ffaa33;
+}
+
+.mosaic-pill.pill-gold {
+  background: rgba(234, 179, 8, 0.2);
+  border-color: rgba(234, 179, 8, 0.5);
+  color: #fde047;
+}
+
+.mosaic-pill.pill-green {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #34d399;
+}
+
+.mosaic-card-content h4 {
+  font-size: 1.1rem;
+  color: #ffffff;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+}
+
+.mosaic-card-featured .mosaic-card-content h4 {
+  font-size: 1.45rem;
+  margin-bottom: 8px;
+}
+
+.mosaic-card-content p {
+  font-size: 0.84rem;
+  color: #b1b0c0;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.mosaic-card-featured .mosaic-card-content p {
+  font-size: 0.92rem;
+  color: #c4c2d4;
+  margin-bottom: 14px;
+}
+
+.mosaic-metric-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.78rem;
+  color: #9290a1;
+}
+
+.metric-highlight {
+  font-weight: 800;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* Responsividade do Layout Split e Mosaico */
+@media (max-width: 1060px) {
+  .reality-split-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 0;
+  }
+
+  .reality-left-col {
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .reality-left-col .reality-title,
+  .reality-left-col .reality-subtitle {
+    text-align: center;
+  }
+
+  .reality-highlights-list {
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .creatives-mosaic-grid {
+    grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .creatives-mosaic-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 12px;
+  }
+
+  .mosaic-card-featured {
+    grid-column: span 2;
+    grid-row: span 1;
+    min-height: 310px;
+  }
+
+  .mosaic-card-compact {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .creatives-mosaic-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .mosaic-card-featured {
+    grid-column: span 1;
+    min-height: 280px;
+  }
+
+  .mosaic-card-compact {
+    min-height: 160px;
+  }
+}
+
+/* ==========================================================================
+   DOBRA 3: ESTRUTURA DO CRIATIVO: O QUEBRA-CABEÇA A.I.D.A (LEGO / PUZZLE BLOCKS)
+   ========================================================================== */
+.section-aida-structure {
+  padding: 100px 0 90px;
+  position: relative;
+  background: linear-gradient(180deg, #07070a 0%, #0d0c12 50%, #07070a 100%);
+}
+
+.aida-puzzle-wrapper {
+  margin-bottom: 0;
+  position: relative;
+}
+
+.aida-puzzle-header {
+  max-width: 760px;
+  margin: 0 auto 46px;
+  text-align: center;
+}
+
+.aida-subtag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--orange-primary);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.aida-puzzle-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+  line-height: 1.05;
+}
+
+.aida-puzzle-desc {
+  font-size: 0.96rem;
+  color: #a4a2b3;
+  line-height: 1.55;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* Grid de Encaixe tipo Quebra-Cabeça / Blocos de Lego */
+.aida-puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+.aida-puzzle-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(24, 21, 30, 0.96) 0%, rgba(13, 12, 17, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-lg);
+  padding: 34px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 16px 40px rgba(0, 0, 0, 0.65);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+  z-index: 1;
+}
+
+.aida-puzzle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2), 0 22px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 69, 0, 0.15);
+}
+
+/* Pino Superior Estilo Peça de Lego (Lego Stud) */
+.puzzle-lego-stud {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #ff5500 0%, #cc3700 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 14px rgba(255, 69, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.aida-puzzle-card:hover .puzzle-lego-stud {
+  box-shadow: 0 0 20px rgba(255, 85, 0, 0.8), inset 0 1px 2px #fff;
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* Variação de Cores nos Studs e Bordas para cada Fase do AIDA */
+.aida-card-a {
+  border-top: 2px solid #ff4500;
+}
+.aida-card-a .puzzle-lego-stud {
+  background: linear-gradient(180deg, #ff5500 0%, #cc3700 100%);
+  box-shadow: 0 0 14px rgba(255, 69, 0, 0.55);
+}
+
+.aida-card-i {
+  border-top: 2px solid #ff9900;
+}
+.aida-card-i .puzzle-lego-stud {
+  background: linear-gradient(180deg, #ffaa00 0%, #d47a00 100%);
+  box-shadow: 0 0 14px rgba(255, 170, 0, 0.5);
+}
+
+.aida-card-d {
+  border-top: 2px solid #ff3366;
+}
+.aida-card-d .puzzle-lego-stud {
+  background: linear-gradient(180deg, #ff3366 0%, #c41845 100%);
+  box-shadow: 0 0 14px rgba(255, 51, 102, 0.5);
+}
+
+.aida-card-action {
+  border-top: 2px solid #10b981;
+}
+.aida-card-action .puzzle-lego-stud {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+}
+
+/* Conector Lateral estilo Engate de Quebra-Cabeça (Puzzle Tab) */
+.puzzle-tab-connector {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0f0e15;
+  border: 1.5px solid rgba(255, 85, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange-bright);
+  z-index: 10;
+  box-shadow: 0 0 16px rgba(255, 69, 0, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.aida-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 14px;
 }
 
-.metric-num {
-  font-family: var(--font-display);
-  font-size: 3.4rem;
-  line-height: 0.9;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-}
-
-.metric-reality-card.highlight-card .metric-num {
-  color: #ff5500;
-  text-shadow: 0 0 20px rgba(255, 85, 0, 0.45);
-}
-
-.metric-trend {
-  font-size: 0.72rem;
+.aida-step-tag {
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  color: #8c8aa0;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
 }
 
-.metric-trend.down {
-  background: rgba(255, 69, 0, 0.16);
-  color: #ff7744;
-  border: 1px solid rgba(255, 69, 0, 0.35);
+.aida-letter {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  line-height: 0.85;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.02em;
 }
 
-.metric-trend.bad {
-  background: rgba(255, 45, 85, 0.18);
-  color: #ff4d6d;
-  border: 1px solid rgba(255, 45, 85, 0.4);
-}
+.aida-card-a .aida-letter { color: #ff5500; text-shadow: 0 0 18px rgba(255, 69, 0, 0.4); }
+.aida-card-i .aida-letter { color: #ffaa00; text-shadow: 0 0 18px rgba(255, 170, 0, 0.4); }
+.aida-card-d .aida-letter { color: #ff3366; text-shadow: 0 0 18px rgba(255, 51, 102, 0.4); }
+.aida-card-action .aida-letter { color: #10b981; text-shadow: 0 0 18px rgba(16, 185, 129, 0.4); }
 
-.metric-trend.good {
-  background: rgba(255, 140, 0, 0.18);
-  color: #ffaa33;
-  border: 1px solid rgba(255, 140, 0, 0.4);
-}
-
-.metric-reality-card h4 {
+.aida-card-title {
   font-size: 1.35rem;
   color: #ffffff;
   margin-bottom: 10px;
   letter-spacing: 0.02em;
 }
 
-.metric-reality-card p {
-  font-size: 0.92rem;
+.aida-card-text {
+  font-size: 0.88rem;
   color: #a4a2b3;
   line-height: 1.55;
+  margin-bottom: 18px;
+  flex-grow: 1;
 }
 
-.metric-reality-card p strong {
-  color: #f1edf7;
+.aida-card-footer {
+  margin-top: auto;
 }
 
-/* ==========================================================================
-   QUADRO DE CONTRASTE: O JEITO VELHO VS. MÉTODO MIRA
-   ========================================================================== */
-.vs-comparison-wrapper {
-  position: relative;
-  margin-bottom: 80px;
-}
-
-.vs-badge-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px;
-  height: 56px;
-  background: #0f0e14;
-  border: 2px solid #ff4500;
-  border-radius: 50%;
-  display: flex;
+.aida-pill {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  color: #ffffff;
-  box-shadow: 0 0 28px rgba(255, 69, 0, 0.75), 0 8px 24px rgba(0, 0, 0, 0.9);
-  z-index: 10;
-  letter-spacing: 0.05em;
-}
-
-.vs-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.vs-card {
-  border-radius: var(--radius-xl);
-  padding: 40px 34px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-}
-
-/* Card Esquerdo: O Jeito Frustrante */
-.vs-card-bad {
-  background: linear-gradient(180deg, rgba(20, 18, 24, 0.96) 0%, rgba(12, 11, 16, 0.98) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  opacity: 0.92;
-}
-
-.vs-card-bad::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(255, 45, 85, 0.6), transparent);
-}
-
-.vs-card-good {
-  background: linear-gradient(180deg, rgba(30, 23, 34, 0.98) 0%, rgba(16, 13, 20, 0.99) 100%);
-  border: 1.5px solid rgba(255, 85, 0, 0.55);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85), 0 0 40px rgba(255, 69, 0, 0.18);
-  transform: scale(1.015);
-}
-
-.vs-card-good::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ff5500, #ff8800, transparent);
-  box-shadow: 0 0 12px var(--orange-primary);
-}
-
-.vs-card-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.vs-status-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  font-weight: 900;
-  flex-shrink: 0;
-}
-
-.vs-status-icon.bad {
-  background: rgba(255, 45, 85, 0.14);
-  color: #ff4d6d;
-  border: 1px solid rgba(255, 45, 85, 0.35);
-}
-
-.vs-status-icon.good {
-  background: rgba(255, 85, 0, 0.2);
-  color: #ff6a00;
-  border: 1px solid rgba(255, 85, 0, 0.55);
-  box-shadow: 0 0 18px rgba(255, 85, 0, 0.4);
-}
-
-.vs-label {
+  gap: 6px;
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #838192;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e4e2ed;
 }
 
-.vs-label-good {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #ff7733;
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 4px;
+.pill-a {
+  background: rgba(255, 69, 0, 0.14);
+  border-color: rgba(255, 69, 0, 0.35);
+  color: #ff7744;
 }
 
-.vs-headline {
-  font-size: 1.6rem;
-  color: #d1cfdd;
-  letter-spacing: 0.02em;
+.pill-i {
+  background: rgba(255, 170, 0, 0.14);
+  border-color: rgba(255, 170, 0, 0.35);
+  color: #ffaa33;
 }
 
-.vs-headline-good {
-  font-size: 1.65rem;
-  color: #ffffff;
-  letter-spacing: 0.02em;
+.pill-d {
+  background: rgba(255, 51, 102, 0.14);
+  border-color: rgba(255, 51, 102, 0.35);
+  color: #ff5577;
 }
 
-.vs-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.pill-action {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34d399;
 }
 
-.vs-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  font-size: 0.94rem;
-  line-height: 1.55;
-  color: #b1b0c0;
+/* Responsividade AIDA */
+@media (max-width: 1024px) {
+  .aida-puzzle-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .puzzle-tab-connector {
+    display: none;
+  }
 }
 
-.vs-card-bad .vs-list li {
-  color: #9290a1;
-}
+@media (max-width: 600px) {
+  .aida-puzzle-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
-.vs-card-good .vs-list li {
-  color: #d9d7e6;
-}
-
-.vs-list li strong {
-  color: #ffffff;
-}
-
-.vs-bullet {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 800;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.vs-bullet.bad {
-  background: rgba(255, 45, 85, 0.14);
-  color: #ff4d6d;
-}
-
-.vs-bullet.good {
-  background: rgba(255, 85, 0, 0.22);
-  color: #ff6a00;
-  box-shadow: 0 0 10px rgba(255, 85, 0, 0.35);
+  .aida-puzzle-card {
+    padding: 30px 18px 20px;
+  }
 }
 
 /* ==========================================================================
@@ -2481,30 +2895,6 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 @media (max-width: 860px) {
   .reality-check-section {
     padding: 60px 0 50px;
-  }
-
-  .metrics-reality-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .vs-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .vs-badge-center {
-    position: static;
-    transform: none;
-    margin: -10px auto;
-  }
-
-  .vs-card-good {
-    transform: none;
-  }
-
-  .vs-card {
-    padding: 30px 22px;
   }
 
   .mira-flow-pipeline {
@@ -3195,15 +3585,15 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 .modal-dialog {
-  background: #111016;
+  background: linear-gradient(180deg, #16151d 0%, #0d0c11 100%);
   border: 1px solid var(--orange-border);
   border-radius: var(--radius-lg);
   max-width: 720px;
   width: 100%;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.2);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 24px 64px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 69, 0, 0.18);
   transform: translateY(20px);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
@@ -3213,23 +3603,31 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 
 .modal-close {
   position: absolute;
-  top: 16px;
-  right: 18px;
-  width: 36px;
-  height: 36px;
+  top: 14px;
+  right: 16px;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   color: #ffffff;
   font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.modal-close:hover {
+.modal-close:hover,
+.modal-close:focus-visible {
   background: var(--orange-primary);
+  border-color: var(--orange-primary);
+  outline: none;
 }
 
 /* Video Modal */
@@ -3384,18 +3782,19 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 .checkout-summary-box {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.45);
   border-radius: var(--radius-sm);
   padding: 14px 16px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
 }
 
 .summary-line {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  color: #ccc;
+  color: #d1cfdb;
   margin-bottom: 6px;
 }
 
@@ -3420,10 +3819,57 @@ body.phone-enlarged-active .creatives-stream-wrapper {
 }
 
 .form-security {
-  font-size: 0.75rem;
-  color: var(--text-dark);
+  font-size: 0.80rem;
+  color: #a5a3b2;
   text-align: center;
   margin-top: 14px;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   MOBILE BOTTOM-SHEET MODAL (Apple HIG Ergonomics)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .modal-backdrop#checkoutModal {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-backdrop#checkoutModal .checkout-dialog {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+    max-height: 90vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  }
+
+  .modal-backdrop#checkoutModal.active .checkout-dialog {
+    transform: translateY(0);
+  }
+
+  /* Puxador visual ergonômico estilo iOS Sheet Grabber */
+  .checkout-dialog::before {
+    content: '';
+    display: block;
+    width: 38px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    margin: 12px auto -4px;
+  }
+
+  .checkout-modal-content {
+    padding: 22px 20px 24px;
+  }
+
+  .checkout-header h3 {
+    font-size: 1.5rem;
+  }
 }
 
 /* ==========================================================================
@@ -3939,4 +4385,30 @@ body.phone-enlarged-active .creatives-stream-wrapper {
   content-visibility: auto;
   contain-intrinsic-size: 1px 800px;
 }
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS-REDUCED-MOTION (Apple HIG / WCAG 2.1)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-bg-video {
+    display: none !important;
+  }
+
+  .ambient-glow {
+    opacity: 0.3 !important;
+    transform: none !important;
+  }
+
+  .stream-track {
+    transform: none !important;
+  }
+}
+
 
