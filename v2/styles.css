@@ -109,7 +109,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url("assets/bg-ambient-glow.webp");
+  background-image: url("../assets/bg-ambient-glow.webp");
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;

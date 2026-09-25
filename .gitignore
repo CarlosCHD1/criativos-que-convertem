@@ -1,2 +1,6 @@
 .vercel
 .env*
+*.py
+*.bak
+*.txt
+_backup_revisao_senior/
