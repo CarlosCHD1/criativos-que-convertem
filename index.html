@@ -1,829 +1,538 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso MIRA — Criativos que Convertem</title>
-  <meta name="description" content="Aprenda o método de 4 etapas para criar anúncios em vídeo que prendem a atenção e trazem cliente, gravando só com o celular e usando o MIRA Radar para encontrar o que já funciona no seu nicho.">
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Criativos que Convertem — Crie anúncios que dão ao cliente um motivo para comprar</title>
+  <meta content="Aprenda o que falar, como chamar a atenção e como mostrar o valor do produto nos anúncios que você gerencia." name="description"/>
 
-  <!-- Google Fonts: Bebas Neue, IBM Plex Sans, Caveat (handwritten) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Barlow Semi Condensed & Caveat -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
 
   <!-- Favicon & App Icons -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48x48.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+  <link href="assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 
-  <link rel="stylesheet" href="styles.css">
+  <link href="styles.css" rel="stylesheet"/>
 
   <!-- ===================================================
-       META PIXEL & CONVERSIONS API (CAPI) TRACKING ENGINE
+       CONFIGURAÇÃO COMERCIAL & TRACKING (CAPI & PIXEL)
   =================================================== -->
   <script>
     window.MIRA_CONFIG = {
-      pixelId: 'YOUR_PIXEL_ID', // Preencha com o ID do seu Pixel Meta (Ex: 1234567890)
-      capiEndpoint: '/api/meta-capi',
-      currency: 'BRL',
-      productValue: 297.00,
-      enableConsoleLog: true
+      pixelId: 'YOUR_PIXEL_ID', // Substitua pelo seu ID do Pixel Meta
+      checkoutUrl: '', // Insira a URL real da sua plataforma de checkout
+      priceCash: 297.00,
+      installmentsCount: 12,
+      installmentsValue: 29.64,
+      installmentsTotal: 355.68
     };
   </script>
-  <script src="tracking.js" defer></script>
 </head>
+
 <body>
-
-  <!-- Ambient Cinematic Glows & Texture Background -->
-  <div class="ambient-glow ambient-glow-1"></div>
-  <div class="ambient-glow ambient-glow-2"></div>
-  <div class="ambient-glow ambient-glow-3"></div>
-  <div class="grain-overlay"></div>
-
-  <!-- Header / Navigation Bar -->
-  <header class="navbar">
-    <div class="container nav-container">
-      <a href="#inicio" class="logo">
-        <img src="assets/logo-cqc-icon.webp" alt="CQC" class="brand-logo-img brand-logo-icon" width="72" height="42" decoding="async">
-      </a>
-
-      <nav class="nav-menu" id="navMenu">
-        <a href="#inicio" class="nav-link active">Início</a>
-        <a href="#metodo" class="nav-link">O Método</a>
-        <a href="#exemplos" class="nav-link">Exemplos</a>
-        <a href="#resultados" class="nav-link">Resultados</a>
-        <a href="#depoimentos" class="nav-link">Depoimentos</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="#oferta" class="btn-primary nav-cta">
-          <span>Quero dominar criativos</span>
-          <span class="btn-arrow-icon">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </span>
-        </a>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </header>
 
   <main>
     <!-- ===================================================
-         HERO SECTION (Fiel ao design da imagem fornecida)
+         DOBRA 1: HERO SECTION
     =================================================== -->
     <section class="hero-section" id="inicio">
-
-      <!-- Motion Background Parallax Layer (GPU-accelerated, ~85KB) -->
-      <div class="hero-bg-gif" id="heroBgGif" aria-hidden="true">
-        <video class="hero-bg-video" autoplay loop muted playsinline poster="assets/bg-hero.webp">
-          <source src="assets/bg-hero.webm" type="video/webm">
-          <source src="assets/bg-hero.mp4" type="video/mp4">
-          <img src="assets/bg-hero.webp" alt="" loading="eager" draggable="false">
-        </video>
-      </div>
-      <div class="hero-bg-overlay" aria-hidden="true"></div>
-      <!-- Dotted Texture Pattern Layer -->
-      <div class="hero-dots-pattern" id="heroDotsPattern" aria-hidden="true"></div>
-
-      <div class="container hero-container">
-        
-        <!-- Hero Left Column: Copy, CTA, Badges, Social Proof -->
+      <div class="container hero-grid">
+        <!-- Coluna Esquerda: A Grande Dor & Promessa -->
         <div class="hero-content">
-          <!-- Block 1: Header (Category, Headline, Description) -->
-          <div class="hero-header-block">
-            <div class="hero-badge">
-              <span class="badge-dot"></span>
-              <span class="badge-text">CURSO PRÁTICO + FERRAMENTA MIRA RADAR</span>
-            </div>
+          <div class="badge-tag">MÉTODO PRÁTICO • CRIATIVOS QUE CONVERTEM</div>
+          
+          <h1 class="hero-title">
+            Crie anúncios que dão ao cliente <span class="highlight-orange">um motivo para comprar.</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Aprenda o que falar, como chamar a atenção e como mostrar o valor do produto nos anúncios que você gerencia.
+          </p>
 
-            <h1 class="hero-headline">
-              <span class="headline-white">PARE DE QUEIMAR DINHEIRO</span>
-              <span class="headline-orange">EM ANÚNCIOS IGNORADOS.</span>
-            </h1>
-
-            <p class="hero-description">
-              Aprenda o método de 4 etapas para criar anúncios em vídeo que prendem a atenção e trazem cliente, gravando só com o celular e usando o <strong>MIRA Radar</strong> para encontrar o que já funciona no seu nicho.
-            </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#oferta" id="heroMainCta">
+              <span>QUERO MELHORAR MEUS CRIATIVOS</span>
+              <span class="btn-arrow-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </a>
           </div>
 
-          <!-- Block 2: Actions & Proof (CTAs, Benefit Tags, Social Proof) -->
-          <div class="hero-actions-block">
-            <div class="hero-ctas">
-              <a href="#oferta" class="btn-primary hero-btn-main">
-                <span>Quero dominar criativos</span>
-                <span class="btn-arrow-icon">
+          <!-- Benefícios em Destaque -->
+          <div class="hero-benefits">
+            <div class="hero-benefit-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>O que falar e como mostrar o valor real do produto</span>
+            </div>
+            <div class="hero-benefit-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Como reter a atenção nos primeiros segundos</span>
+            </div>
+            <div class="hero-benefit-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Aulas práticas para aplicar nas contas que você gerencia</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Demonstração em Vídeo no Smartphone -->
+        <div class="hero-visual">
+          <div class="phone-mockup-frame">
+            <div class="phone-header-notch" aria-hidden="true"></div>
+            <div class="phone-screen-container">
+              <video id="vslVideo" playsinline autoplay muted loop poster="assets/vsl-poster.webp">
+                <source src="assets/vsl-creative.mp4" type="video/mp4"/>
+                Seu navegador não suporta a tag de vídeo.
+              </video>
+              <div class="phone-video-overlay">
+                <div class="phone-video-top-tag">
+                  <span class="live-dot" aria-hidden="true"></span>
+                  <span>Assista ao vídeo e veja como aplicar</span>
+                </div>
+                <div class="phone-controls">
+                  <button class="video-toggle-sound-btn" id="soundToggleBtn" aria-label="Ativar som do vídeo">
+                    <svg id="soundMutedIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                    <svg id="soundActiveIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <span id="soundBtnText">Clique para ouvir</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 2: O VERDADEIRO PROBLEMA & OS 5 PILARES
+    =================================================== -->
+    <section class="reality-section" id="metodo">
+      <div class="container reality-grid">
+        <!-- Texto explicativo -->
+        <div class="reality-info">
+          <div class="badge-tag">O PROBLEMA REAL</div>
+          <h2>
+            O cliente cobra resultado. <span class="highlight-orange">E você já não sabe o que mudar no anúncio.</span>
+          </h2>
+          <p class="reality-lead">
+            Troca a imagem, muda uma frase, busca referências. Mas continua sem saber o que testar.
+          </p>
+          <div class="reality-highlight-box">
+            <p>
+              No <strong>Criativos que Convertem</strong>, você aprende a transformar o que importa para o público em ideias para seus anúncios.
+            </p>
+          </div>
+          <p class="reality-conclusion">
+            Assim, fica mais fácil escrever um roteiro, explicar ao designer o que você precisa e colocar novas ideias na campanha.
+          </p>
+        </div>
+
+        <!-- Mosaico Dinâmico de Criativos Reais -->
+        <div class="creatives-mosaic-grid" aria-label="Exemplos reais de criativos">
+          <div class="mosaic-scroll-col scroll-up">
+            <div class="mosaic-scroll-group">
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-01-3segundos.webp" alt="Criativo de teste de gancho" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Ganchos visuais" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de atenção" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+            <div class="mosaic-scroll-group" aria-hidden="true">
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-01-3segundos.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-04-visual-hooks.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="mosaic-scroll-col scroll-down">
+            <div class="mosaic-scroll-group">
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-03-vender.webp" alt="Vender com método" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-07-clique-achismo.webp" alt="Eliminando o achismo" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia visual" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+            <div class="mosaic-scroll-group" aria-hidden="true">
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-03-vender.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-07-clique-achismo.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-06-estrategia.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="mosaic-scroll-col scroll-up-slow">
+            <div class="mosaic-scroll-group">
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-02-gancho.webp" alt="Gancho de abertura" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="Atenção retida" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Estrutura de retenção" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+            <div class="mosaic-scroll-group" aria-hidden="true">
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-02-gancho.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-featured">
+                <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
+              </div>
+              <div class="mosaic-card mosaic-card-compact">
+                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 3: TRANSFORMAÇÃO & APLICAÇÃO NO DIA A DIA
+    =================================================== -->
+    <section class="target-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge-tag">AUTONOMIA & CRITÉRIO</span>
+          <h2>Na próxima vez que pedirem um criativo, <span class="highlight-orange">você vai ter por onde começar.</span></h2>
+          <p>
+            Vai conseguir explicar suas escolhas, organizar o roteiro antes de abrir o editor e levar novas ideias para a campanha.
+          </p>
+        </div>
+
+        <div class="roles-grid">
+          <!-- Card Gestão de Tráfego -->
+          <div class="role-card">
+            <div class="role-card-badge">SE VOCÊ FAZ A GESTÃO DO TRÁFEGO</div>
+            <h3>Mais critério técnico para orientar a produção</h3>
+            <p>
+              Em vez de apenas pedir "mais criativos" para o cliente ou designer, você saberá exatamente qual ângulo testar, qual objeção combater e por que o criativo atual esgotou.
+            </p>
+            <ul class="role-card-list">
+              <li>Decida com precisão o próximo teste com base em métricas de retenção.</li>
+              <li>Oriente a gravação do cliente com roteiros estruturados e claros.</li>
+              <li>Apresente relatórios de criativos com fundamentação estratégica.</li>
+            </ul>
+          </div>
+
+          <!-- Card Design / Social Media -->
+          <div class="role-card">
+            <div class="role-card-badge">SE VOCÊ TRABALHA COM DESIGN OU SOCIAL MEDIA</div>
+            <h3>Construa a mensagem junto com o visual</h3>
+            <p>
+              Pare de ser visto apenas como um executor de layouts. Ao dominar a mensagem e a copy de conversão, seu trabalho visual passa a gerar impacto direto no faturamento.
+            </p>
+            <ul class="role-card-list">
+              <li>Construa roteiros que valorizam seu design e prendem o olhar.</li>
+              <li>Saiba justificar suas escolhas de elementos visuais e ganchos.</li>
+              <li>Aumente o valor percebido e cobre mais pelos seus criativos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="roles-footer-note text-center">
+          <p>Esse é o trabalho que você vai desenvolver nas aulas, com exemplos e exercícios para aplicar nos anúncios que precisa entregar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 4: O MÉTODO MIRA EM 4 ETAPAS
+    =================================================== -->
+    <section class="method-section" id="estrutura">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge-tag">A METODOLOGIA</span>
+          <h2>Como o <span class="highlight-orange">Método MIRA</span> organiza o seu processo</h2>
+          <p>Um fluxo sequencial para você nunca mais encarar uma folha em branco na hora de criar anúncios.</p>
+        </div>
+
+        <div class="method-grid">
+          <!-- Etapa M -->
+          <div class="method-step-card active-step">
+            <div class="step-letter-badge">M</div>
+            <span class="step-tag-pill">ETAPA 01 • PESQUISA</span>
+            <h3>Mapear (MIRA Radar)</h3>
+            <p>Use a ferramenta MIRA Radar para garimpar referências validadas e entender o que já funciona no seu nicho antes de criar.</p>
+          </div>
+
+          <!-- Etapa I -->
+          <div class="method-step-card">
+            <div class="step-letter-badge">I</div>
+            <span class="step-tag-pill">ETAPA 02 • ANÁLISE</span>
+            <h3>Interpretar</h3>
+            <p>Identifique o ângulo, a dor e a quebra de padrão que fizeram aquele anúncio funcionar, adaptando a ideia para o seu cliente.</p>
+          </div>
+
+          <!-- Etapa R -->
+          <div class="method-step-card">
+            <div class="step-letter-badge">R</div>
+            <span class="step-tag-pill">ETAPA 03 • ROTEIRO</span>
+            <h3>Roteirizar (A.I.D.A)</h3>
+            <p>Escreva o roteiro com uma abertura forte, conexão de interesse, desejo de compra e chamada clara para ação.</p>
+          </div>
+
+          <!-- Etapa A -->
+          <div class="method-step-card">
+            <div class="step-letter-badge">A</div>
+            <span class="step-tag-pill">ETAPA 04 • GRAVAÇÃO</span>
+            <h3>Agir & Gravar</h3>
+            <p>Grave no celular com boa luz e áudio limpo (com ou sem aparecer) e faça uma edição com ritmo ágil no CapCut ou Canva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 5: EXEMPLOS PRÁTICOS
+    =================================================== -->
+    <section class="examples-section" id="exemplos">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge-tag">FORMATOS VALIDADOS</span>
+          <h2>Criativos que vendem na <span class="highlight-orange">prática</span></h2>
+          <p>Formatos testados que você aprenderá a aplicar para diferentes objetivos de campanha.</p>
+        </div>
+
+        <div class="examples-filters" id="exampleFilters" role="tablist">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos os Formatos</button>
+          <button class="filter-btn" data-filter="quebra-padrao" role="tab" aria-selected="false">Quebra de Padrão</button>
+          <button class="filter-btn" data-filter="narrado" role="tab" aria-selected="false">Roteiro Narrado</button>
+          <button class="filter-btn" data-filter="ugc" role="tab" aria-selected="false">UGC / Sem Rosto</button>
+        </div>
+
+        <div class="examples-grid">
+          <div class="example-card" data-category="quebra-padrao">
+            <div class="example-card-img">
+              <img src="assets/creatives/creative-01-3segundos.webp" alt="Formato Quebra de Padrão" loading="lazy" decoding="async"/>
+            </div>
+            <div class="example-card-body">
+              <span class="example-badge">Primeiros 3 Segundos</span>
+              <h4>Gancho de Quebra Visual</h4>
+              <p>Demonstração imediata com corte de impacto inicial que impede a rolagem automática da timeline.</p>
+            </div>
+          </div>
+
+          <div class="example-card" data-category="narrado">
+            <div class="example-card-img">
+              <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Formato Roteiro Narrado" loading="lazy" decoding="async"/>
+            </div>
+            <div class="example-card-body">
+              <span class="example-badge">Storytelling</span>
+              <h4>Roteiro Narrado com Voiceover</h4>
+              <p>Estrutura focada em quebra de crença com áudio dinâmico e legendas com alto poder de retenção.</p>
+            </div>
+          </div>
+
+          <div class="example-card" data-category="ugc">
+            <div class="example-card-img">
+              <img src="assets/creatives/creative-03-vender.webp" alt="Formato UGC Sem Rosto" loading="lazy" decoding="async"/>
+            </div>
+            <div class="example-card-body">
+              <span class="example-badge">Sem Precisar Aparecer</span>
+              <h4>UGC & Bastidores no Celular</h4>
+              <p>Gravação de produto em uso, tela ou processo com linguagem nativa de redes sociais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 6: CONTEÚDO PROGRAMÁTICO (MÓDULOS)
+    =================================================== -->
+    <section class="modules-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge-tag">CONTEÚDO DO CURSO</span>
+          <h2>O que você vai <span class="highlight-orange">aprender nas aulas</span></h2>
+          <p>Aulas práticas, diretas ao ponto, pensadas para o seu dia a dia de produção de anúncios.</p>
+        </div>
+
+        <div class="modules-grid">
+          <div class="module-card">
+            <span class="module-num">Módulo 01</span>
+            <h4>Mapeamento de Público & Oferta</h4>
+            <p>Como investigar o que o cliente realmente valoriza e encontrar argumentos fortes além do preço e desconto.</p>
+          </div>
+
+          <div class="module-card">
+            <span class="module-num">Módulo 02</span>
+            <h4>Mineração com o MIRA Radar</h4>
+            <p>Como usar a ferramenta para garimpar referências, analisar tendências e extrair hipóteses de teste.</p>
+          </div>
+
+          <div class="module-card">
+            <span class="module-num">Módulo 03</span>
+            <h4>Escrita de Ganchos e Roteirização</h4>
+            <p>Estruturas A.I.D.A, narrativas de quebra de objeção e técnicas para escrever ganchos magnéticos.</p>
+          </div>
+
+          <div class="module-card">
+            <span class="module-num">Módulo 04</span>
+            <h4>Gravação e Captação no Celular</h4>
+            <p>Ajustes de câmera, captação de áudio limpo, enquadramento e formatos que funcionam com ou sem rosto.</p>
+          </div>
+
+          <div class="module-card">
+            <span class="module-num">Módulo 05</span>
+            <h4>Edição com Ritmo Visual</h4>
+            <p>Como cortar os respiros, inserir legendas legíveis e criar dinâmica no CapCut, Premiere ou Canva.</p>
+          </div>
+
+          <div class="module-card">
+            <span class="module-num">Módulo 06</span>
+            <h4>Métricas de Criativo & Diagnóstico</h4>
+            <p>Como analisar taxa de retenção nos 3s e CTR para saber exatamente o que mudar no próximo anúncio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DOBRA 7: OFERTA & CONDIÇÕES
+    =================================================== -->
+    <section class="offer-section" id="oferta">
+      <div class="container">
+        <div class="offer-card-2col">
+          <!-- Coluna 1: O que está incluso -->
+          <div class="offer-left-col">
+            <div class="badge-tag">INSCRIÇÕES ABERTAS</div>
+            <h2>Tenha mais clareza para <span class="highlight-orange">criar o próximo anúncio.</span></h2>
+            <p class="offer-desc">
+              Aulas práticas para aplicar nas contas que você já gerencia.
+            </p>
+
+            <div class="value-stack-box">
+              <div class="value-stack-item">
+                <div class="stack-item-info">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <div>
+                    <strong>Curso Completo Criativos que Convertem</strong>
+                    <span>Aulas práticas do planejamento à edição no celular (Acesso vitalício)</span>
+                  </div>
+                </div>
+                <div class="stack-item-price">Incluso</div>
+              </div>
+
+              <div class="value-stack-item">
+                <div class="stack-item-info">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <div>
+                    <strong>Acesso à Ferramenta MIRA Radar</strong>
+                    <span>Plataforma proprietária de espionagem e mineração de referências</span>
+                  </div>
+                </div>
+                <div class="stack-item-price">Bônus da turma</div>
+              </div>
+
+              <div class="value-stack-item">
+                <div class="stack-item-info">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <div>
+                    <strong>Pack de 500 Hooks Validados</strong>
+                    <span>Ganchos de abertura prontos para destravar o início de qualquer roteiro</span>
+                  </div>
+                </div>
+                <div class="stack-item-price">Incluso</div>
+              </div>
+
+              <div class="value-stack-item">
+                <div class="stack-item-info">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <div>
+                    <strong>Templates de Roteiro (Copia & Cola)</strong>
+                    <span>Estruturas preenchíveis para infoprodutos, e-commerce e serviços</span>
+                  </div>
+                </div>
+                <div class="stack-item-price">Incluso</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coluna 2: Preço & Ação Direta -->
+          <div class="offer-right-col">
+            <div class="checkout-panel">
+              <div class="checkout-pills">
+                <span class="checkout-pill">Acesso Imediato</span>
+                <span class="checkout-pill">7 Dias de Garantia</span>
+                <span class="checkout-pill">Suporte Dedicado</span>
+              </div>
+
+              <div class="checkout-price-block">
+                <div class="price-intro">Acesso completo por:</div>
+                <div class="price-installments">
+                  <span class="price-times">12x de</span>
+                  <span class="price-amount">R$ 29,64</span>
+                </div>
+                <div class="price-cash-info">ou R$ 297,00 à vista</div>
+                <div class="price-total-note">Total a prazo: R$ 355,68</div>
+              </div>
+
+              <button class="btn btn-primary btn-lg btn-block" id="checkoutBtn" type="button">
+                <span>QUERO COLOCAR EM PRÁTICA</span>
+                <span class="btn-arrow-icon" aria-hidden="true">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </span>
-              </a>
-            </div>
+              </button>
 
-            <!-- Feature Tag Badges (Selos de Resultado) -->
-            <div class="hero-tags">
-              <div class="tag-item">
-                <span class="tag-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                  </svg>
-                </span>
-                <span class="tag-label">Templates Copia & Cola</span>
-              </div>
-
-              <div class="tag-item">
-                <span class="tag-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                    <line x1="1" y1="1" x2="23" y2="23"></line>
-                  </svg>
-                </span>
-                <span class="tag-label">Sem precisar aparecer</span>
-              </div>
-
-              <div class="tag-item">
-                <span class="tag-icon">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                    <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                  </svg>
-                </span>
-                <span class="tag-label">Gravação 100% no Celular</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Hero Right Column: The 3D Composition with Phone, Annotations, Floating Cards, Charts & Video Console -->
-        <div class="hero-visual" id="heroVisual">
-          
-          <!-- Central 3D Smartphone Mockup with VSL Video -->
-          <div class="phone-mockup-wrapper" id="phoneMockupWrapper">
-            
-            <!-- Creative Studio Accents & Viewfinder Elements (Reforço visual de criação de anúncios) -->
-            <div class="creative-studio-decorations" aria-hidden="true">
-              <!-- Top Left: Hook Tag -->
-              <div class="creative-meta-badge badge-hook">
-                <span class="badge-icon">⚡</span>
-                <span>HOOK VENCEDOR • 0:00-0:03</span>
-              </div>
-
-              <!-- Top Right: Video Spec Pill -->
-              <div class="creative-meta-badge badge-rec">
-                <span class="rec-dot"></span>
-                <span>[REC] 4K • 60FPS</span>
-              </div>
-
-              <!-- Mid Left: Dynamic Cut / BPM -->
-              <div class="creative-meta-badge badge-bpm">
-                <span class="badge-icon">✂️</span>
-                <span>CORTE DINÂMICO • 120 BPM</span>
-              </div>
-
-              <!-- Mid Right: Trending Audio Pill with Animated Equalizer -->
-              <div class="creative-meta-badge badge-audio">
-                <div class="equalizer-bars">
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                  <span class="eq-bar"></span>
-                </div>
-                <span>ÁUDIO VIRAL EM ALTA</span>
-              </div>
-
-              <!-- Creative Viewfinder Brackets Framing the Phone -->
-              <div class="viewfinder-bracket bracket-tl"></div>
-              <div class="viewfinder-bracket bracket-tr"></div>
-              <div class="viewfinder-bracket bracket-bl"></div>
-              <div class="viewfinder-bracket bracket-br"></div>
-
-              <!-- Studio Sparkles & Crosshairs -->
-              <span class="creative-crosshair crosshair-1">+</span>
-              <span class="creative-crosshair crosshair-2">+</span>
-              <span class="creative-sparkle sparkle-1">✦</span>
-              <span class="creative-sparkle sparkle-2">✦</span>
-            </div>
-
-            <div class="phone-case phone-real-mockup">
-              <!-- Screen Mask with VSL Video (Fits perfectly in the transparent cutout) -->
-              <div class="phone-screen phone-vsl-screen" id="phoneScreen">
-                <!-- Screen Glass Reflection Glare -->
-                <div class="phone-screen-glare"></div>
-
-                <!-- Top Status / VSL Info Bar -->
-                <div class="vsl-top-bar">
-                  <div class="vsl-live-badge">
-                    <span class="live-dot"></span>
-                    <span>VSL AO VIVO</span>
-                  </div>
-                  <button class="vsl-sound-btn" id="vslSoundBtn" aria-label="Alternar som">
-                    <svg class="sound-icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                      <line x1="23" y1="9" x2="17" y2="15"></line>
-                      <line x1="17" y1="9" x2="23" y2="15"></line>
-                    </svg>
-                    <svg class="sound-icon-active" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                  </button>
-                </div>
-
-                <!-- Video Mask Container with Smart Facade & Native Video -->
-                <div class="vsl-video-container">
-                  <video 
-                    id="vslNativeVideo" 
-                    class="vsl-native-video" 
-                    src="assets/vsl-creative.mp4" 
-                    poster="assets/vsl-poster.webp"
-                    muted 
-                    loop 
-                    playsinline 
-                    preload="auto">
-                  </video>
-                </div>
-
-                <!-- Unmute / Start Audio Banner Prompt (VSL Style) -->
-                <div class="vsl-unmute-prompt" id="vslUnmutePrompt">
-                  <div class="unmute-speaker-ripple">
-                    <div class="ripple-wave"></div>
-                    <div class="ripple-icon">
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <line x1="23" y1="9" x2="17" y2="15"></line>
-                        <line x1="17" y1="9" x2="23" y2="15"></line>
-                      </svg>
-                    </div>
-                  </div>
-                  <span class="unmute-badge">SEU VÍDEO JÁ COMEÇOU</span>
-                  <div class="unmute-btn-wrapper">
-                    <span class="unmute-cta">CLIQUE AQUI PARA ASSISTIR 🔊</span>
-                    <!-- Mãozinha indicativa com animação de clique / toque -->
-                    <div class="unmute-floating-hand" id="unmuteFloatingHand" aria-hidden="true">
-                      <span class="hand-tap-pulse pulse-1"></span>
-                      <span class="hand-tap-pulse pulse-2"></span>
-                      <svg class="hand-pointer-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                          <linearGradient id="handGrad" x1="16" y1="8" x2="48" y2="52" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#FFFFFF"/>
-                            <stop offset="35%" stop-color="#FFE3CC"/>
-                            <stop offset="75%" stop-color="#FF9D42"/>
-                            <stop offset="100%" stop-color="#E85D04"/>
-                          </linearGradient>
-                          <filter id="handShadow" x="-30%" y="-30%" width="160%" height="160%">
-                            <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="rgba(0,0,0,0.7)"/>
-                            <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="rgba(255,102,0,0.8)"/>
-                          </filter>
-                        </defs>
-                        <g filter="url(#handShadow)">
-                          <!-- Mão apontando o dedo indicador para clicar -->
-                          <path d="M26 6C24.34 6 23 7.34 23 9V29.5L21.4 27.4C19.9 25.4 17 25 15 26.5C13 28 12.6 30.9 14.1 32.9L21 42C24.5 46.8 30.1 49.5 36 49.5H38C45.7 49.5 52 43.2 52 35.5V26.5C52 24.84 50.66 23.5 49 23.5C48.6 23.5 48.2 23.6 47.8 23.7C47.4 22.4 46.2 21.5 44.8 21.5C44.3 21.5 43.8 21.6 43.4 21.8C42.8 20.5 41.5 19.5 40 19.5C39.6 19.5 39.2 19.6 38.8 19.7V9C38.8 7.34 37.46 6 35.8 6C34.14 6 32.8 7.34 32.8 9V23.5H30V9C30 7.34 28.66 6 27 6H26Z" 
-                                fill="url(#handGrad)" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <!-- Detalhes de dobras dos dedos -->
-                          <path d="M23 18H29" stroke="#E85D04" stroke-width="1.5" stroke-linecap="round"/>
-                          <path d="M33 16H38" stroke="#E85D04" stroke-width="1.5" stroke-linecap="round"/>
-                          <path d="M40 25H45" stroke="#E85D04" stroke-width="1.5" stroke-linecap="round"/>
-                        </g>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Read-Only VSL Progress Indicator (Não clicável, não arrastável) -->
-                <div class="vsl-progress-track">
-                  <div class="vsl-progress-fill" id="vslProgressFill"></div>
-                </div>
-
-                <!-- Bottom VSL Lock Tag -->
-                <div class="vsl-bottom-lock">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  <span>REPRODUÇÃO CONTÍNUA • MIRA METHOD</span>
-                </div>
-              </div>
-
-              <!-- Real iPhone 3D Cutout Frame Overlay (Bezel, Titanium rim, Neon glow, Dynamic island) -->
-              <img src="assets/iphone-frame-cutout.webp" class="phone-frame-overlay" alt="iPhone Neon" draggable="false" width="576" height="1024" decoding="async">
-            </div>
-          </div>
-
-          <!-- ===================================================================
-               COLUNA DE CRIATIVOS EM SCROLL INFINITO (DIREITA DO CELULAR)
-               Scroll infinito contínuo para cima com contorno laranja no centro
-          =================================================================== -->
-          <div class="creatives-stream-wrapper" id="creativesStreamWrapper" aria-label="Criativos em scroll contínuo">
-            
-            <!-- Viewport com máscara de fade superior e inferior -->
-            <div class="creatives-stream-viewport" id="creativesStreamViewport">
-              <div class="creatives-stream-track" id="creativesStreamTrack">
-                
-                <!-- Criativo 04: Visual Hooks -->
-                <div class="stream-card" data-title="Visual Hooks">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Visual Hook" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill">👁️ VISUAL HOOK</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 05: Ímã de Atenção -->
-                <div class="stream-card" data-title="Ímã de Atenção">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de Atenção" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill pill-orange">🧲 ÍMÃ DE ATENÇÃO</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 06: Estratégia Ads -->
-                <div class="stream-card" data-title="Estratégia Ads">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia Ads" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill">🎯 ESTRATÉGIA ADS</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 07: CTR Sem Achismo -->
-                <div class="stream-card" data-title="CTR Sem Achismo">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-07-clique-achismo.webp" alt="CTR Sem Achismo" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill pill-orange">📈 CTR ELEVADO</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 08: Domínio da Atenção -->
-                <div class="stream-card" data-title="Domínio da Atenção">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="Domínio da Atenção" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill">🔥 RETENÇÃO MÁXIMA</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 01: 3 Segundos Decidem Tudo -->
-                <div class="stream-card" data-title="3 Segundos">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-01-3segundos.webp" alt="3 Segundos" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill">⏱️ HOOK 3S</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 02: Quebra de Padrão -->
-                <div class="stream-card" data-title="Quebra de Padrão">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-02-gancho.webp" alt="Quebra de Padrão" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill pill-orange">⚡ QUEBRA DE PADRÃO</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Criativo 03: Direção Visual -->
-                <div class="stream-card" data-title="Direção Visual">
-                  <div class="stream-card-inner">
-                    <img src="assets/creatives/creative-03-vender.webp" alt="Direção Visual" class="stream-card-img" loading="lazy" width="600" height="749" decoding="async">
-                    <div class="stream-card-glare"></div>
-                    <span class="stream-card-pill">🎬 DIREÇÃO VISUAL</span>
-                    <div class="stream-card-selected-badge">
-                      <span class="sel-icon">★</span>
-                      <span>SELECIONADO</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 01: A NOVA REALIDADE
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">01 // A NOVA REALIDADE</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         DOBRA 2: A NOVA REALIDADE DO TRÁFEGO & MOSAICO DE CRIATIVOS
-         Seção Independente, Bem Espaçada e Altamente Organizada
-    =================================================== -->
-    <section class="reality-check-section" id="metodo">
-      <div class="container">
-        
-        <!-- ===================================================
-             LAYOUT DIVIDIDO (2 COLUNAS): TEXTO + MOSAICO DE CRIATIVOS
-        =================================================== -->
-        <div class="reality-split-layout">
-          
-          <!-- Coluna Esquerda: Diagnóstico da Dor & Era da IA -->
-          <div class="reality-left-col">
-            <div class="reality-badge">
-              <span class="pulse-warning"></span>
-              <span>A NOVA REALIDADE DA ATENÇÃO E DO TRÁFEGO PAGO</span>
-            </div>
-
-            <h2 class="reality-title">
-              A INTELIGÊNCIA ARTIFICIAL MUDOU O TRÁFEGO:<br>
-              <span class="highlight-fire">CRIATIVO GENÉRICO É PREJUÍZO</span> GARANTIDO.
-            </h2>
-
-            <p class="reality-subtitle">
-              Apertar todos os botões no Gerenciador de Anúncios não é mais o diferencial — a inteligência artificial faz a otimização melhor do que você. Se o seu criativo não quebra o padrão nos primeiros segundos, seu orçamento é incinerado e você continua sem vendas.
-            </p>
-
-            <div class="reality-highlights-list">
-              <div class="reality-highlight-item">
-                <span class="highlight-check">✓</span>
-                <div>
-                  <strong>Menos Achismo, Mais Retenção:</strong>
-                  <span>Descubra exatamente o que o algoritmo premia com menor custo por clique e escala rápida.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coluna Direita: Mosaico de Criativos (Direto e sem descrições acima) -->
-          <div class="reality-right-col">
-            <div class="creatives-mosaic-grid">
-              
-              <!-- Item 1: Destaque Principal (Vertical - 3 Segundos Decisivos) -->
-              <div class="mosaic-card mosaic-card-featured">
-                <div class="mosaic-card-media">
-                  <img src="assets/creatives/creative-01-3segundos.webp" alt="Criativo dos 3 Segundos" width="600" height="749" loading="lazy" decoding="async">
-                  <div class="mosaic-card-gradient"></div>
-                </div>
-                <div class="mosaic-card-content">
-                  <div class="mosaic-badges-top">
-                    <span class="mosaic-pill pill-neon">⏱️ REGRA DOS 3s</span>
-                    <span class="mosaic-pill pill-metric">★ 84% RETENÇÃO</span>
-                  </div>
-                  <h4>Abertura com Quebra de Padrão</h4>
-                  <p>Os primeiros 3 segundos decidem se o lead assiste ou passa direto.</p>
-                  <div class="mosaic-metric-footer">
-                    <span>Celular Vertical (9:16)</span>
-                    <span class="metric-highlight">CTR 5.4%</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Item 2: Visual Hooks -->
-              <div class="mosaic-card mosaic-card-compact">
-                <div class="mosaic-card-media">
-                  <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Visual Hooks" width="600" height="749" loading="lazy" decoding="async">
-                  <div class="mosaic-card-gradient"></div>
-                </div>
-                <div class="mosaic-card-content">
-                  <span class="mosaic-pill">👁️ VISUAL HOOK</span>
-                  <h4>Ganchos Visuais</h4>
-                </div>
-              </div>
-
-              <!-- Item 3: Ímã de Atenção -->
-              <div class="mosaic-card mosaic-card-compact">
-                <div class="mosaic-card-media">
-                  <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de Atenção" width="600" height="749" loading="lazy" decoding="async">
-                  <div class="mosaic-card-gradient"></div>
-                </div>
-                <div class="mosaic-card-content">
-                  <span class="mosaic-pill pill-amber">🧲 RETENÇÃO ALTA</span>
-                  <h4>Ímã de Atenção</h4>
-                </div>
-              </div>
-
-              <!-- Item 4: Como Vender Sem Aparecer -->
-              <div class="mosaic-card mosaic-card-compact">
-                <div class="mosaic-card-media">
-                  <img src="assets/creatives/creative-03-vender.webp" alt="Vender Sem Aparecer" width="600" height="749" loading="lazy" decoding="async">
-                  <div class="mosaic-card-gradient"></div>
-                </div>
-                <div class="mosaic-card-content">
-                  <span class="mosaic-pill pill-gold">💰 SEM ROSTO</span>
-                  <h4>Venda Sem Aparecer</h4>
-                </div>
-              </div>
-
-              <!-- Item 5: Estratégia Validada -->
-              <div class="mosaic-card mosaic-card-compact">
-                <div class="mosaic-card-media">
-                  <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia Comprovada" width="600" height="749" loading="lazy" decoding="async">
-                  <div class="mosaic-card-gradient"></div>
-                </div>
-                <div class="mosaic-card-content">
-                  <span class="mosaic-pill pill-green">🎯 SCRIPT VALIDADO</span>
-                  <h4>Roteiro Estruturado</h4>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 02: O MÉTODO A.I.D.A
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">02 // O MÉTODO A.I.D.A</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         DOBRA 3: ESTRUTURA DO CRIATIVO: O QUEBRA-CABEÇA A.I.D.A (LEGO BLOCKS)
-    =================================================== -->
-    <section class="section-aida-structure" id="estrutura">
-      <div class="container">
-
-        <div class="aida-puzzle-wrapper">
-          <div class="aida-puzzle-header text-center">
-            <span class="aida-subtag">A ENGENHARIA DE ENCAIXE QUE CONVERTE</span>
-            <h3 class="aida-puzzle-title">A ESTRUTURA INSEPARÁVEL DO <span class="highlight-fire">CRIATIVO QUE VENDE</span></h3>
-            <p class="aida-puzzle-desc">
-              Cada etapa funciona como uma peça de quebra-cabeça: se faltar uma única parte, a atenção vaza e o anúncio não converte.
-            </p>
-          </div>
-
-          <div class="aida-puzzle-grid">
-            <!-- Peça 1: ATENÇÃO (HOOK) -->
-            <div class="aida-puzzle-card aida-card-a" data-step="1">
-              <div class="puzzle-lego-stud" title="Encaixe Lego Superior"></div>
-              <div class="aida-card-header">
-                <span class="aida-step-tag">01 • PRIMEIROS 3s</span>
-                <span class="aida-letter">A</span>
-              </div>
-              <h4 class="aida-card-title">Atenção (Hook)</h4>
-              <p class="aida-card-text">
-                Trava o polegar no feed. Quebra imediata de padrão e de expectativa para prender quem rola a tela no piloto automático.
-              </p>
-              <div class="aida-card-footer">
-                <span class="aida-pill pill-a">🎯 Trava o Feed</span>
-              </div>
-              <div class="puzzle-tab-connector" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-              </div>
-            </div>
-
-            <!-- Peça 2: INTERESSE -->
-            <div class="aida-puzzle-card aida-card-i" data-step="2">
-              <div class="puzzle-lego-stud" title="Encaixe Lego Superior"></div>
-              <div class="aida-card-header">
-                <span class="aida-step-tag">02 • IDENTIFICAÇÃO</span>
-                <span class="aida-letter">I</span>
-              </div>
-              <h4 class="aida-card-title">Interesse</h4>
-              <p class="aida-card-text">
-                Conecta com a ferida real ou desejo oculto do lead. Ele para de assistir como um curioso e passa a se enxergar na história.
-              </p>
-              <div class="aida-card-footer">
-                <span class="aida-pill pill-i">⚡ Conecta na Dor</span>
-              </div>
-              <div class="puzzle-tab-connector" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-              </div>
-            </div>
-
-            <!-- Peça 3: DESEJO -->
-            <div class="aida-puzzle-card aida-card-d" data-step="3">
-              <div class="puzzle-lego-stud" title="Encaixe Lego Superior"></div>
-              <div class="aida-card-header">
-                <span class="aida-step-tag">03 • TRANSFORMAÇÃO</span>
-                <span class="aida-letter">D</span>
-              </div>
-              <h4 class="aida-card-title">Desejo</h4>
-              <p class="aida-card-text">
-                Demonstra o mecanismo único e o contraste antes vs. depois. Gera a certeza irresistível de que a sua solução é indispensável.
-              </p>
-              <div class="aida-card-footer">
-                <span class="aida-pill pill-d">🔥 Acende o Desejo</span>
-              </div>
-              <div class="puzzle-tab-connector" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
-              </div>
-            </div>
-
-            <!-- Peça 4: AÇÃO (CTA) -->
-            <div class="aida-puzzle-card aida-card-action aida-last" data-step="4">
-              <div class="puzzle-lego-stud" title="Encaixe Lego Superior"></div>
-              <div class="aida-card-header">
-                <span class="aida-step-tag">04 • CONVERSÃO</span>
-                <span class="aida-letter">A</span>
-              </div>
-              <h4 class="aida-card-title">Ação (CTA)</h4>
-              <p class="aida-card-text">
-                O comando cirúrgico e direto que direciona o lead já convencido para a compra imediata, sem atrito e sem dúvida.
-              </p>
-              <div class="aida-card-footer">
-                <span class="aida-pill pill-action">💰 Venda Concluída</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===================================================
-             BANNER CALLOUT DE CONVERSÃO / MICRO-CTA
-        =================================================== -->
-        <div class="conversion-mid-cta-banner">
-          <div class="mid-cta-content">
-            <div class="mid-cta-badge">🔥 OFERTA PROMOCIONAL LIBERADA</div>
-            <h3 class="mid-cta-title">Pronto para colocar criativos que vendem para rodar ainda esta semana?</h3>
-            <p class="mid-cta-sub">Garanta o treinamento prático completo + Acesso exclusivo à ferramenta <strong>MIRA Radar</strong> + Pack de 500 Hooks Validados com condição especial.</p>
-            <div class="mid-cta-pills">
-              <span>✓ Acesso Imediato</span>
-              <span>✓ 7 Dias de Garantia Incondicional</span>
-              <span>✓ Suporte com Especialistas</span>
-            </div>
-          </div>
-          <div class="mid-cta-action">
-            <a href="#oferta" class="btn-primary btn-cta-mid">
-              <span>QUERO DOMINAR CRIATIVOS AGORA</span>
-              <span class="btn-arrow-icon">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
-            </a>
-            <span class="mid-guarantee-note">🔒 Compra 100% Segura • Risco Zero</span>
-          </div>
-        </div>
-
-        <!-- Trust / Benefits Bar Integrada -->
-        <div class="trust-bar">
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 1 0 0-8c-2 0-4 1.33-6 4Z"></path></svg>
-            </span>
-            <span class="trust-label">Acesso vitalício</span>
-          </div>
-
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-            </span>
-            <span class="trust-label">Assista em qualquer dispositivo</span>
-          </div>
-
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-            </span>
-            <span class="trust-label">7 dias de garantia</span>
-          </div>
-
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4500" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-            </span>
-            <span class="trust-label">Suporte com especialistas</span>
-          </div>
-
-          <div class="trust-manifesto">
-            <span>MAPEAR</span>
-            <span>INTERPRETAR</span>
-            <span>ROTEIRIZAR</span>
-            <span>APLICAR</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 03: CASOS REAIS
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">03 // CASOS REAIS</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         EXEMPLOS REAIS DE CRIATIVOS DESCONSTRUÍDOS
-    =================================================== -->
-    <section class="section-examples" id="exemplos">
-      <div class="container">
-        <div class="section-header">
-          <div class="header-split">
-            <div>
-              <span class="section-tag">BIBLIOTECA PRÁTICA</span>
-              <h2 class="section-title">CRIATIVOS QUE VENDEM NA <span class="highlight">PRÁTICA</span></h2>
-            </div>
-            <div class="example-filters" id="exampleFilters">
-              <button class="filter-btn active" data-filter="all">Todos</button>
-              <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-              <button class="filter-btn" data-filter="infoproduto">Infoprodutos</button>
-              <button class="filter-btn" data-filter="servicos">Serviços & Local</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="examples-grid">
-          <!-- Card 1 -->
-          <div class="creative-card" data-category="ecommerce">
-            <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo E-commerce" loading="lazy" decoding="async" width="500" height="333">
-              <span class="creative-type">E-COMMERCE</span>
-              <span class="creative-metric-badge">ROAS 7.2x</span>
-            </div>
-            <div class="creative-body">
-              <h5>Hook: Quebra de Padrão Visual</h5>
-              <p>Demonstração do produto com efeito de impacto imediato nos primeiros 2 segundos. CTR aumentou 140%.</p>
-              <div class="creative-stats">
-                <span><strong>1.8M</strong> Views</span>
-                <span><strong>R$ 142k</strong> Faturados</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="creative-card" data-category="infoproduto">
-            <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Infoproduto" loading="lazy" decoding="async" width="500" height="333">
-              <span class="creative-type">INFOPRODUTO</span>
-              <span class="creative-metric-badge">CTR 5.4%</span>
-            </div>
-            <div class="creative-body">
-              <h5>Hook: "O Erro Que Você Comete"</h5>
-              <p>Roteiro focado no confronto de crença limitante + micro-solução imediata antes do pitch final.</p>
-              <div class="creative-stats">
-                <span><strong>940k</strong> Views</span>
-                <span><strong>R$ 89k</strong> Faturados</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="creative-card" data-category="servicos">
-            <div class="creative-media">
-              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=500&auto=format&fit=crop&q=75&fm=webp" alt="Exemplo Serviços" loading="lazy" decoding="async" width="500" height="333">
-              <span class="creative-type">SERVIÇOS</span>
-              <span class="creative-metric-badge">Lead R$ 3,20</span>
-            </div>
-            <div class="creative-body">
-              <h5>Hook: Bastidores & Transformação</h5>
-              <p>Storytelling de 30 segundos mostrando o antes/depois de um atendimento real. Conversão recorde no WhatsApp.</p>
-              <div class="creative-stats">
-                <span><strong>620k</strong> Views</span>
-                <span><strong>+380</strong> Clientes</span>
+              <div class="checkout-guarantee">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Acesso após a confirmação do pagamento e 7 dias de garantia.</span>
               </div>
             </div>
           </div>
@@ -832,527 +541,114 @@
     </section>
 
     <!-- ===================================================
-         DIVISOR MIRA 04: PROVA SOCIAL
+         DOBRA 8: PERGUNTAS FREQUENTES (FAQ)
     =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">04 // PROVA SOCIAL</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         RESULTADOS E DEPOIMENTOS DE ALUNOS
-    =================================================== -->
-    <section class="section-testimonials" id="depoimentos">
+    <section class="faq-section" id="faq">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">QUEM APLICA TEM RESULTADO</span>
-          <h2 class="section-title">O QUE NOSSOS <span class="highlight">ALUNOS DIZEM</span></h2>
-          <p class="section-subtitle">Mais de 12.000 pessoas transformaram seus anúncios e conteúdo com o Método MIRA.</p>
+          <span class="badge-tag">DÚVIDAS COMUNS</span>
+          <h2>Perguntas <span class="highlight-orange">frequentes</span></h2>
+          <p>Tire suas dúvidas sobre o método, o acesso e a ferramenta.</p>
         </div>
 
-        <div class="testimonials-grid" id="resultados">
-          <!-- Testimonial 1 -->
-          <div class="testimonial-card">
-            <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Mariana S." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
-              <div>
-                <h6 class="testi-name">Mariana Siqueira</h6>
-                <span class="testi-role">Social Media & Gestora de Tráfego</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "Eu ficava horas no Canva sem saber o que postar ou gravar. Com o método e os templates do MIRA, criei uma esteira de 8 criativos em um único dia. Nosso ROAS saltou de 1.8x para 5.4x em menos de duas semanas!"
-            </p>
-            <div class="testi-tag">Escalou loja de moda feminina</div>
-          </div>
-
-          <!-- Testimonial 2 -->
-          <div class="testimonial-card">
-            <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Lucas M." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
-              <div>
-                <h6 class="testi-name">Lucas Mendes</h6>
-                <span class="testi-role">Produtor Digital & Copywriter</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "O maior diferencial é entender que criatividade não é dom, é processo estruturado. A ferramenta MIRA Radar para pesquisa de referências economizou semanas de teste e validou nosso melhor anúncio do ano."
-            </p>
-            <div class="testi-tag">+R$ 280.000 faturados no último trimestre</div>
-          </div>
-
-          <!-- Testimonial 3 -->
-          <div class="testimonial-card">
-            <div class="testi-header">
-              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=75&fm=webp" alt="Camila R." class="testi-avatar" loading="lazy" decoding="async" width="60" height="60">
-              <div>
-                <h6 class="testi-name">Camila Rocha</h6>
-                <span class="testi-role">Dona de E-commerce de Cosméticos</span>
-              </div>
-            </div>
-            <div class="testi-stars">★★★★★</div>
-            <p class="testi-quote">
-              "Antes eu achava que precisava de câmera de cinema e estúdio caro. O curso me ensinou a gravar criativos no celular com o gancho certo. O resultado? O custo por compra caiu pela metade!"
-            </p>
-            <div class="testi-tag">Custo por aquisição reduziu 52%</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 05: CONTEÚDO PROGRAMÁTICO
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">05 // CONTEÚDO PROGRAMÁTICO</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         O QUE VOCÊ VAI RECEBER (GRADE DO CURSO & BÔNUS)
-    =================================================== -->
-    <section class="section-modules">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">CONTEÚDO ESTRUTURADO</span>
-          <h2 class="section-title">O QUE VOCÊ VAI <span class="highlight">DOMINAR</span></h2>
-          <p class="section-subtitle">Tudo o que você precisa para minerar, estruturar, gravar e editar criativos que multiplicam suas conversões.</p>
-        </div>
-
-        <div class="modules-grid">
-          <div class="module-box">
-            <span class="mod-num">MÓDULO 01</span>
-            <h4>Fundamentos de Retenção & Neurociência da Atenção</h4>
-            <p>Como prender a atenção nos primeiros 3 segundos, quebrar o padrão visual do feed e impedir que o usuário role a tela.</p>
-          </div>
-
-          <div class="module-box highlight-radar-box">
-            <span class="mod-num radar-badge">FERRAMENTA PROPRIETÁRIA</span>
-            <h4>Mineração com a Ferramenta MIRA Radar</h4>
-            <p>Aprenda a espionar, filtrar e minerar os anúncios de maior escala e tração no seu nicho antes que seus concorrentes descubram.</p>
-          </div>
-
-          <div class="module-box">
-            <span class="mod-num">MÓDULO 03</span>
-            <h4>Estruturação de Roteiros de Alta Conversão</h4>
-            <p>Fórmulas prontas de storytelling, ganchos emocionais, quebra de objeções e chamadas para ação (CTAs) irresistíveis.</p>
-          </div>
-
-          <div class="module-box">
-            <span class="mod-num">MÓDULO 04</span>
-            <h4>Produção & Captação no Celular (Com ou Sem Rosto)</h4>
-            <p>Gravação 100% no celular. Técnicas completas para vídeos com voiceover narrado, bastidores, UGC e demonstrações sem precisar aparecer.</p>
-          </div>
-
-          <div class="module-box">
-            <span class="mod-num">MÓDULO 05</span>
-            <h4>Edição Ágil na Prática (CapCut, Premiere & Canva)</h4>
-            <p>Cortes dinâmicos, legendas magnéticas, sonoplastia, efeitos de impacto e ritmo para reter o público até o final.</p>
-          </div>
-
-          <div class="module-box highlight-box">
-            <span class="mod-num bonus-badge">ACERVO EXCLUSIVO</span>
-            <h4>Pack 500 Hooks Validados + Templates Copia & Cola</h4>
-            <p>Biblioteca de ganchos visuais e verbais testados em dezenas de nichos para você nunca mais travar diante da tela em branco.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 06: OFERTA ESPECIAL
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">06 // OFERTA ESPECIAL</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         OFERTA ESPECIAL / CHECKOUT
-    =================================================== -->
-    <section class="section-offer" id="oferta">
-      <div class="container">
-        <div class="offer-card">
-          <div class="offer-glow"></div>
-          
-          <div class="offer-badge">LOTE PROMOCIONAL DE LANÇAMENTO</div>
-          <h2 class="offer-title">CURSO COMPLETO MIRA + <span class="highlight">FERRAMENTA MIRA RADAR</span></h2>
-          <p class="offer-subtitle">O método de 4 etapas para minerar, roteirizar e gravar criativos com ROAS alto usando apenas o celular.</p>
-
-          <!-- Tabela de Ancoragem Individual de Valor -->
-          <div class="value-stack-box">
-            <div class="value-stack-header">
-              <span>O QUE VOCÊ VAI RECEBER:</span>
-              <span>VALOR INDIVIDUAL:</span>
-            </div>
-            <div class="value-stack-item">
-              <div class="item-name">
-                <span class="check-icon">✓</span>
-                <div>
-                  <strong>Curso Completo Método MIRA</strong>
-                  <p>Do mapeamento à gravação no celular (Acesso vitalício)</p>
-                </div>
-              </div>
-              <div class="item-price">R$ 497,00</div>
-            </div>
-
-            <div class="value-stack-item highlight-stack-item">
-              <div class="item-name">
-                <span class="check-icon">✓</span>
-                <div>
-                  <strong>Acesso à Ferramenta Proprietária MIRA Radar</strong>
-                  <p>Espionagem e mineração de anúncios validados no mercado</p>
-                </div>
-              </div>
-              <div class="item-price">R$ 197,00</div>
-            </div>
-
-            <div class="value-stack-item">
-              <div class="item-name">
-                <span class="check-icon">✓</span>
-                <div>
-                  <strong>Pack com +500 Hooks Validados de Alta Retenção</strong>
-                  <p>Ganchos prontos para quebra de padrão nos primeiros 3 segundos</p>
-                </div>
-              </div>
-              <div class="item-price">R$ 97,00</div>
-            </div>
-
-            <div class="value-stack-item">
-              <div class="item-name">
-                <span class="check-icon">✓</span>
-                <div>
-                  <strong>Templates de Roteiro de Alta Conversão (Copia & Cola)</strong>
-                  <p>Modelos preenchíveis para e-commerce, infoprodutos e serviços</p>
-                </div>
-              </div>
-              <div class="item-price">R$ 67,00</div>
-            </div>
-
-            <div class="value-stack-item">
-              <div class="item-name">
-                <span class="check-icon">✓</span>
-                <div>
-                  <strong>Pack de Edição Rápida & Áudios Magnéticos</strong>
-                  <p>Efeitos sonoros, transições e legendas automáticas no CapCut</p>
-                </div>
-              </div>
-              <div class="item-price">R$ 97,00</div>
-            </div>
-
-            <div class="value-stack-total">
-              <span>Valor Total Acumulado:</span>
-              <span class="total-strikethrough"><del>R$ 955,00</del></span>
-            </div>
-          </div>
-
-          <!-- Feature Pills de Resultado -->
-          <div class="offer-result-badges">
-            <div class="result-badge-pill">⚡ Templates Copia & Cola</div>
-            <div class="result-badge-pill">🎭 Sem Precisar Aparecer</div>
-            <div class="result-badge-pill">📱 Gravação 100% no Celular</div>
-            <div class="result-badge-pill">🛡️ 7 Dias de Garantia</div>
-          </div>
-
-          <div class="pricing-box">
-            <div class="price-original">Tudo isso por apenas:</div>
-            <div class="price-installments">
-              <span class="installments-label">12x de</span>
-              <span class="installments-val">R$ 29,64</span>
-            </div>
-            <div class="price-cash">ou R$ 297,00 à vista (Economia de R$ 658,00)</div>
-          </div>
-
-          <div class="offer-cta-wrap">
-            <button class="btn-primary btn-big open-checkout-modal">
-              <span>QUERO DOMINAR CRIATIVOS + MIRA RADAR</span>
-              <span class="btn-arrow-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
-            </button>
-            <p class="offer-guarantee-note">🔒 Pagamento 100% seguro • Acesso instantâneo • Garantia incondicional de 7 dias</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 07: DÚVIDAS FREQUENTES
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">07 // DÚVIDAS FREQUENTES</span>
-      </div>
-    </div>
-
-    <!-- ===================================================
-         PERGUNTAS FREQUENTES (FAQ ACCORDION)
-    =================================================== -->
-    <section class="section-faq" id="faq">
-      <div class="container faq-container">
-        <div class="section-header text-center">
-          <span class="section-tag">DÚVIDAS COMUNS</span>
-          <h2 class="section-title">PERGUNTAS <span class="highlight">FREQUENTES</span></h2>
-        </div>
-
-        <div class="faq-accordion">
-          <!-- Objeção Número 1: Vergonha de Aparecer -->
+        <div class="faq-list">
           <div class="faq-item active">
-            <button class="faq-question">
-              <span>Preciso aparecer nos vídeos para ter resultado?</span>
-              <span class="faq-toggle-icon">+</span>
+            <button class="faq-question-btn" type="button" aria-expanded="true" aria-controls="faq-ans-1">
+              <span>Preciso aparecer nos vídeos para ter resultados?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p><strong>Não, absolutamente não!</strong> Essa é a trava de muita gente, e por isso o Método MIRA possui foco específico em formatos que não exigem o seu rosto. Você aprenderá a criar vídeos com formato narrado (voiceover), criativos estáticos com quebra de padrão visual, vídeos de bastidores, estilo UGC com produtos em ação e animações dinâmicas. Diversos alunos faturam múltiplos 5 e 6 dígitos sem nunca terem colocado o rosto em um anúncio.</p>
+            <div class="faq-answer" id="faq-ans-1">
+              <p>Não. O método ensina formatos narrados (voiceover), vídeos de bastidores, estilo UGC com produtos em uso e anúncios de quebra de padrão visual que não exigem que você mostre o rosto.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-2">
               <span>Como funciona a ferramenta MIRA Radar?</span>
-              <span class="faq-toggle-icon">+</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>O MIRA Radar é uma plataforma proprietária desenvolvida para minerar, catalogar e classificar os anúncios de maior escala e tração no mercado. Em vez de começar um criativo do zero ou adivinhar o que vai funcionar, você usa o Radar para identificar tendências validadas e ganchos vencedores no seu nicho antes de todo mundo.</p>
+            <div class="faq-answer" id="faq-ans-2">
+              <p>O MIRA Radar é uma plataforma desenvolvida para minerar e catalogar os anúncios de maior escala e tração no mercado. Você a utiliza para identificar ganchos e tendências comprovadas no seu nicho antes de começar a gravar.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
-              <span>Preciso ter equipamento caro ou computador potente?</span>
-              <span class="faq-toggle-icon">+</span>
+            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-3">
+              <span>Preciso de computador potente ou câmera profissional?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Não! Todo o curso é estruturado para que você execute 100% no seu smartphone (iPhone ou Android). Ensinamos como usar iluminação natural, truques simples de áudio e ferramentas gratuitas de edição como CapCut para produzir criativos de nível profissional sem gastar nada a mais.</p>
+            <div class="faq-answer" id="faq-ans-3">
+              <p>Não. Todo o curso é estruturado para ser executado 100% no seu celular (iPhone ou Android). Ensinamos como usar iluminação natural e ferramentas acessíveis de edição como CapCut e Canva.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
-              <span>Serve para quem vende serviços ou negócios locais?</span>
-              <span class="faq-toggle-icon">+</span>
+            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-4">
+              <span>O método serve para negócios locais e prestadores de serviços?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Sim! O Método MIRA inclui roteiros e templates dedicados para negócios físicos, clínicas, escritórios, consultorias e prestadores de serviços, além de e-commerce e infoprodutos. A lógica de reter a atenção e converter se aplica a qualquer nicho.</p>
+            <div class="faq-answer" id="faq-ans-4">
+              <p>Sim. O método inclui modelos adaptados para clínicas, consultorias, escritórios e serviços locais, além de e-commerce e infoprodutos. A lógica de reter a atenção nos primeiros 3 segundos se aplica a qualquer segmento.</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
+            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-5">
               <span>Por quanto tempo terei acesso ao curso e à ferramenta?</span>
-              <span class="faq-toggle-icon">+</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>O seu acesso ao curso e aos templates é vitalício, incluindo todas as atualizações e novos módulos que adicionamos periodicamente. O acesso promocional ao MIRA Radar e ao acervo de hooks é liberado imediatamente após a inscrição.</p>
+            <div class="faq-answer" id="faq-ans-5">
+              <p>O acesso às aulas e aos templates de roteiro é vitalício. Já o acesso à ferramenta MIRA Radar e ao acervo de hooks é liberado como bônus exclusivo da turma atual (consulte as condições da sua matrícula para períodos de suporte e atualizações do software).</p>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-question">
-              <span>E se eu não gostar ou achar que não é para mim?</span>
-              <span class="faq-toggle-icon">+</span>
+            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-6">
+              <span>Como funciona a garantia incondicional?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
             </button>
-            <div class="faq-answer">
-              <p>Você tem 7 dias de garantia incondicional. Se por qualquer motivo sentir que o método e as ferramentas não entregaram 10x mais valor do que o investimento, basta solicitar o reembolso com um único clique ou e-mail para receber 100% do seu dinheiro de volta.</p>
+            <div class="faq-answer" id="faq-ans-6">
+              <p>Você tem 7 dias corridos após a inscrição para testar o método e o material. Se achar que o treinamento não atendeu às suas expectativas, basta solicitar o reembolso na plataforma para receber 100% do valor pago.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ===================================================
-         DIVISOR MIRA 07: ECOSSISTEMA CQC
-    =================================================== -->
-    <div class="mira-divider" aria-hidden="true">
-      <div class="mira-divider-track">
-        <div class="mira-divider-glow"></div>
-        <div class="mira-divider-line"></div>
-      </div>
-      <div class="mira-divider-node">
-        <span class="mira-divider-dot"></span>
-        <span class="mira-divider-tag">CQC // MIRA</span>
-      </div>
-    </div>
-
   </main>
 
   <!-- ===================================================
-       FOOTER
+       FOOTER (RODAPÉ TRANSPARENTE E OBJETIVO)
   =================================================== -->
   <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-brand">
-        <a href="#inicio" class="logo">
-          <img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" class="brand-logo-img" width="141" height="38" loading="lazy" decoding="async">
-        </a>
-        <p class="footer-desc">
-          O ecossistema completo para você pesquisar, interpretar e produzir criativos de alta conversão.
-        </p>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" height="36" width="133" loading="lazy" decoding="async"/>
       </div>
-
-      <div class="footer-links-group">
-        <div class="footer-col">
-          <h6>Navegação</h6>
-          <a href="#inicio">Início</a>
-          <a href="#metodo">O Método</a>
-          <a href="#exemplos">Exemplos</a>
-          <a href="#resultados">Resultados</a>
-        </div>
-        <div class="footer-col">
-          <h6>Legal</h6>
-          <a href="#">Termos de Uso</a>
-          <a href="#">Política de Privacidade</a>
-          <a href="#">Aviso Legal</a>
-        </div>
-        <div class="footer-col">
-          <h6>Contato</h6>
-          <a href="mailto:suporte@miracriativos.com.br">suporte@miracriativos.com.br</a>
-          <span>Atendimento seg-sex das 9h às 18h</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div class="container bottom-inner">
-        <p>© 2026 MIRA Criativos que Convertem. Todos os direitos reservados.</p>
-        <div class="bottom-words">
-          <span>IDEIAS</span> • <span>ESTRATÉGIA</span> • <span>EXECUÇÃO</span> • <span>RESULTADOS</span>
-        </div>
+      <div class="footer-meta">
+        <p>CNPJ: 00.000.000/0001-00 • Todos os direitos reservados</p>
+        <p>Desenvolvido por NexBrand</p>
       </div>
     </div>
   </footer>
 
   <!-- ===================================================
-       MODAL: PREVIEW DE AULAS (VIDEO PLAYER)
+       MODAL TRANSPARENTE DE CHECKOUT (QUANDO PENDENTE URL)
   =================================================== -->
-  <div class="modal-backdrop" id="videoModal" aria-hidden="true">
+  <div class="modal-overlay" id="checkoutPendingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-dialog">
-      <button class="modal-close" id="closeVideoModal" aria-label="Fechar vídeo">&times;</button>
-      <div class="modal-video-wrapper">
-        <div class="video-preview-header">
-          <span class="preview-tag">AULA DEMONSTRATIVA</span>
-          <h4>A Anatomia do Criativo Que Converte</h4>
-        </div>
-        <div class="interactive-video-player">
-          <div class="player-visual">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80" alt="Aula Preview" loading="lazy" decoding="async" width="600" height="400">
-            <div class="play-overlay-btn" id="playPreviewTrigger">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            </div>
-            <div class="player-timeline-fake">
-              <div class="player-progress" style="width: 38%;"></div>
-            </div>
-          </div>
-          <div class="video-captions">
-            <p><strong>Nesta aula:</strong> Como estruturar os primeiros 3 segundos do vídeo com quebra de expectativa para dobrar o tempo médio de retenção.</p>
-          </div>
-        </div>
-        <div class="modal-video-footer">
-          <a href="#oferta" class="btn-primary close-modal-and-scroll">
-            <span>Quero ter acesso a todas as aulas</span>
-            <span class="btn-arrow-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </span>
-          </a>
-        </div>
-      </div>
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar janela">×</button>
+      <div class="badge-tag" style="margin-bottom: 12px;">CONFIGURAÇÃO DE CHECKOUT</div>
+      <h3 id="modalTitle" style="margin-bottom: 12px;">Inscrições da Próxima Turma</h3>
+      <p style="margin-bottom: 20px;">
+        A URL oficial de checkout para esta turma está em fase final de homologação técnica. Se você é o administrador, defina a variável <code style="color: var(--color-accent); font-weight: bold;">checkoutUrl</code> no arquivo de configuração para conectar a sua plataforma de pagamento (ex: Kiwify, Hotmart ou Eduzz).
+      </p>
+      <a class="btn btn-primary btn-block" href="mailto:suporte@miracriativos.com.br?subject=Duvida%20Inscricao%20Curso%20MIRA">
+        <span>Falar com o Suporte</span>
+      </a>
     </div>
   </div>
 
-  <!-- ===================================================
-       MODAL: CHECKOUT RÁPIDO / INSCRIÇÃO
-  =================================================== -->
-  <div class="modal-backdrop" id="checkoutModal" aria-hidden="true">
-    <div class="modal-dialog checkout-dialog">
-      <button class="modal-close" id="closeCheckoutModal" aria-label="Fechar checkout">&times;</button>
-      <div class="checkout-modal-content">
-        <div class="checkout-header">
-          <span class="checkout-badge">INSCRIÇÃO COM VALOR PROMOCIONAL</span>
-          <h3>Garantir Minha Vaga no Curso MIRA</h3>
-          <p>Preencha os dados abaixo para ter acesso instantâneo:</p>
-        </div>
-
-        <form class="checkout-form" id="checkoutForm" onsubmit="event.preventDefault(); handleCheckoutSubmit();">
-          <div class="form-group">
-            <label for="leadName">Nome completo</label>
-            <input type="text" id="leadName" placeholder="Seu nome" autocomplete="name" autocapitalize="words" required>
-          </div>
-
-          <div class="form-group">
-            <label for="leadEmail">Seu melhor e-mail (para envio do acesso)</label>
-            <input type="email" id="leadEmail" placeholder="seuemail@exemplo.com" autocomplete="email" inputmode="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="leadPhone">WhatsApp com DDD</label>
-            <input type="tel" id="leadPhone" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="tel" required>
-          </div>
-
-          <div class="checkout-summary-box">
-            <div class="summary-line">
-              <span>Curso Completo Método MIRA</span>
-              <span>R$ 497,00</span>
-            </div>
-            <div class="summary-line highlight-green">
-              <span>Ferramenta Proprietária MIRA Radar (Acesso)</span>
-              <span><del style="color: rgba(244, 237, 228, 0.48); margin-right:4px;">R$ 197</del> GRÁTIS</span>
-            </div>
-            <div class="summary-line highlight-green">
-              <span>Pack 500 Hooks + Templates Copia & Cola</span>
-              <span><del style="color: rgba(244, 237, 228, 0.48); margin-right:4px;">R$ 164</del> GRÁTIS</span>
-            </div>
-            <div class="summary-line" style="font-size: 0.85rem; color: #a5a3b2;">
-              <span>Valor Total dos Itens:</span>
-              <span><del style="color: rgba(244, 237, 228, 0.48);">R$ 955,00</del></span>
-            </div>
-            <div class="summary-total">
-              <span>Valor Promocional:</span>
-              <span class="total-price">12x de R$ 29,64 ou R$ 297 à vista</span>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-primary btn-big btn-full">
-            <span>CONCLUIR INSCRIÇÃO AGORA</span>
-            <span class="btn-arrow-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </span>
-          </button>
-
-          <p class="form-security">
-            🔒 Seus dados estão 100% protegidos com criptografia de ponta a ponta.
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- YouTube IFrame API (Carregado com defer para não atrasar LCP) -->
-  <script src="https://www.youtube.com/iframe_api" defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
+  <script src="tracking.js"></script>
 </body>
 </html>
