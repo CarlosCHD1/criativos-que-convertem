@@ -233,7 +233,7 @@
   }
 
   /**
-   * Monitoramento de Cliques em CTAs e Início de Checkout
+   * Monitoramento de Cliques em CTAs de Compra (InitiateCheckout)
    */
   function initCtaTracking() {
     document.addEventListener('click', (e) => {
@@ -241,13 +241,25 @@
       if (!target) return;
 
       const href = target.getAttribute('href') || '';
-      const isOfferNavigation = href.includes('#oferta') || target.classList.contains('navbar-cta');
-      
-      // Clique de navegação para a oferta (não é InitiateCheckout)
-      if (isOfferNavigation) {
-        trackUnified('CtaClick_VerOferta', {
+      const isCheckoutBtn = (
+        target.classList.contains('hero-btn-main') ||
+        target.classList.contains('nav-cta') ||
+        target.classList.contains('open-checkout-modal') ||
+        target.classList.contains('close-modal-and-scroll') ||
+        href.includes('#oferta') ||
+        target.textContent.toLowerCase().includes('quero dominar') ||
+        target.textContent.toLowerCase().includes('inscrição')
+      );
+
+      if (isCheckoutBtn) {
+        trackUnified('InitiateCheckout', {
+          content_name: 'Curso MIRA — Criativos que Convertem',
+          content_category: 'Curso Online',
+          content_ids: ['curso_mira_cqc'],
+          value: CONFIG.productValue,
+          currency: CONFIG.currency,
           button_text: target.innerText?.trim().slice(0, 40)
-        }, {}, true);
+        });
       }
     });
   }
