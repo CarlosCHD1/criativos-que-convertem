@@ -1,186 +1,129 @@
-/**
- * ============================================================================
- * CURSO MIRA — CRIATIVOS QUE CONVERTEM (CQC)
- * Frontend Controller & Interaction Engine
- * ============================================================================
- */
-
-(function () {
+(() => {
   'use strict';
+  const config = window.MIRA_CONFIG || {};
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const safeUrl = value => {
+    try { const url = new URL(value); return ['https:', 'http:'].includes(url.protocol) ? url : null; }
+    catch { return null; }
+  };
 
-  // --- 1. Video Sound & Playback Controller (Hero) ---
-  const vslVideo = document.getElementById('vslVideo');
-  const soundToggleBtn = document.getElementById('soundToggleBtn');
-  const soundMutedIcon = document.getElementById('soundMutedIcon');
-  const soundActiveIcon = document.getElementById('soundActiveIcon');
-  const soundBtnText = document.getElementById('soundBtnText');
-
-  if (vslVideo && soundToggleBtn) {
-    soundToggleBtn.addEventListener('click', () => {
-      if (vslVideo.muted) {
-        vslVideo.muted = false;
-        vslVideo.play().catch(() => {});
-        if (soundMutedIcon) soundMutedIcon.style.display = 'none';
-        if (soundActiveIcon) soundActiveIcon.style.display = 'inline-block';
-        if (soundBtnText) soundBtnText.textContent = 'Som ativado';
-        soundToggleBtn.setAttribute('aria-label', 'Desativar som do vídeo');
-      } else {
-        vslVideo.muted = true;
-        if (soundMutedIcon) soundMutedIcon.style.display = 'inline-block';
-        if (soundActiveIcon) soundActiveIcon.style.display = 'none';
-        if (soundBtnText) soundBtnText.textContent = 'Clique para ouvir';
-        soundToggleBtn.setAttribute('aria-label', 'Ativar som do vídeo');
+  // Start from the beginning with sound; native controls handle pause and seeking.
+  const video = document.getElementById('vslVideo');
+  const start = document.getElementById('videoStartBtn');
+  const videoError = document.getElementById('videoError');
+  if (video && start) {
+    video.controls = false;
+    start.hidden = false;
+    start.addEventListener('click', async () => {
+      video.currentTime = 0;
+      video.muted = false;
+      video.controls = true;
+      start.hidden = true;
+      try {
+        await video.play();
+        video.focus();
+        window.MIRA_TRACKING?.trackCustom('VSL_Play', { placement: 'hero' });
+      } catch {
+        video.controls = true;
+        start.hidden = false;
+        videoError.hidden = false;
       }
     });
-
-    // Auto-tenta iniciar em mudo de forma segura
-    vslVideo.play().catch(() => {
-      // Ignora bloqueios normais de autoplay do navegador
+    video.addEventListener('error', () => { videoError.hidden = false; });
+    video.addEventListener('ended', () => {
+      video.controls = false;
+      start.querySelector('.play-label').firstChild.textContent = 'Assistir novamente ';
+      start.hidden = false;
+    });
+    video.addEventListener('timeupdate', () => {
+      if (!video.duration || video.muted || video.paused) return;
+      const percent = video.currentTime / video.duration * 100;
+      [25, 50, 75].forEach(mark => { if (percent >= mark) window.MIRA_TRACKING?.trackVSLProgress(mark); });
     });
   }
 
-  // --- 2. Interactive Examples Category Filter ---
-  const filterBtns = document.querySelectorAll('.filter-btn');
-  const exampleCards = document.querySelectorAll('.example-card');
-
-  if (filterBtns.length > 0 && exampleCards.length > 0) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-
-        const filter = btn.getAttribute('data-filter');
-
-        exampleCards.forEach((card) => {
-          const category = card.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
+  const stages = [
+    ['Chamar quem vive o problema', '“Seu cliente pediu outro criativo. O que você vai mudar?”', 'A situação é familiar para quem gerencia campanhas. O gancho chama esse público para a conversa.'],
+    ['Dar um motivo para continuar', '“Antes de trocar a imagem, descubra qual dúvida está impedindo a pessoa de avançar.”', 'O trecho apresenta outra forma de olhar o problema e prepara o argumento que vem a seguir.'],
+    ['Mostrar o valor da solução', '“Com esse argumento, você sabe o que dizer, o que mostrar e qual variação testar.”', 'O benefício aparece no trabalho do dia a dia: tomar decisões com mais clareza.'],
+    ['Indicar o próximo passo', '“Conheça o Criativos que Convertem e veja como montar esse processo.”', 'Uma ação simples, coerente com o que o anúncio acabou de apresentar.']
+  ];
+  const tabs = [...document.querySelectorAll('[data-stage]')];
+  const nextStage = document.getElementById('nextStage');
+  let activeStage = 0;
+  function selectStage(index, focus = false) {
+    activeStage = (index + stages.length) % stages.length;
+    tabs.forEach((tab, i) => { tab.setAttribute('aria-selected', String(i === activeStage)); tab.tabIndex = i === activeStage ? 0 : -1; });
+    document.getElementById('scriptFunction').textContent = stages[activeStage][0];
+    document.getElementById('scriptQuote').textContent = stages[activeStage][1];
+    document.getElementById('scriptReason').textContent = stages[activeStage][2];
+    document.getElementById('script-example').setAttribute('aria-labelledby', tabs[activeStage].id);
+    document.getElementById('scriptCount').textContent = `Etapa ${activeStage + 1} de 4`;
+    document.getElementById('scriptProgress').style.width = `${(activeStage + 1) * 25}%`;
+    nextStage.firstChild.textContent = ['Ver interesse ', 'Ver desejo ', 'Ver ação ', 'Voltar ao gancho '][activeStage];
+    if (focus) tabs[activeStage].focus();
   }
-
-  // --- 3. Accessible FAQ Accordion ---
-  const faqItems = document.querySelectorAll('.faq-item');
-
-  faqItems.forEach((item) => {
-    const questionBtn = item.querySelector('.faq-question-btn');
-    if (!questionBtn) return;
-
-    questionBtn.addEventListener('click', () => {
-      const isOpen = item.classList.contains('active');
-
-      // Fecha os outros para manter foco e leitura limpa
-      faqItems.forEach((other) => {
-        other.classList.remove('active');
-        const otherBtn = other.querySelector('.faq-question-btn');
-        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-      });
-
-      // Alterna estado do item atual
-      if (!isOpen) {
-        item.classList.add('active');
-        questionBtn.setAttribute('aria-expanded', 'true');
-      }
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => selectStage(i));
+    tab.addEventListener('keydown', event => {
+      const index = { ArrowRight: activeStage + 1, ArrowLeft: activeStage - 1, Home: 0, End: 3 }[event.key];
+      if (index === undefined) return;
+      event.preventDefault(); selectStage(index, true);
     });
   });
+  nextStage?.addEventListener('click', () => selectStage(activeStage + 1));
 
-  // --- 4. Transparent Checkout Flow (Com Preservação de UTMs e Parâmetros) ---
-  const checkoutBtn = document.getElementById('checkoutBtn');
-  const modalOverlay = document.getElementById('checkoutPendingModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-  let lastFocusedElement = null;
-
-  function openPendingModal() {
-    if (!modalOverlay) return;
-    lastFocusedElement = document.activeElement;
-    modalOverlay.classList.add('is-open');
-    if (modalCloseBtn) modalCloseBtn.focus();
+  const gallery = document.getElementById('creativeGallery');
+  const previous = document.getElementById('galleryPrev');
+  const next = document.getElementById('galleryNext');
+  if (gallery && previous && next) {
+    const cards = [...gallery.querySelectorAll('.creative-card')];
+    let current = 0;
+    const positions = () => cards.map(card => card.offsetLeft - cards[0].offsetLeft);
+    const updateGallery = () => {
+      const offsets = positions();
+      current = offsets.reduce((best, offset, index) => Math.abs(offset - gallery.scrollLeft) < Math.abs(offsets[best] - gallery.scrollLeft) ? index : best, 0);
+      if (gallery.scrollWidth > gallery.clientWidth && gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth - 3) current = cards.length - 1;
+      document.getElementById('galleryCount').textContent = `${current + 1} / ${cards.length}`;
+      previous.disabled = current === 0; next.disabled = current === cards.length - 1;
+    };
+    const move = direction => gallery.scrollTo({ left: positions()[Math.max(0, Math.min(cards.length - 1, current + direction))], behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    previous.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+    gallery.addEventListener('scroll', updateGallery, { passive: true });
+    gallery.addEventListener('keydown', event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1); } });
+    window.addEventListener('resize', updateGallery, { passive: true });
+    updateGallery();
   }
 
-  function closePendingModal() {
-    if (!modalOverlay) return;
-    modalOverlay.classList.remove('is-open');
-    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-      lastFocusedElement.focus();
-    }
+  const checkout = safeUrl(config.checkoutUrl);
+  const checkoutButton = document.getElementById('checkoutBtn');
+  const contact = safeUrl(config.contactUrl);
+  const brl = value => Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  if (Number.isFinite(Number(config.priceCash))) document.querySelector('[data-price-cash]').textContent = Number(config.priceCash).toLocaleString('pt-BR', { minimumFractionDigits: Number(config.priceCash) % 1 ? 2 : 0 });
+  if (config.installmentsCount && config.installmentsValue) document.querySelector('[data-installments]').textContent = `${config.installmentsCount}x de ${brl(config.installmentsValue)}`;
+  if (config.installmentsTotal) document.querySelector('[data-installments-total]').textContent = `Total parcelado: ${brl(config.installmentsTotal)}`;
+  if (checkout && checkoutButton) {
+    const params = new URLSearchParams(window.location.search);
+    params.forEach((value, key) => { if (!checkout.searchParams.has(key)) checkout.searchParams.set(key, value); });
+    checkoutButton.href = checkout.toString();
+    checkoutButton.firstChild.textContent = 'Quero meu acesso ';
+    document.getElementById('enrollmentStatus').textContent = 'Inscrições abertas';
+    document.getElementById('checkoutNote').textContent = 'Acesso liberado após a confirmação do pagamento.';
+    checkoutButton.addEventListener('click', () => window.MIRA_TRACKING?.trackInitiateCheckout({ value: Number(config.priceCash) || 297, currency: 'BRL' }));
+  } else if (contact && checkoutButton) {
+    checkoutButton.href = contact.toString();
+    checkoutButton.addEventListener('click', () => window.MIRA_TRACKING?.trackCustom('Contato_Inscricao', { placement: 'offer' }));
   }
 
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener('click', closePendingModal);
+  // Show the mobile shortcut only after the hero, and hide it at the offer.
+  const mobileOffer = document.getElementById('mobileOffer');
+  const hero = document.getElementById('inicio');
+  const offer = document.getElementById('oferta');
+  if (mobileOffer && hero && offer && 'IntersectionObserver' in window) {
+    let heroPassed = false, offerVisible = false;
+    const sync = () => { mobileOffer.hidden = !heroPassed || offerVisible; };
+    new IntersectionObserver(entries => { heroPassed = !entries[0].isIntersecting && entries[0].boundingClientRect.bottom < 0; sync(); }, { threshold: 0 }).observe(hero);
+    new IntersectionObserver(entries => { offerVisible = entries[0].isIntersecting; sync(); }, { threshold: 0 }).observe(offer);
   }
-
-  if (modalOverlay) {
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) closePendingModal();
-    });
-  }
-
-  // Fechamento de modal acessível via tecla Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('is-open')) {
-      closePendingModal();
-    }
-  });
-
-  // Handler de Checkout Conectado à Configuração
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener('click', () => {
-      const config = window.MIRA_CONFIG || {};
-      const checkoutUrl = (config.checkoutUrl || '').trim();
-
-      // Se existir uma URL real de checkout configurada
-      if (checkoutUrl && checkoutUrl !== '#' && checkoutUrl.startsWith('http')) {
-        // Disparo oficial de InitiateCheckout
-        if (window.MIRA_TRACKING && typeof window.MIRA_TRACKING.trackInitiateCheckout === 'function') {
-          window.MIRA_TRACKING.trackInitiateCheckout({
-            value: config.priceCash || 297.00,
-            currency: 'BRL'
-          });
-        }
-
-        // Anexar parâmetros de campanha (UTMs e fbclid) para o checkout
-        try {
-          const currentParams = new URLSearchParams(window.location.search);
-          const targetUrl = new URL(checkoutUrl);
-
-          currentParams.forEach((value, key) => {
-            if (!targetUrl.searchParams.has(key)) {
-              targetUrl.searchParams.set(key, value);
-            }
-          });
-
-          window.location.href = targetUrl.toString();
-        } catch (err) {
-          window.location.href = checkoutUrl;
-        }
-      } else {
-        // Sem URL real configurada: Exibe modal transparente e explicativo (sem falsas aprovações)
-        openPendingModal();
-      }
-    });
-  }
-
-  // --- 5. Smooth Scroll para Âncoras ---
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId && targetId !== '#') {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    });
-  });
-
 })();

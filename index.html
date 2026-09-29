@@ -1,654 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Criativos que Convertem — Crie anúncios que dão ao cliente um motivo para comprar</title>
-  <meta content="Aprenda o que falar, como chamar a atenção e como mostrar o valor do produto nos anúncios que você gerencia." name="description"/>
-
-  <!-- Google Fonts: Barlow Semi Condensed & Caveat -->
-  <link href="https://fonts.googleapis.com" rel="preconnect"/>
-  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
-
-  <!-- Favicon & App Icons -->
-  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
-  <link href="assets/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
-  <link href="assets/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
-
-  <link href="styles.css" rel="stylesheet"/>
-
-  <!-- ===================================================
-       CONFIGURAÇÃO COMERCIAL & TRACKING (CAPI & PIXEL)
-  =================================================== -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1A1A1A">
+  <title>Criativos que Convertem — Dê um motivo para comprar</title>
+  <meta name="description" content="Aprenda a encontrar o argumento, escrever o gancho e transformar sua ideia em um anúncio. Para gestores de tráfego, social medias e designers.">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/outfit-latin-c8e7a734.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/vsl-poster-20260929.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=20260929">
   <script>
     window.MIRA_CONFIG = {
-      pixelId: 'YOUR_PIXEL_ID', // Substitua pelo seu ID do Pixel Meta
-      checkoutUrl: '', // Insira a URL real da sua plataforma de checkout
-      priceCash: 297.00,
-      installmentsCount: 12,
-      installmentsValue: 29.64,
-      installmentsTotal: 355.68
+      pixelId: 'YOUR_PIXEL_ID', checkoutUrl: '',
+      contactUrl: 'https://www.instagram.com/carloshenrique.branding/',
+      priceCash: 297.00, installmentsCount: 12, installmentsValue: 29.64, installmentsTotal: 355.68
     };
   </script>
+  <script src="script.js?v=20260929" defer></script>
+  <script src="tracking.js" defer></script>
 </head>
-
 <body>
-
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo do curso</a>
   <main>
-    <!-- ===================================================
-         DOBRA 1: HERO SECTION
-    =================================================== -->
-    <section class="hero-section" id="inicio">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="container hero-grid">
-        <!-- Coluna Esquerda: A Grande Dor & Promessa -->
-        <div class="hero-content">
-          <div class="badge-tag">MÉTODO PRÁTICO • CRIATIVOS QUE CONVERTEM</div>
-          
-          <h1 class="hero-title">
-            Crie anúncios que dão ao cliente <span class="highlight-orange">um motivo para comprar.</span>
-          </h1>
-          
-          <p class="hero-subtitle">
-            Aprenda o que falar, como chamar a atenção e como mostrar o valor do produto nos anúncios que você gerencia.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#oferta" id="heroMainCta">
-              <span>QUERO MELHORAR MEUS CRIATIVOS</span>
-              <span class="btn-arrow-icon" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </span>
-            </a>
-          </div>
-
-          <!-- Benefícios em Destaque -->
-          <div class="hero-benefits">
-            <div class="hero-benefit-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>O que falar e como mostrar o valor real do produto</span>
-            </div>
-            <div class="hero-benefit-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Como reter a atenção nos primeiros segundos</span>
-            </div>
-            <div class="hero-benefit-item">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Aulas práticas para aplicar nas contas que você gerencia</span>
-            </div>
-          </div>
+        <div class="hero-heading">
+          <p class="eyebrow"><span class="brand-mark" aria-hidden="true">↗</span> Criativos que Convertem</p>
+          <h1 id="hero-title">Crie anúncios que dão <span>um motivo para comprar.</span></h1>
         </div>
-
-        <!-- Coluna Direita: Demonstração em Vídeo no Smartphone -->
+        <p class="hero-summary">Encontre o argumento, escreva o gancho e transforme sua ideia em um anúncio que faz sentido para o público.</p>
         <div class="hero-visual">
-          <div class="phone-mockup-frame">
-            <div class="phone-header-notch" aria-hidden="true"></div>
-            <div class="phone-screen-container">
-              <video id="vslVideo" playsinline autoplay muted loop poster="assets/vsl-poster.webp">
-                <source src="assets/vsl-creative.mp4" type="video/mp4"/>
-                Seu navegador não suporta a tag de vídeo.
-              </video>
-              <div class="phone-video-overlay">
-                <div class="phone-video-top-tag">
-                  <span class="live-dot" aria-hidden="true"></span>
-                  <span>Assista ao vídeo e veja como aplicar</span>
-                </div>
-                <div class="phone-controls">
-                  <button class="video-toggle-sound-btn" id="soundToggleBtn" aria-label="Ativar som do vídeo">
-                    <svg id="soundMutedIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                      <line x1="23" y1="9" x2="17" y2="15"></line>
-                      <line x1="17" y1="9" x2="23" y2="15"></line>
-                    </svg>
-                    <svg id="soundActiveIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true">
-                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                      <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                    </svg>
-                    <span id="soundBtnText">Clique para ouvir</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="phone-frame"><div class="phone-island" aria-hidden="true"></div><div class="phone-screen">
+            <video id="vslVideo" controls playsinline preload="none" poster="assets/vsl-poster-20260929.webp" aria-label="Carlos Henrique explica a proposta do curso"><source src="assets/vsl-creative.mp4" type="video/mp4"><a href="assets/vsl-creative.mp4">Abrir o vídeo de apresentação</a></video>
+            <button type="button" class="video-start" id="videoStartBtn" aria-label="Assistir à apresentação de 36 segundos com som" hidden><span class="play-disc" aria-hidden="true"><svg width="25" height="28" viewBox="0 0 25 28" fill="currentColor"><path d="M3 2 23 14 3 26Z"/></svg></span><span class="play-label">Toque para assistir <small>36 segundos · com som</small></span></button>
+          </div></div>
+          <p class="video-caption">Com Carlos Henrique, criador do curso.</p>
+          <p class="video-error" id="videoError" role="status" hidden>Não foi possível reproduzir. <a href="assets/vsl-creative.mp4">Abrir o vídeo</a></p>
         </div>
+        <div class="hero-action"><a class="button button-orange" href="#oferta" id="heroMainCta">Conhecer o curso <span aria-hidden="true">↗</span></a><p>Do planejamento ao criativo pronto para testar.</p></div>
+        <div class="hero-audience"><span>Feito para quem cria.</span><p>Gestores de tráfego <i aria-hidden="true">/</i> Social medias <i aria-hidden="true">/</i> Designers</p></div>
       </div>
     </section>
-
-    <!-- ===================================================
-         DOBRA 2: O VERDADEIRO PROBLEMA & OS 5 PILARES
-    =================================================== -->
-    <section class="reality-section" id="metodo">
-      <div class="container reality-grid">
-        <!-- Texto explicativo -->
-        <div class="reality-info">
-          <div class="badge-tag">O PROBLEMA REAL</div>
-          <h2>
-            O cliente cobra resultado. <span class="highlight-orange">E você já não sabe o que mudar no anúncio.</span>
-          </h2>
-          <p class="reality-lead">
-            Troca a imagem, muda uma frase, busca referências. Mas continua sem saber o que testar.
-          </p>
-          <div class="reality-highlight-box">
-            <p>
-              No <strong>Criativos que Convertem</strong>, você aprende a transformar o que importa para o público em ideias para seus anúncios.
-            </p>
-          </div>
-          <p class="reality-conclusion">
-            Assim, fica mais fácil escrever um roteiro, explicar ao designer o que você precisa e colocar novas ideias na campanha.
-          </p>
+    <section class="showcase section-space" id="exemplos" aria-labelledby="showcase-title"><div class="container">
+      <div class="section-heading"><div><p class="eyebrow">01 / A mensagem muda a peça</p><h2 id="showcase-title">Mais do que trocar<br>a imagem do anúncio.</h2></div><p>Quando você sabe o que quer comunicar, o gancho e o visual ganham direção. Veja três exemplos do próprio curso.</p></div>
+      <div class="gallery" id="creativeGallery" role="region" aria-label="Exemplos de criativos. Use as setas ou deslize para ver as peças." tabindex="0">
+        <figure class="creative-card"><img src="assets/creatives/creative-01-3segundos.webp" width="600" height="749" alt="Anúncio com a frase O que ninguém te contou sobre atenção" loading="lazy" decoding="async"><figcaption><span>01 / Curiosidade</span><h3>Uma pergunta fica no ar.</h3><p>A abertura convida a descobrir o que ainda não foi contado.</p></figcaption></figure>
+        <figure class="creative-card"><img src="assets/creatives/creative-04-visual-hooks.webp" width="600" height="749" alt="Um olho atravessa um papel rasgado junto à frase Sem gancho, ninguém para" loading="lazy" decoding="async"><figcaption><span>02 / Gancho visual</span><h3>A imagem apresenta a ideia.</h3><p>O olhar atravessando o papel reforça a mensagem sobre atenção.</p></figcaption></figure>
+        <figure class="creative-card"><img src="assets/creatives/creative-07-clique-achismo.webp" width="600" height="749" alt="Exemplo de anúncio do curso sobre criar com estratégia" loading="lazy" decoding="async"><figcaption><span>03 / Argumento</span><h3>O texto dá uma direção.</h3><p>A peça conecta o problema ao próximo passo que propõe.</p></figcaption></figure>
+      </div>
+      <div class="gallery-footer"><p>Exemplos didáticos de mensagem e composição.</p><div class="gallery-controls" aria-label="Navegação dos exemplos"><button type="button" id="galleryPrev" aria-label="Ver exemplo anterior">←</button><span id="galleryCount" aria-live="polite">1 / 3</span><button type="button" id="galleryNext" aria-label="Ver próximo exemplo">→</button></div></div>
+    </div></section>
+    <section class="method section-space" id="metodo" aria-labelledby="method-title"><div class="container method-grid">
+      <div class="method-intro"><p class="eyebrow">02 / O raciocínio na prática</p><h2 id="method-title">Um roteiro.<br>Quatro funções.</h2><p>O gancho abre a conversa. Os próximos trechos dão um motivo para continuar e mostram o que fazer.</p><p class="method-instruction">Toque nas etapas para ver este exemplo de anúncio do curso. <span aria-hidden="true">↘</span></p></div>
+      <div class="script-board">
+        <div class="stage-tabs" role="tablist" aria-label="Etapas do roteiro">
+          <button id="stage-0" class="stage-tab" type="button" role="tab" aria-selected="true" aria-controls="script-example" data-stage="0"><span>01</span>Gancho</button>
+          <button id="stage-1" class="stage-tab" type="button" role="tab" aria-selected="false" aria-controls="script-example" tabindex="-1" data-stage="1"><span>02</span>Interesse</button>
+          <button id="stage-2" class="stage-tab" type="button" role="tab" aria-selected="false" aria-controls="script-example" tabindex="-1" data-stage="2"><span>03</span>Desejo</button>
+          <button id="stage-3" class="stage-tab" type="button" role="tab" aria-selected="false" aria-controls="script-example" tabindex="-1" data-stage="3"><span>04</span>Ação</button>
         </div>
-
-        <!-- Mosaico Dinâmico de Criativos Reais -->
-        <div class="creatives-mosaic-grid" aria-label="Exemplos reais de criativos">
-          <div class="mosaic-scroll-col scroll-up">
-            <div class="mosaic-scroll-group">
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-01-3segundos.webp" alt="Criativo de teste de gancho" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Ganchos visuais" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Ímã de atenção" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-            <div class="mosaic-scroll-group" aria-hidden="true">
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-01-3segundos.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-04-visual-hooks.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-          </div>
-
-          <div class="mosaic-scroll-col scroll-down">
-            <div class="mosaic-scroll-group">
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-03-vender.webp" alt="Vender com método" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-07-clique-achismo.webp" alt="Eliminando o achismo" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-06-estrategia.webp" alt="Estratégia visual" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-            <div class="mosaic-scroll-group" aria-hidden="true">
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-03-vender.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-07-clique-achismo.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-06-estrategia.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-          </div>
-
-          <div class="mosaic-scroll-col scroll-up-slow">
-            <div class="mosaic-scroll-group">
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-02-gancho.webp" alt="Gancho de abertura" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="Atenção retida" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="Estrutura de retenção" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-            <div class="mosaic-scroll-group" aria-hidden="true">
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-02-gancho.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-featured">
-                <img src="assets/creatives/creative-08-dominio-atencao.webp" alt="" width="300" height="400" loading="lazy" decoding="async"/>
-              </div>
-              <div class="mosaic-card mosaic-card-compact">
-                <img src="assets/creatives/creative-05-atencao-ima.webp" alt="" width="300" height="200" loading="lazy" decoding="async"/>
-              </div>
-            </div>
-          </div>
+        <div class="script-example" id="script-example" role="tabpanel" aria-labelledby="stage-0" tabindex="0"><p class="script-function" id="scriptFunction">Chamar quem vive o problema</p><blockquote id="scriptQuote">“Seu cliente pediu outro criativo. O que você vai mudar?”</blockquote><p id="scriptReason">A situação é familiar para quem gerencia campanhas. O gancho chama esse público para a conversa.</p></div>
+        <div class="script-progress" aria-hidden="true"><span id="scriptProgress"></span></div>
+        <div class="script-navigation"><span id="scriptCount" aria-live="polite">Etapa 1 de 4</span><button type="button" id="nextStage">Ver interesse <span aria-hidden="true">→</span></button></div>
+        <details class="complete-script"><summary>Ler o roteiro completo <span aria-hidden="true">+</span></summary><ol><li><strong>Gancho.</strong> Seu cliente pediu outro criativo. O que você vai mudar?</li><li><strong>Interesse.</strong> Antes de trocar a imagem, descubra qual dúvida está impedindo a pessoa de avançar.</li><li><strong>Desejo.</strong> Com esse argumento, você sabe o que dizer, o que mostrar e qual variação testar.</li><li><strong>Ação.</strong> Conheça o Criativos que Convertem e veja como montar esse processo.</li></ol></details>
+      </div>
+    </div></section>
+    <section class="learning section-space" id="conteudo" aria-labelledby="learning-title"><div class="container">
+      <div class="learning-grid"><div class="learning-intro"><p class="eyebrow">03 / Dentro do curso</p><h2 id="learning-title">Do briefing<br>ao próximo teste.</h2><p>O método MIRA organiza o caminho: mapear referências, interpretar a mensagem, roteirizar e agir.</p><a class="text-link" href="#oferta">Ver tudo o que está incluído <span aria-hidden="true">↗</span></a></div>
+        <div class="lessons">
+          <details open name="lesson"><summary><span class="lesson-number">01</span><h3>Público e oferta</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Investigue dores, desejos e objeções. Encontre o que o público precisa perceber no produto, além do preço.</p></details>
+          <details name="lesson"><summary><span class="lesson-number">02</span><h3>Repertório com o MIRA Radar</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Organize referências e identifique abordagens para seus testes. Um anúncio encontrado é uma referência; seu resultado precisa ser verificado.</p></details>
+          <details name="lesson"><summary><span class="lesson-number">03</span><h3>Ganchos e roteiros</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Escreva a abertura e organize interesse, desejo e ação. Construa cada trecho para o objetivo da peça.</p></details>
+          <details name="lesson"><summary><span class="lesson-number">04</span><h3>Gravação no celular</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Enquadramento, luz e áudio. Grave em takes curtos, com sua fala, o produto em uso ou cenas de apoio.</p></details>
+          <details name="lesson"><summary><span class="lesson-number">05</span><h3>Visual, edição e IA</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Monte estáticos com IA sem o visual genérico. Combine motion, cenas geradas e gravações reais para apoiar a mensagem.</p></details>
+          <details name="lesson"><summary><span class="lesson-number">06</span><h3>Métricas e novos testes</h3><span class="expand-icon" aria-hidden="true">+</span></summary><p>Leia retenção e cliques para levantar o que melhorar. Compare novos ganchos e argumentos com uma intenção clara.</p></details>
         </div>
       </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 3: TRANSFORMAÇÃO & APLICAÇÃO NO DIA A DIA
-    =================================================== -->
-    <section class="target-section">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="badge-tag">AUTONOMIA & CRITÉRIO</span>
-          <h2>Na próxima vez que pedirem um criativo, <span class="highlight-orange">você vai ter por onde começar.</span></h2>
-          <p>
-            Vai conseguir explicar suas escolhas, organizar o roteiro antes de abrir o editor e levar novas ideias para a campanha.
-          </p>
-        </div>
-
-        <div class="roles-grid">
-          <!-- Card Gestão de Tráfego -->
-          <div class="role-card">
-            <div class="role-card-badge">SE VOCÊ FAZ A GESTÃO DO TRÁFEGO</div>
-            <h3>Mais critério técnico para orientar a produção</h3>
-            <p>
-              Em vez de apenas pedir "mais criativos" para o cliente ou designer, você saberá exatamente qual ângulo testar, qual objeção combater e por que o criativo atual esgotou.
-            </p>
-            <ul class="role-card-list">
-              <li>Decida com precisão o próximo teste com base em métricas de retenção.</li>
-              <li>Oriente a gravação do cliente com roteiros estruturados e claros.</li>
-              <li>Apresente relatórios de criativos com fundamentação estratégica.</li>
-            </ul>
-          </div>
-
-          <!-- Card Design / Social Media -->
-          <div class="role-card">
-            <div class="role-card-badge">SE VOCÊ TRABALHA COM DESIGN OU SOCIAL MEDIA</div>
-            <h3>Construa a mensagem junto com o visual</h3>
-            <p>
-              Pare de ser visto apenas como um executor de layouts. Ao dominar a mensagem e a copy de conversão, seu trabalho visual passa a gerar impacto direto no faturamento.
-            </p>
-            <ul class="role-card-list">
-              <li>Construa roteiros que valorizam seu design e prendem o olhar.</li>
-              <li>Saiba justificar suas escolhas de elementos visuais e ganchos.</li>
-              <li>Aumente o valor percebido e cobre mais pelos seus criativos.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="roles-footer-note text-center">
-          <p>Esse é o trabalho que você vai desenvolver nas aulas, com exemplos e exercícios para aplicar nos anúncios que precisa entregar.</p>
-        </div>
+      <div class="audience-grid" aria-label="Como aplicar no seu trabalho"><div><span class="audience-number">01</span><h3>Gestor de tráfego</h3><p>Saiba o que pedir ao cliente e qual argumento levar para o próximo teste.</p></div><div><span class="audience-number">02</span><h3>Social media</h3><p>Transforme as dúvidas do público em pautas, ganchos e roteiros.</p></div><div><span class="audience-number">03</span><h3>Designer</h3><p>Conecte imagem, texto e hierarquia ao objetivo do criativo.</p></div></div>
+      <div class="teacher"><div><p class="eyebrow">Com quem você aprende</p><h3>Carlos Henrique</h3></div><p>Mais de dez anos em design, branding e comunicação visual, organizados em decisões que você pode aplicar na próxima peça.</p></div>
+    </div></section>
+    <section class="offer section-space" id="oferta" aria-labelledby="offer-title"><div class="container offer-grid">
+      <div class="offer-content"><p class="eyebrow">04 / Curso + materiais de apoio</p><h2 id="offer-title">Um processo para criar.<br>Repertório para começar.</h2><p class="offer-lead">Aulas e ferramentas para sair da ideia e chegar ao criativo que você vai testar.</p>
+        <ul class="offer-includes"><li><span aria-hidden="true">01</span><div><h3>Curso Criativos que Convertem</h3><p>Do público ao roteiro, visual e teste. Acesso vitalício às aulas.</p></div></li><li><span aria-hidden="true">02</span><div><h3>Ferramenta MIRA Radar</h3><p>Pesquisa e organização de referências. Bônus da turma.</p></div></li><li><span aria-hidden="true">03</span><div><h3>Pack de 500 hooks</h3><p>Referências de abertura para adaptar ao público e à oferta.</p></div></li><li><span aria-hidden="true">04</span><div><h3>Templates de roteiro</h3><p>Estruturas para organizar os anúncios dos seus clientes.</p></div></li></ul>
       </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 4: O MÉTODO MIRA EM 4 ETAPAS
-    =================================================== -->
-    <section class="method-section" id="estrutura">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="badge-tag">A METODOLOGIA</span>
-          <h2>Como o <span class="highlight-orange">Método MIRA</span> organiza o seu processo</h2>
-          <p>Um fluxo sequencial para você nunca mais encarar uma folha em branco na hora de criar anúncios.</p>
-        </div>
-
-        <div class="method-grid">
-          <!-- Etapa M -->
-          <div class="method-step-card active-step">
-            <div class="step-letter-badge">M</div>
-            <span class="step-tag-pill">ETAPA 01 • PESQUISA</span>
-            <h3>Mapear (MIRA Radar)</h3>
-            <p>Use a ferramenta MIRA Radar para garimpar referências validadas e entender o que já funciona no seu nicho antes de criar.</p>
-          </div>
-
-          <!-- Etapa I -->
-          <div class="method-step-card">
-            <div class="step-letter-badge">I</div>
-            <span class="step-tag-pill">ETAPA 02 • ANÁLISE</span>
-            <h3>Interpretar</h3>
-            <p>Identifique o ângulo, a dor e a quebra de padrão que fizeram aquele anúncio funcionar, adaptando a ideia para o seu cliente.</p>
-          </div>
-
-          <!-- Etapa R -->
-          <div class="method-step-card">
-            <div class="step-letter-badge">R</div>
-            <span class="step-tag-pill">ETAPA 03 • ROTEIRO</span>
-            <h3>Roteirizar (A.I.D.A)</h3>
-            <p>Escreva o roteiro com uma abertura forte, conexão de interesse, desejo de compra e chamada clara para ação.</p>
-          </div>
-
-          <!-- Etapa A -->
-          <div class="method-step-card">
-            <div class="step-letter-badge">A</div>
-            <span class="step-tag-pill">ETAPA 04 • GRAVAÇÃO</span>
-            <h3>Agir & Gravar</h3>
-            <p>Grave no celular com boa luz e áudio limpo (com ou sem aparecer) e faça uma edição com ritmo ágil no CapCut ou Canva.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 5: EXEMPLOS PRÁTICOS
-    =================================================== -->
-    <section class="examples-section" id="exemplos">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="badge-tag">FORMATOS VALIDADOS</span>
-          <h2>Criativos que vendem na <span class="highlight-orange">prática</span></h2>
-          <p>Formatos testados que você aprenderá a aplicar para diferentes objetivos de campanha.</p>
-        </div>
-
-        <div class="examples-filters" id="exampleFilters" role="tablist">
-          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos os Formatos</button>
-          <button class="filter-btn" data-filter="quebra-padrao" role="tab" aria-selected="false">Quebra de Padrão</button>
-          <button class="filter-btn" data-filter="narrado" role="tab" aria-selected="false">Roteiro Narrado</button>
-          <button class="filter-btn" data-filter="ugc" role="tab" aria-selected="false">UGC / Sem Rosto</button>
-        </div>
-
-        <div class="examples-grid">
-          <div class="example-card" data-category="quebra-padrao">
-            <div class="example-card-img">
-              <img src="assets/creatives/creative-01-3segundos.webp" alt="Formato Quebra de Padrão" loading="lazy" decoding="async"/>
-            </div>
-            <div class="example-card-body">
-              <span class="example-badge">Primeiros 3 Segundos</span>
-              <h4>Gancho de Quebra Visual</h4>
-              <p>Demonstração imediata com corte de impacto inicial que impede a rolagem automática da timeline.</p>
-            </div>
-          </div>
-
-          <div class="example-card" data-category="narrado">
-            <div class="example-card-img">
-              <img src="assets/creatives/creative-04-visual-hooks.webp" alt="Formato Roteiro Narrado" loading="lazy" decoding="async"/>
-            </div>
-            <div class="example-card-body">
-              <span class="example-badge">Storytelling</span>
-              <h4>Roteiro Narrado com Voiceover</h4>
-              <p>Estrutura focada em quebra de crença com áudio dinâmico e legendas com alto poder de retenção.</p>
-            </div>
-          </div>
-
-          <div class="example-card" data-category="ugc">
-            <div class="example-card-img">
-              <img src="assets/creatives/creative-03-vender.webp" alt="Formato UGC Sem Rosto" loading="lazy" decoding="async"/>
-            </div>
-            <div class="example-card-body">
-              <span class="example-badge">Sem Precisar Aparecer</span>
-              <h4>UGC & Bastidores no Celular</h4>
-              <p>Gravação de produto em uso, tela ou processo com linguagem nativa de redes sociais.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 6: CONTEÚDO PROGRAMÁTICO (MÓDULOS)
-    =================================================== -->
-    <section class="modules-section">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="badge-tag">CONTEÚDO DO CURSO</span>
-          <h2>O que você vai <span class="highlight-orange">aprender nas aulas</span></h2>
-          <p>Aulas práticas, diretas ao ponto, pensadas para o seu dia a dia de produção de anúncios.</p>
-        </div>
-
-        <div class="modules-grid">
-          <div class="module-card">
-            <span class="module-num">Módulo 01</span>
-            <h4>Mapeamento de Público & Oferta</h4>
-            <p>Como investigar o que o cliente realmente valoriza e encontrar argumentos fortes além do preço e desconto.</p>
-          </div>
-
-          <div class="module-card">
-            <span class="module-num">Módulo 02</span>
-            <h4>Mineração com o MIRA Radar</h4>
-            <p>Como usar a ferramenta para garimpar referências, analisar tendências e extrair hipóteses de teste.</p>
-          </div>
-
-          <div class="module-card">
-            <span class="module-num">Módulo 03</span>
-            <h4>Escrita de Ganchos e Roteirização</h4>
-            <p>Estruturas A.I.D.A, narrativas de quebra de objeção e técnicas para escrever ganchos magnéticos.</p>
-          </div>
-
-          <div class="module-card">
-            <span class="module-num">Módulo 04</span>
-            <h4>Gravação e Captação no Celular</h4>
-            <p>Ajustes de câmera, captação de áudio limpo, enquadramento e formatos que funcionam com ou sem rosto.</p>
-          </div>
-
-          <div class="module-card">
-            <span class="module-num">Módulo 05</span>
-            <h4>Edição com Ritmo Visual</h4>
-            <p>Como cortar os respiros, inserir legendas legíveis e criar dinâmica no CapCut, Premiere ou Canva.</p>
-          </div>
-
-          <div class="module-card">
-            <span class="module-num">Módulo 06</span>
-            <h4>Métricas de Criativo & Diagnóstico</h4>
-            <p>Como analisar taxa de retenção nos 3s e CTR para saber exatamente o que mudar no próximo anúncio.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 7: OFERTA & CONDIÇÕES
-    =================================================== -->
-    <section class="offer-section" id="oferta">
-      <div class="container">
-        <div class="offer-card-2col">
-          <!-- Coluna 1: O que está incluso -->
-          <div class="offer-left-col">
-            <div class="badge-tag">INSCRIÇÕES ABERTAS</div>
-            <h2>Tenha mais clareza para <span class="highlight-orange">criar o próximo anúncio.</span></h2>
-            <p class="offer-desc">
-              Aulas práticas para aplicar nas contas que você já gerencia.
-            </p>
-
-            <div class="value-stack-box">
-              <div class="value-stack-item">
-                <div class="stack-item-info">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <div>
-                    <strong>Curso Completo Criativos que Convertem</strong>
-                    <span>Aulas práticas do planejamento à edição no celular (Acesso vitalício)</span>
-                  </div>
-                </div>
-                <div class="stack-item-price">Incluso</div>
-              </div>
-
-              <div class="value-stack-item">
-                <div class="stack-item-info">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <div>
-                    <strong>Acesso à Ferramenta MIRA Radar</strong>
-                    <span>Plataforma proprietária de espionagem e mineração de referências</span>
-                  </div>
-                </div>
-                <div class="stack-item-price">Bônus da turma</div>
-              </div>
-
-              <div class="value-stack-item">
-                <div class="stack-item-info">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <div>
-                    <strong>Pack de 500 Hooks Validados</strong>
-                    <span>Ganchos de abertura prontos para destravar o início de qualquer roteiro</span>
-                  </div>
-                </div>
-                <div class="stack-item-price">Incluso</div>
-              </div>
-
-              <div class="value-stack-item">
-                <div class="stack-item-info">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <div>
-                    <strong>Templates de Roteiro (Copia & Cola)</strong>
-                    <span>Estruturas preenchíveis para infoprodutos, e-commerce e serviços</span>
-                  </div>
-                </div>
-                <div class="stack-item-price">Incluso</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Coluna 2: Preço & Ação Direta -->
-          <div class="offer-right-col">
-            <div class="checkout-panel">
-              <div class="checkout-pills">
-                <span class="checkout-pill">Acesso Imediato</span>
-                <span class="checkout-pill">7 Dias de Garantia</span>
-                <span class="checkout-pill">Suporte Dedicado</span>
-              </div>
-
-              <div class="checkout-price-block">
-                <div class="price-intro">Acesso completo por:</div>
-                <div class="price-installments">
-                  <span class="price-times">12x de</span>
-                  <span class="price-amount">R$ 29,64</span>
-                </div>
-                <div class="price-cash-info">ou R$ 297,00 à vista</div>
-                <div class="price-total-note">Total a prazo: R$ 355,68</div>
-              </div>
-
-              <button class="btn btn-primary btn-lg btn-block" id="checkoutBtn" type="button">
-                <span>QUERO COLOCAR EM PRÁTICA</span>
-                <span class="btn-arrow-icon" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </span>
-              </button>
-
-              <div class="checkout-guarantee">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                <span>Acesso após a confirmação do pagamento e 7 dias de garantia.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===================================================
-         DOBRA 8: PERGUNTAS FREQUENTES (FAQ)
-    =================================================== -->
-    <section class="faq-section" id="faq">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="badge-tag">DÚVIDAS COMUNS</span>
-          <h2>Perguntas <span class="highlight-orange">frequentes</span></h2>
-          <p>Tire suas dúvidas sobre o método, o acesso e a ferramenta.</p>
-        </div>
-
-        <div class="faq-list">
-          <div class="faq-item active">
-            <button class="faq-question-btn" type="button" aria-expanded="true" aria-controls="faq-ans-1">
-              <span>Preciso aparecer nos vídeos para ter resultados?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-1">
-              <p>Não. O método ensina formatos narrados (voiceover), vídeos de bastidores, estilo UGC com produtos em uso e anúncios de quebra de padrão visual que não exigem que você mostre o rosto.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-2">
-              <span>Como funciona a ferramenta MIRA Radar?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-2">
-              <p>O MIRA Radar é uma plataforma desenvolvida para minerar e catalogar os anúncios de maior escala e tração no mercado. Você a utiliza para identificar ganchos e tendências comprovadas no seu nicho antes de começar a gravar.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-3">
-              <span>Preciso de computador potente ou câmera profissional?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-3">
-              <p>Não. Todo o curso é estruturado para ser executado 100% no seu celular (iPhone ou Android). Ensinamos como usar iluminação natural e ferramentas acessíveis de edição como CapCut e Canva.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-4">
-              <span>O método serve para negócios locais e prestadores de serviços?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-4">
-              <p>Sim. O método inclui modelos adaptados para clínicas, consultorias, escritórios e serviços locais, além de e-commerce e infoprodutos. A lógica de reter a atenção nos primeiros 3 segundos se aplica a qualquer segmento.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-5">
-              <span>Por quanto tempo terei acesso ao curso e à ferramenta?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-5">
-              <p>O acesso às aulas e aos templates de roteiro é vitalício. Já o acesso à ferramenta MIRA Radar e ao acervo de hooks é liberado como bônus exclusivo da turma atual (consulte as condições da sua matrícula para períodos de suporte e atualizações do software).</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question-btn" type="button" aria-expanded="false" aria-controls="faq-ans-6">
-              <span>Como funciona a garantia incondicional?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-6">
-              <p>Você tem 7 dias corridos após a inscrição para testar o método e o material. Se achar que o treinamento não atendeu às suas expectativas, basta solicitar o reembolso na plataforma para receber 100% do valor pago.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <div class="price-panel"><p class="price-kicker" id="enrollmentStatus">Conheça a próxima turma</p><p class="price-label">Curso completo + bônus</p><p class="price-cash"><span>R$</span> <strong data-price-cash>297</strong></p><p class="price-payment">à vista</p><p class="price-installments">ou <strong data-installments>12x de R$ 29,64</strong></p><p class="price-total" data-installments-total>Total parcelado: R$ 355,68</p><a class="button button-orange" id="checkoutBtn" href="https://www.instagram.com/carloshenrique.branding/" data-checkout>Falar sobre minha inscrição <span aria-hidden="true">↗</span></a><p class="checkout-note" id="checkoutNote">O pagamento ainda não está disponível aqui. Fale comigo no Instagram sobre a turma.</p><div class="guarantee"><svg width="22" height="24" viewBox="0 0 24 26" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m12 2 9 4v7c0 5-9 11-9 11S3 18 3 13V6Z"/><path d="m8 12 3 3 5-6"/></svg><p><strong>7 dias de garantia</strong>Após a inscrição, conforme as condições da oferta.</p></div></div>
+    </div></section>
+    <section class="faq section-space" id="faq" aria-labelledby="faq-title"><div class="container faq-grid"><div><p class="eyebrow">Antes de começar</p><h2 id="faq-title">Vamos às dúvidas.</h2></div><div class="faq-list">
+      <details><summary>Preciso aparecer nos vídeos?<span aria-hidden="true">+</span></summary><p>Não. Você pode usar narração, bastidores, gravação de tela ou o produto em uso. O formato depende da mensagem que precisa comunicar.</p></details>
+      <details><summary>Preciso de equipamento profissional?<span aria-hidden="true">+</span></summary><p>Você pode começar com o celular, iluminação natural e ferramentas acessíveis de edição. As aulas incluem enquadramento, áudio e gravação em pequenos takes.</p></details>
+      <details><summary>Serve para negócios locais e serviços?<span aria-hidden="true">+</span></summary><p>Sim. O raciocínio parte do público, do problema e da oferta. Você adapta o argumento e a chamada para ação ao negócio que atende.</p></details>
+      <details><summary>Por quanto tempo tenho acesso?<span aria-hidden="true">+</span></summary><p>O acesso às aulas e aos templates de roteiro é vitalício. MIRA Radar e acervo de hooks são bônus da turma; confira os períodos de acesso, suporte e atualização antes de se inscrever.</p></details>
+      <details><summary>Como funciona a garantia?<span aria-hidden="true">+</span></summary><p>Você tem 7 dias corridos após a inscrição para avaliar o material. Se o curso não atender às suas expectativas, solicite o reembolso pela plataforma de pagamento.</p></details>
+      <details><summary>O curso ensina a configurar campanhas?<span aria-hidden="true">+</span></summary><p>O foco é a criação: público, mensagem, roteiro, visual e testes de criativos. O resultado da campanha também depende da oferta, do público, da página e da execução.</p></details>
+    </div></div></section>
   </main>
-
-  <!-- ===================================================
-       FOOTER (RODAPÉ TRANSPARENTE E OBJETIVO)
-  =================================================== -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-logo">
-        <img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" height="36" width="133" loading="lazy" decoding="async"/>
-      </div>
-      <div class="footer-meta">
-        <p>CNPJ: 00.000.000/0001-00 • Todos os direitos reservados</p>
-        <p>Desenvolvido por NexBrand</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ===================================================
-       MODAL TRANSPARENTE DE CHECKOUT (QUANDO PENDENTE URL)
-  =================================================== -->
-  <div class="modal-overlay" id="checkoutPendingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-dialog">
-      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar janela">×</button>
-      <div class="badge-tag" style="margin-bottom: 12px;">CONFIGURAÇÃO DE CHECKOUT</div>
-      <h3 id="modalTitle" style="margin-bottom: 12px;">Inscrições da Próxima Turma</h3>
-      <p style="margin-bottom: 20px;">
-        A URL oficial de checkout para esta turma está em fase final de homologação técnica. Se você é o administrador, defina a variável <code style="color: var(--color-accent); font-weight: bold;">checkoutUrl</code> no arquivo de configuração para conectar a sua plataforma de pagamento (ex: Kiwify, Hotmart ou Eduzz).
-      </p>
-      <a class="btn btn-primary btn-block" href="mailto:suporte@miracriativos.com.br?subject=Duvida%20Inscricao%20Curso%20MIRA">
-        <span>Falar com o Suporte</span>
-      </a>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
-  <script src="tracking.js"></script>
+  <footer class="footer"><div class="container footer-inner"><a href="#inicio" aria-label="Voltar ao início"><img src="assets/logo-horizontal.webp" alt="Criativos que Convertem" width="133" height="36" loading="lazy" decoding="async"></a><p>Por Carlos Henrique <span aria-hidden="true">·</span> NexBrand</p><a href="https://www.instagram.com/carloshenrique.branding/">Fale comigo <span aria-hidden="true">↗</span></a></div></footer>
+  <aside class="mobile-offer" id="mobileOffer" aria-label="Acesso rápido à oferta" hidden><span>Criativos que<br><strong>Convertem.</strong></span><a class="button button-orange" href="#oferta">Conhecer o curso <span aria-hidden="true">↗</span></a></aside>
 </body>
 </html>
